@@ -11,7 +11,6 @@ import DoctorInformation from "./components/reusecomponent/DoctorInformation"
 import DoctorPage from "./components/reusecomponent/DoctorPage"
 import PatientInformation from "./components/reusecomponent/PatientInformation"
 import TopDoctors from './pages/topdoctors/TopDoctors'
-
 function App() {
   return (
     <>
@@ -27,8 +26,7 @@ function App() {
           <Route path='/PatientSignup' element={<Patientsignup />} />
           <Route path='/DoctorInformation' element={<DoctorInformation />} />
           <Route path='/DoctorPage' element={<DoctorPage />} />
-          <Route path='/PatientInformation' element={<PatientInformation />} />
-        </Routes>
+          <Route path='/PatientInformation' element={<PatientInformation />} />        </Routes>
         <Footer />
       </BrowserRouter>
 
