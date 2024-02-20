@@ -14,7 +14,7 @@ const Patientsignup = () => {
         password: "",
         confirmPassword: "",
         gender: "",
-        task: "",
+        role: "",
         image: null,
     });
 
@@ -27,7 +27,7 @@ const Patientsignup = () => {
         password: '',
         confirmPassword: '',
         gender: '',
-        task: '',
+        role: '',
     });
     console.log(form)
     const [emailExists, setEmailExists] = useState(false); // Define setEmailExists here
@@ -114,11 +114,11 @@ const Patientsignup = () => {
         }
 
         // Validate Task
-        if (!form.task) {
-            newErrors.task = 'Task is required';
+        if (!form.role) {
+            newErrors.role = 'Role is required';
             isValid = false;
         } else {
-            newErrors.task = '';
+            newErrors.role = '';
         }
         const formData = new FormData();
         formData.append('Fname', form.Fname);
@@ -129,15 +129,15 @@ const Patientsignup = () => {
         formData.append('password', form.password);
         formData.append('confirmPassword', form.confirmPassword);
         formData.append('gender', form.gender);
-        formData.append('task', form.task);
-        formData.append('image', form.image); // Add image data
+        formData.append('role', form.role);
+        formData.append('image', form.image);
 
         setErrors(newErrors);
 
         if (isValid) {
             try {
                 const response = await axios.post(
-                    "http://localhost:3001/api/v1/Auth/SignUp",
+                    "https://appointment-care-api.vercel.app/api/v1/auth/Signup",
                     form
                 );
                 console.log(response.data);
@@ -210,12 +210,12 @@ const Patientsignup = () => {
                                         <label className='d-block radio-button-text'>Select your Gender:</label>
                                         <div className='row align-items-center'>
                                             <div className="col-4 p-0">
-                                                <input className='radio-button' type="radio" id="male" name="gender" value="Male" onChange={handleChange} checked={form.gender === "Male"} />
-                                                <label id="FemaleLabel" className='radio-button-text' htmlFor="male">Female</label>
+                                                <input className='radio-button' type="radio" id="female" name="gender" value="Female" onChange={handleChange} checked={form.gender === "Female"} />
+                                                <label id="FemaleLabel" className='radio-button-text' htmlFor="female">Female</label>
                                             </div>
                                             <div className="col-4 p-0">
-                                                <input className='radio-button' type="radio" id="female" name="gender" value="Female" onChange={handleChange} checked={form.gender === "Female"} />
-                                                <label id="MaleLabel" className='radio-button-text' htmlFor="female">Male</label>
+                                                <input className='radio-button' type="radio" id="male" name="gender" value="Male" onChange={handleChange} checked={form.gender === "Male"} />
+                                                <label id="MaleLabel" className='radio-button-text' htmlFor="male">Male</label>
                                             </div>
                                         </div>
                                         {errors.gender && <div className="error">{errors.gender}</div>}
@@ -225,15 +225,15 @@ const Patientsignup = () => {
                                         <label className='d-block radio-button-text'>Patient or Doctor: </label>
                                         <div className='row align-items-center'>
                                             <div className="col-4 p-0">
-                                                <input className='radio-button' type="radio" id="Patient" name="task" value="Patient" onChange={handleChange} checked={form.task === "Patient"} />
+                                                <input className='radio-button' type="radio" id="Patient" name="role" value="Patient" onChange={handleChange} checked={form.role === "Patient"} />
                                                 <label id="PatientLabel" className='radio-button-text' htmlFor="Patient">Patient</label>
                                             </div>
                                             <div className="col-4 p-0">
-                                                <input className='radio-button' type="radio" id="Doctor" name="task" value="Doctor" onChange={handleChange} checked={form.task === "Doctor"} />
+                                                <input className='radio-button' type="radio" id="Doctor" name="role" value="Doctor" onChange={handleChange} checked={form.role === "Doctor"} />
                                                 <label id="DoctorLabel" className='radio-button-text' htmlFor="Doctor">Doctor</label>
                                             </div>
                                         </div>
-                                        {errors.task && <div className="error">{errors.task}</div>}
+                                        {errors.role && <div className="error">{errors.role}</div>}
                                     </div>
                                     <div className='upload mt-4'>
                                         <label htmlFor="inputGroupFile01">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
