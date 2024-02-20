@@ -21,6 +21,7 @@ const Home = () => {
                 <p className='lead'>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families.
                   Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare i
                   ndustry</p>
+                <img src="logo.png" alt="" />
                 <div className='container mt-5 align-items-center'>
                   <div className='row align-items-center justify-content-center'>
                     <div className='col-6'>
