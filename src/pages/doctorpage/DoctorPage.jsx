@@ -74,7 +74,7 @@ const DoctorPage = () => {
                   </div>
                 </div>
                 <div className="col-6">
-                  <img src="/src/assets/images/doctor2.png" alt="doctor2" id="doctorpage-doctor" />
+                  <img src="doctor2.png" alt="doctor2" id="doctorpage-doctor" />
                 </div>
               </div>
             </div>
