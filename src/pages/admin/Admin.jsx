@@ -101,7 +101,7 @@ const Admin = () => {
       <h2 className='refresh'>Doctor Admin | <button onClick={refreshPage}>Refresh</button></h2>
       <div className="p-4">
         <h2 className='applicants'>Doctor AppointCare Pending</h2>
-        <table className="">
+        <table className="p-4 text-center">
           <thead className="">
             <tr>
               <th scope="col">ID</th>
