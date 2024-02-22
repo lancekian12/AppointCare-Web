@@ -22,9 +22,10 @@ const Login = ({ setUserData }) => {
     e.preventDefault();
     try {
       const response = await axios.post("https://appointment-care-api.vercel.app/api/v1/auth/login", loginForm);
-      setErrorMessage("Login Successfully");
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userData', JSON.stringify(response.data.user));
+      console.log(response.data.token)
+      console.log(response.data)
       const token = response.data.token;
       const homeResponse = await axios.get('https://appointment-care-api.vercel.app/api/v1/home', {
         headers: {
@@ -32,13 +33,23 @@ const Login = ({ setUserData }) => {
           'Content-Type': 'application/json'
         }
       });
-
-      setUserData({ response: response.data, homeResponse: homeResponse.data });
-
-      if (response.data.user.role === "Doctor") {
-        window.location.href = '/doctorpage'; // Redirect to doctorpage
+      
+      if (response.data.user.role === "Doctor" && response.data.user.status === "Accepted") {
+        setErrorMessage("Login Successfully");
+        window.location.href = '/doctorpage';
+        setUserData({ response: response.data, homeResponse: homeResponse.data });
       } else if (response.data.user.role === "Patient") {
-        window.location.href = '/'; // Redirect to homepage
+        setErrorMessage("Login Successfully");
+        window.location.href = '/'; 
+        setUserData({ response: response.data, homeResponse: homeResponse.data });
+      } else if (response.data.user.role === "Doctor" && response.data.user.status === "Pending") {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userData');
+        setErrorMessage("Your Application is on Pending ");
+      } else if (response.data.user.role === "Doctor" && response.data.user.status === "Rejected") {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userData');
+        setErrorMessage("Your Application is Rejected ");
       }
 
     } catch (error) {

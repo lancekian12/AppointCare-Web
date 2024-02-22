@@ -9,7 +9,7 @@ const Footer = () => {
                 <div className='container'>
                     <div className="row">
                         <div className="col-3 footerLogo">
-                            <img src="/src/assets/images/logo.png" alt="logo" />
+                            <img src="logo.png" alt="logo" />
                             <h2>AppointCare</h2>
                             <h4>Copyright @2023. Design by: Lance Kian Flores</h4>
                         </div>
