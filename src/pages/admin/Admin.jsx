@@ -37,7 +37,7 @@ const Admin = () => {
     if (x.role === "Doctor" && x.status === "Pending") {
       return (
         <tr key={x._id}>
-          <th scope="row">{x._id}</th>
+          <td scope="row">{x._id}</td>
           <td>{x.Fname} {x.Lname}</td>
           <td>{x.number}</td>
           <td>{x.gender}</td>
@@ -58,7 +58,7 @@ const Admin = () => {
     if (x.role === "Doctor" && x.status === "Accepted") {
       return (
         <tr key={x._id}>
-          <th scope="row">{x._id}</th>
+          <td scope="row">{x._id}</td>
           <td>{x.Fname} {x.Lname}</td>
           <td>{x.number}</td>
           <td>{x.gender}</td>
@@ -79,7 +79,7 @@ const Admin = () => {
     if (x.role === "Doctor" && x.status === "Rejected") {
       return (
         <tr key={x._id}>
-          <th scope="row">{x._id}</th>
+          <td scope="row">{x._id}</td>
           <td>{x.Fname} {x.Lname}</td>
           <td>{x.number}</td>
           <td>{x.gender}</td>
@@ -102,8 +102,8 @@ const Admin = () => {
       <div className="p-4">
         <h2 className='applicants'>Doctor AppointCare Pending</h2>
         <table className="p-4 text-center">
-          <thead className="">
-            <tr className='theads'>
+          <thead>
+            <tr>
               <th scope="col">ID</th>
               <th scope="col">Doctor's Name</th>
               <th scope="col">Phone Number</th>
