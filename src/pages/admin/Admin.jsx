@@ -103,7 +103,7 @@ const Admin = () => {
         <h2 className='applicants'>Doctor AppointCare Pending</h2>
         <table className="p-4 text-center">
           <thead className="">
-            <tr>
+            <tr className='theads'>
               <th scope="col">ID</th>
               <th scope="col">Doctor's Name</th>
               <th scope="col">Phone Number</th>
