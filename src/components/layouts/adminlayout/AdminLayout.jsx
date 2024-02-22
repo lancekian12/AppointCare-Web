@@ -23,18 +23,6 @@ const AdminLayout = () => {
                 </div>
             </aside>
             <div className='admin-outlet'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Wow</th>
-                            <th>Wow</th>
-                            <th>Wow</th>
-                            <th>Wow</th>
-                            <th>Wow</th>
-                            <th>Wow</th>
-                        </tr>
-                    </thead>
-                </table>
                 <Outlet />
             </div>
         </div>
