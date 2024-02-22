@@ -104,14 +104,14 @@ const Admin = () => {
         <table className="p-4 text-center">
           <thead className="theads">
             <tr>
-              <th >ID</th>
-              <th >Doctor's Name</th>
-              <th >Phone Number</th>
-              <th >Gender</th>
-              <th >Age</th>
-              <th >Email</th>
-              <th >Status</th>
-              <th >Actions</th>
+              <th scope="col">ID</th>
+              <th scope="col">Doctor's Name</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Age</th>
+              <th scope="col">Email</th>
+              <th scope="col">Status</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
