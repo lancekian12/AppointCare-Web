@@ -11,7 +11,7 @@ const AdminLayout = () => {
                         <img src="logo.png" alt="logo" />
                         <h2>Appoint Care Admin Panel</h2>
                     </div>
-                </div>
+                </div>+
                 <div>
                     <ul>
                         <NavLink exact="true" to="/Admin" className="admin-item">Doctor Status</NavLink>
