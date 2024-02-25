@@ -102,22 +102,23 @@ const Admin = () => {
       <div className="p-4">
         <h2 className='applicants'>Doctor AppointCare Pending</h2>
         <table className="p-4 text-center">
-          <tr>
-            <th className="th-color" scope="col">ID</th>
-            <th className="th-color" scope="col">Doctor's Name</th>
-            <th className="th-color" scope="col">Phone Number</th>
-            <th className="th-color" scope="col">Gender</th>
-            <th className="th-color" scope="col">Age</th>
-            <th className="th-color" scope="col">Email</th>
-            <th className="th-color" scope="col">Status</th>
-            <th className="th-color" scope="col">Actions</th>
-          </tr>
           <tbody>
+            <tr>
+              <th className="th-color" scope="col">ID</th>
+              <th className="th-color" scope="col">Doctor's Name</th>
+              <th className="th-color" scope="col">Phone Number</th>
+              <th className="th-color" scope="col">Gender</th>
+              <th className="th-color" scope="col">Age</th>
+              <th className="th-color" scope="col">Email</th>
+              <th className="th-color" scope="col">Status</th>
+              <th className="th-color" scope="col">Actions</th>
+            </tr>
             {displayDoctorPending}
           </tbody>
         </table >
         <h2 className='applicants-2'>Doctor AppointCare Accepted</h2>
         <table className="p-4 text-center">
+          <tbody>
             <tr>
               <th className="th-color" scope="col">ID</th>
               <th className="th-color" scope="col">Doctor's Name</th>
@@ -128,12 +129,12 @@ const Admin = () => {
               <th className="th-color" scope="col">Status</th>
               <th className="th-color" scope="col">Actions</th>
             </tr>
-          <tbody>
             {displayDoctorAccepted}
           </tbody>
         </table >
         <h2 className='applicants-2'>Doctor AppointCare Rejected</h2>
         <table className="p-4 text-center ">
+          <tbody>
             <tr>
               <th className="th-color" scope="col">ID</th>
               <th className="th-color" scope="col">Doctor's Name</th>
@@ -143,11 +144,9 @@ const Admin = () => {
               <th className="th-color" scope="col">Email</th>
               <th className="th-color" scope="col">Status</th>
               <th className="th-color" scope="col">Actions</th>
-
             </tr>
-            <tbody>
-              {displayDoctorRejected}
-            </tbody>
+            {displayDoctorRejected}
+          </tbody>
         </table >
       </div >
     </div>

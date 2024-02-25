@@ -11,9 +11,10 @@ table{
     color: black;
     width: 100%;
 }
-/* .theads{
+.theads{
     background-color: #007e85;
-} */
+    width: 100px;
+}
 .th-color{
     /* padding-right: 50px;
     padding-left: 50px; */
