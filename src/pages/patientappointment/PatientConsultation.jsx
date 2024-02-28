@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import VectorTwo from '../../../public/consultation-vector-2.png'
 
 
 const PatientConsultation = ({ userData }) => {
@@ -45,7 +46,7 @@ const PatientConsultation = ({ userData }) => {
             <section className='patient-booking'>
                 <div className="container">
                     <div className='text-center'>
-                        <img src="/public/consultation-vector-2.png" alt="patient-vector" />
+                        <img src={VectorTwo} alt="patient-vector" />
                         <h2 className='mt-5'>No Prescription</h2>
                         <p className='lead'>You have no prescription at the moment. Book an Appoinment</p>
                     </div>
