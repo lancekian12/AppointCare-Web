@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import VectorTwo from '../../../public/consultation-vector-2.png'
 import "../../css/PatientConsultation.css"
+import cough from "../../../public/cough-vector.png"
+import bruising from "../../../public/bruising-vector.png"
 
 
 const PatientConsultation = ({ userData }) => {
@@ -108,7 +110,7 @@ const PatientConsultation = ({ userData }) => {
                     </div>
                     <h3 className='mt-5'>Personal Info</h3>
                     <div className="first-half mb-4">
-                        <img src="/public/me.png"
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                             alt="" />
                         <div className="details-container mx-4">
                             <div className="personal-details">
@@ -142,11 +144,11 @@ const PatientConsultation = ({ userData }) => {
                             <div className="personal-details ">
                                 <div className='symptomps'>
                                     <div className="symptomps-column">
-                                        <img src="/public/cough-vector.png" alt="" />
+                                        <img src={cough} alt="cough" />
                                         <span>fever</span>
                                     </div>
                                     <div className="symptomps-column">
-                                        <img src="/public/bruising-vector.png" alt="" />
+                                        <img src={bruising} alt="bruising" />
                                         <span>Bruising</span>
                                     </div>
                                 </div>

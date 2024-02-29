@@ -120,7 +120,7 @@ const DoctorPatients = ({ userData }) => {
             </div>
             <h3 className='mt-5'>PATIENT Info</h3>
             <div className="first-half">
-              <img src="/public/me.png"
+              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                 alt="" />
               <div className="details-container mx-4">
                 <div className="personal-details">

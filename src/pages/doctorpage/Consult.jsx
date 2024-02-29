@@ -41,7 +41,7 @@ const Consult = () => {
                 <div className="col-3 appointment-doctor-info">
                     {patientInfo ? (
                         <>
-                            <img src="/public/me.png" alt="doctor-picture" />
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="doctor-picture" />
                             <br />
                             <h2 className='doctor-name-2 text-capitalize'>{patientInfo.Fname} {patientInfo.Lname}</h2>
                             <span><i className="fa-regular fa-envelope"></i> {patientInfo.email}</span>
