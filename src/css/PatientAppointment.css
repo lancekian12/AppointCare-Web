@@ -64,3 +64,10 @@
     text-transform: uppercase;
     margin-bottom: 10px;
 }
+#prescription-pic{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0px;
+    margin-right: 0px;
+}

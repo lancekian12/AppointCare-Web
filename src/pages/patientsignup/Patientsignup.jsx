@@ -14,7 +14,6 @@ const Patientsignup = () => {
         confirmPassword: "",
         gender: "",
         role: "Patient",
-        consultation: " ",
         imageData: null,
     });
 

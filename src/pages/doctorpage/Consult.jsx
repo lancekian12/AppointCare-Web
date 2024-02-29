@@ -52,21 +52,99 @@ const Consult = () => {
                         <p>Loading...</p>
                     )}
                 </div>
-                <div className="col-8 book-an-appointment">
+                <div className="col-8 book-an-appointment-2">
                     <h2 className='mb-3'>Consultation </h2>
                     <form onSubmit=" ">
-                        <div>
-                            <label htmlFor="consultation">Observation</label>
-                            <input type="textbox" className="form-control" id="consultation" placeholder="Enter a Consultation" onChange={handleChange} value={setPostInfo.consultation} required />
+                        <label className='label-common'>Common Symptomps</label>
+                        <div className='common-symptomps-2'>
+                            <div className="checkbox-container">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Cough
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Unexplained Bruising
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Pain in bone,joints or abdmoen
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Frequent infection
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Tiredness
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Unexplained Rash
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Unexplained Weight Loss
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Shortness of Breath
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Paleness
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Drenching Night sweats
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Unexplained Fever
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Lumps or Swelling
+                                    </label>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <label htmlFor="consultation">Prescription</label>
-                            <input type="textbox" className="form-control" id="consultation" placeholder="Enter a Consultation" onChange={handleChange} value={setPostInfo.consultation} required />
-
-                        </div>
-                        <div className='book-button mt-3'>
-                            <NavLink to="/doctorpage/DoctorPatient/"><button type="submit" className='btn-viewprofile px-3'>Go back</button></NavLink>
-                            <button type="submit" className='btn-appointment'>Post Consultation</button>
+                        <div className='observation-appointment'>
+                            <div>
+                                <label htmlFor="consultation">Observation</label>
+                                <textarea className="form-control" id="consultation" placeholder="Enter Observation" onChange={handleChange} value={postInfo.consultation} required />
+                            </div>
+                            <div>
+                                <label htmlFor="consultation">Prescription</label>
+                                <textarea className="form-control" id="consultation" placeholder="Enter Observation" onChange={handleChange} value={postInfo.consultation} required />
+                            </div>
+                            <div className='book-button mt-3'>
+                                <NavLink to="/doctorpage/DoctorPatient/"><button type="submit" className='btn-viewprofile px-3'>Go back</button></NavLink>
+                                <button type="submit" className='btn-appointment'>Post Consultation</button>
+                            </div>
                         </div>
                     </form>
 

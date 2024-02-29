@@ -31,8 +31,8 @@ const DoctorRejectedPatients = ({ userData }) => {
         <div className="container">
           <div className='text-center'>
             <img src={vectorthree} alt="patient-vector" />
-            <h2>No Bookings</h2>
-            <p className='lead'>You have no Patients at the moment. Check Patient Appointment List</p>
+            <h2>No Rejected Bookings</h2>
+            <p className='lead'>You have no rejected Patients at the moment.</p>
           </div>
         </div>
       </section>
