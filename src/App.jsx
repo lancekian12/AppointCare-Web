@@ -89,7 +89,7 @@ function App() {
             <Route path='DoctorPatient' element={<DoctorPatients userData={userData} />} />
             <Route path='DoctorRejectedPatients' element={<DoctorRejectedPatients userData={userData} />} />
             <Route path='DoctorAcceptReject' element={<DoctorAcceptReject userData={userData} />} />
-            <Route path='DoctorPatient/Consult/:id' element={<Consult />} />
+            <Route path='DoctorPatient/Consult/:id' element={<Consult userData={userData}/>} />
             <Route path='DoctorUserProfile' element={<DoctorProfileLayout />} >
               <Route index element={<DoctorUserProfile userData={userData} />} />
             </Route>

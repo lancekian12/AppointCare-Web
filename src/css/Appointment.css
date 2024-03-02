@@ -87,3 +87,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.email-error{
+    width: 100%;
+    text-align: center;
+}

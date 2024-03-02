@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, NavLink } from "react-router-dom"
+import React, { useState, useEffect } from 'react';
+import { useParams, NavLink } from "react-router-dom";
 import axios from 'axios';
-import "../../css/Consult.css"
+import "../../css/Consult.css";
 
-const Consult = () => {
-    const [patientInfo, setPatientInfo] = useState(null)
-    const [postInfo, setPostInfo] = useState({
-        consultation: "",
-        observation: "",
-    })
-    console.log(postInfo)
+const Consult = ({ userData }) => {
     const params = useParams();
-    React.useEffect(() => {
+    const [patientInfo, setPatientInfo] = useState(null);
+    const [updateInfo, setUpdateInfo] = useState({
+        patientId: params.id,
+        symptoms: [],
+        observation: "",
+        prescription: "",
+    });
+    console.log(userData._id)
+    console.log(updateInfo)
+    useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://appointment-care-api.vercel.app/api/v1/person/users/${params.id}`);
+                const response = await axios.get(`https://appointment-care-api.vercel.app/api/v1/appoint/schedule/${params.id}`);
                 setPatientInfo(response.data);
-                // setAppointmentInfo(prevState => ({
-                //     ...prevState,
-                //     doctorId: response.data._id // Assuming _id is the correct property name
-                // }));
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -27,13 +26,39 @@ const Consult = () => {
         fetchData();
     }, [params.id]);
 
-    const handleChange = (event) => {
-        const { id, value } = event.target;
-        setPostInfo(prevState => ({
-            ...prevState,
-            [id]: value
-        }));
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.put(`https://appointment-care-api.vercel.app/api/v1/appoint/consult/${patientInfo.schedules[0].doctorId}`, updateInfo);
+            console.log("Update response:", response.data);
+            window.location.href = "doctorpage/DoctorPatient/"
+        } catch (error) {
+            console.error('Error updating consultation:', error);
+        }
     };
+
+    function handleChange(event) {
+        const { name, value, type, checked } = event.target;
+
+        if (type === "checkbox") {
+            if (checked) {
+                setUpdateInfo(prevFormData => ({
+                    ...prevFormData,
+                    symptoms: [...prevFormData.symptoms, name]
+                }));
+            } else {
+                setUpdateInfo(prevFormData => ({
+                    ...prevFormData,
+                    symptoms: prevFormData.symptoms.filter(symptom => symptom !== name)
+                }));
+            }
+        } else {
+            setUpdateInfo(prevFormData => ({
+                ...prevFormData,
+                [name]: value
+            }));
+        }
+    }
     return (
         <div className='container mt-5'>
             {/* <h2 className='text-center mb-5 mt-3'>Consultation</h2> */}
@@ -43,10 +68,10 @@ const Consult = () => {
                         <>
                             <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="doctor-picture" />
                             <br />
-                            <h2 className='doctor-name-2 text-capitalize'>{patientInfo.Fname} {patientInfo.Lname}</h2>
-                            <span><i className="fa-regular fa-envelope"></i> {patientInfo.email}</span>
+                            <h2 className='doctor-name-2 text-capitalize'>{patientInfo.schedules[0].fullName}</h2>
+                            <span><i className="fa-regular fa-envelope"></i> {patientInfo.schedules[0].email}</span>
                             <br />
-                            <span><i className="fa-solid fa-phone"></i> {patientInfo.number}</span>
+                            <span><i className="fa-solid fa-phone"></i> {patientInfo.schedules[0].number}</span>
                         </>
                     ) : (
                         <p>Loading...</p>
@@ -54,79 +79,79 @@ const Consult = () => {
                 </div>
                 <div className="col-8 book-an-appointment-2">
                     <h2 className='mb-3'>Consultation </h2>
-                    <form onSubmit=" ">
+                    <form onSubmit={handleSubmit}>
                         <label className='label-common'>Common Symptomps</label>
                         <div className='common-symptomps-2'>
                             <div className="checkbox-container">
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="cough" className="form-check-input" type="checkbox" value="" id="cough" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="cough">
                                         Cough
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="bruising" className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="flexCheckDefault">
                                         Unexplained Bruising
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="painInBone" className="form-check-input" type="checkbox" value="" id="painInBone" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="painInBone">
                                         Pain in bone,joints or abdmoen
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="frequentInfection" className="form-check-input" type="checkbox" value="" id="frequentInfection" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="frequentInfection">
                                         Frequent infection
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="tiredness" className="form-check-input" type="checkbox" value="" id="tiredness" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="tiredness">
                                         Tiredness
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="unexplainedRash" className="form-check-input" type="checkbox" value="" id="unexplainedRash" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="unexplainedRash">
                                         Unexplained Rash
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="unexplainedWeightLoss" className="form-check-input" type="checkbox" value="" id="unexplainedWeightLoss" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="unexplainedWeightLoss">
                                         Unexplained Weight Loss
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="shortnessOfBreath" className="form-check-input" type="checkbox" value="" id="shortnessOfBreath" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="shortnessOfBreath">
                                         Shortness of Breath
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="paleness" className="form-check-input" type="checkbox" value="" id="paleness" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="paleness">
                                         Paleness
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="drenchingNightSweats" className="form-check-input" type="checkbox" value="" id="drenchingNightSweats" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="drenchingNightSweats">
                                         Drenching Night sweats
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="unexplainedFever" className="form-check-input" type="checkbox" value="" id="unexplainedFever" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="unexplainedFever">
                                         Unexplained Fever
                                     </label>
                                 </div>
                                 <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input name="lumpsOfSwelling" className="form-check-input" type="checkbox" value="" id="lumpsOfSwelling" onChange={handleChange} />
+                                    <label className="form-check-label" htmlFor="lumpsOfSwelling">
                                         Lumps or Swelling
                                     </label>
                                 </div>
@@ -134,15 +159,33 @@ const Consult = () => {
                         </div>
                         <div className='observation-appointment'>
                             <div>
-                                <label htmlFor="consultation">Observation</label>
-                                <textarea className="form-control" id="consultation" placeholder="Enter Observation" onChange={handleChange} value={postInfo.consultation} required />
+                                <label htmlFor="observation">Observation</label>
+                                <textarea
+                                    className="form-control"
+                                    id="observation"
+                                    name="observation"
+                                    placeholder="Enter Observation"
+                                    onChange={handleChange}
+                                    value={updateInfo.observation}
+                                    required
+                                />
                             </div>
                             <div>
-                                <label htmlFor="consultation">Prescription</label>
-                                <textarea className="form-control" id="consultation" placeholder="Enter Observation" onChange={handleChange} value={postInfo.consultation} required />
+                                <label htmlFor="prescription">Prescription</label>
+                                <textarea
+                                    className="form-control"
+                                    id="prescription"
+                                    name="prescription"
+                                    placeholder="Enter Prescription"
+                                    onChange={handleChange}
+                                    value={updateInfo.prescription}
+                                    required
+                                />
                             </div>
                             <div className='book-button mt-3'>
-                                <NavLink to="/doctorpage/DoctorPatient/"><button type="submit" className='btn-viewprofile px-3'>Go back</button></NavLink>
+                                <NavLink to="/doctorpage/DoctorPatient/">
+                                    <button type="button" className='btn-viewprofile px-3'>Go back</button>
+                                </NavLink>
                                 <button type="submit" className='btn-appointment'>Post Consultation</button>
                             </div>
                         </div>

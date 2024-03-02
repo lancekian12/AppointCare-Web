@@ -20,6 +20,7 @@ const Appointment = ({ userData }) => {
     const [errors, setErrors] = React.useState({
         date: '',
         time: '',
+        general: '', // New error state for general errors
     });
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -68,6 +69,31 @@ const Appointment = ({ userData }) => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
+
+            // Check if date or time is empty
+            if (!appointmentInfo.date) {
+                setErrors(prevState => ({
+                    ...prevState,
+                    date: 'Date is required'
+                }));
+                return;
+            }
+            if (!appointmentInfo.time) {
+                setErrors(prevState => ({
+                    ...prevState,
+                    time: 'Time is required'
+                }));
+                return;
+            }
+            if (appointmentInfo.email !== userData.email) {
+                setErrors(prevState => ({
+                    ...prevState,
+                    general: 'You can only book appointments with your registered email. You can change your email in user Setting'
+                }));
+                return;
+            }
+
+
             const response = await axios.post(
                 `https://appointment-care-api.vercel.app/api/v1/appoint/request/${userData._id}`,
                 appointmentInfo
@@ -77,6 +103,10 @@ const Appointment = ({ userData }) => {
 
         } catch (error) {
             console.error('Error submitting appointment:', error);
+            setErrors(prevState => ({
+                ...prevState,
+                general: 'Error submitting appointment. Please try again later.'
+            }));
         }
     };
     const [emailExists, setEmailExists] = React.useState(false);
@@ -120,11 +150,13 @@ const Appointment = ({ userData }) => {
                                 <label htmlFor="date">Date*</label>
                                 <br />
                                 <input type="date" className="form-control" id="date" value={appointmentInfo.date} onChange={handleChange} required />
+                                {errors.date && <div className="error">{errors.date}</div>} {/* New error message display */}
                             </div>
                             <div>
                                 <label htmlFor="time">Time*</label>
                                 <br />
                                 <input type="time" className="form-control" id="time" value={appointmentInfo.time} onChange={handleChange} required />
+                                {errors.time && <div className="error">{errors.time}</div>} {/* New error message display */}
                             </div>
                             <div>
                                 <label htmlFor="">Appointment Type</label>
@@ -143,7 +175,8 @@ const Appointment = ({ userData }) => {
                                 <NavLink to="/"><button type="submit" className='btn-viewprofile px-3'>Go back</button></NavLink>
                                 <button type="submit" className='btn-appointment'>Book Appointment</button>
                             </div>
-                            {emailExists && <div className="alert alert-danger alert-email" role="alert">Email already exists. Please use another email.</div>}
+                            {emailExists && <div className="alert alert-danger alert-email email-error" role="alert">Email already exists. Please use another email.</div>}
+                            {errors.general && <div className="alert alert-danger alert-email email-error" role="alert">{errors.general}</div>} {/* New error message display */}
                         </form>
                     </div>
                 </div>

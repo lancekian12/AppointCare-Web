@@ -19,7 +19,7 @@ const Schedule = ({ userData }) => {
       setStoredUserData(parsedUserData);
       setEditAppointment(prevState => ({
         ...prevState,
-        patientId: parsedUserData._id 
+        patientId: parsedUserData._id
       }));
     }
   }, []);
@@ -54,6 +54,7 @@ const Schedule = ({ userData }) => {
         `https://appointment-care-api.vercel.app/api/v1/appoint/edit/${storedUserData._id}`,
         editAppointment
       );
+      window.location.href = "/PatientConsultation"
       console.log(response.data);
     } catch (error) {
       console.error('Error editing appointment:', error);
@@ -73,6 +74,7 @@ const Schedule = ({ userData }) => {
             <label htmlFor="schedule-date">Date</label>
             <br />
             <input
+              required
               type="date"
               className="form-control"
               id="date"
@@ -84,6 +86,7 @@ const Schedule = ({ userData }) => {
             <label htmlFor="schedule-time">Time</label>
             <br />
             <input
+              required
               type="time"
               className="form-control"
               id="time"
@@ -95,6 +98,7 @@ const Schedule = ({ userData }) => {
             <label htmlFor="schedule-status">Status</label>
             <br />
             <select
+              required
               className="form-control"
               id="status"
               value={editAppointment.status}
@@ -121,6 +125,7 @@ const Schedule = ({ userData }) => {
               </div>
               <div>
                 <input
+                  required
                   type="radio"
                   id="online"
                   name="consultationType"

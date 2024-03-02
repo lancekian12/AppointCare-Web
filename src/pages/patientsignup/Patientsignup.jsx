@@ -80,7 +80,6 @@ const Patientsignup = () => {
         } else {
             newErrors.number = '';
         }
-
         if (!form.email) {
             newErrors.email = 'Email is required';
             isValid = false;

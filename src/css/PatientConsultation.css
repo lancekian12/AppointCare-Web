@@ -7,6 +7,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
+}
+.symptomps span{
+    margin-right: 10px;
 }
 .symptomps-column{
     display: flex;
@@ -15,4 +19,7 @@
 }
 .observation span{
     font-size: 18px;
+}
+.rash{
+    background-color: yellow;
 }
