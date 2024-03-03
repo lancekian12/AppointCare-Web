@@ -14,7 +14,7 @@ const Patientsignup = () => {
         confirmPassword: "",
         gender: "",
         role: "Patient",
-        imageData: null,
+        image: "",
     });
 
     const [errors, setErrors] = useState({
@@ -132,22 +132,40 @@ const Patientsignup = () => {
 
         if (isValid) {
             try {
+                const formData = new FormData();
+                formData.append('Fname', form.Fname);
+                formData.append('Lname', form.Lname);
+                formData.append('age', form.age);
+                formData.append('number', form.number);
+                formData.append('email', form.email);
+                formData.append('password', form.password);
+                formData.append('confirmPassword', form.confirmPassword);
+                formData.append('gender', form.gender);
+                formData.append('image', form.image);
+                formData.append('role', form.role); // Append the role field
+        
                 const response = await axios.post(
                     "https://appointment-care-api.vercel.app/api/v1/auth/Signup",
-                    form
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
                 );
-                console.log(response.data);
+        
+                console.log(response.data); // Make sure to check the structure of the response
                 setEmailExists(false);
-                window.location.href = "/Login"
+                window.location.href = "/Login";
             } catch (error) {
                 if (error.response && error.response.status === 500) {
                     setEmailExists(true);
                 } else {
-                    console.error("Registration failed:", error.response.data);
+                    console.error("Registration failed:", error);
                 }
             }
         }
-    };
+    }
     const isValidEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
@@ -218,7 +236,7 @@ const Patientsignup = () => {
                                     <div className='upload mt-4'>
                                         <label htmlFor="inputGroupFile01">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
                                         <div>
-                                            <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={handleChange} name='imageData' />
+                                            <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={handleChange} name='image' />
                                         </div>
                                     </div>
                                     <button type="submit" className=" d-block mx-auto submit-signup">Submit</button>
