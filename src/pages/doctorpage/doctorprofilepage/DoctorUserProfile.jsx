@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const DoctorUserProfile = ({ userData }) => {
   const [editedUserData, setEditedUserData] = useState({});
@@ -159,7 +161,7 @@ const DoctorUserProfile = ({ userData }) => {
           <button className='save-changes' onClick={handleUpdateProfile}>Save Changes</button>
         </div>
         <div className="col-2">
-          <button className='cancel-changes'>Cancel</button>
+          <Link to="/DoctorPage"><button className='cancel-changes'>Cancel</button></Link>
         </div>
       </div>
     </div>

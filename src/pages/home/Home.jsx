@@ -35,7 +35,7 @@ const Home = () => {
               </div>
               <div className="col-6">
                 <img src="Vector.png" alt="Vector" className='vector' />
-                <img src="doctor.png" alt="doctor" className='doctor' />
+                <img src="doctor3.png" alt="doctor" className='doctor' />
               </div>
             </div>
           </div>

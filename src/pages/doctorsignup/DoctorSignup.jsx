@@ -13,7 +13,7 @@ const DoctorSignup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    imageData: null,
+    image: null,
     status: "Pending",
     specialty: "",
     md: "",
@@ -47,8 +47,15 @@ const DoctorSignup = () => {
   const [emailExists, setEmailExists] = useState(false);
 
   const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    const newValue = type === 'checkbox' ? checked : value;
+    const { name, value, type, checked, files } = event.target;
+
+    let newValue;
+    if (type === 'file') {
+      newValue = files[0];
+    } else {
+      newValue = type === 'checkbox' ? checked : value;
+    }
+
     setForm({
       ...form,
       [name]: newValue
@@ -90,8 +97,8 @@ const DoctorSignup = () => {
     if (!form.number) {
       newErrors.number = 'Phone Number is required';
       isValid = false;
-    } else if (form.number.length > 12) {
-      newErrors.number = 'Phone Number cannot exceed 12 digits';
+    } else if (form.number.length > 15) {
+      newErrors.number = 'Phone Number cannot exceed 15 digits';
       isValid = false;
     } else {
       newErrors.number = '';
@@ -182,16 +189,50 @@ const DoctorSignup = () => {
     } else {
       newErrors.province = '';
     }
+    if (!form.image) {
+      newErrors.image = 'Profile picture is required';
+      isValid = false;
+    } else {
+      newErrors.image = '';
+    }
 
 
     setErrors(newErrors);
 
     if (isValid) {
       try {
+        const formData = new FormData();
+        formData.append('role', form.role);
+        formData.append('Fname', form.Fname);
+        formData.append('Lname', form.Lname);
+        formData.append('age', form.age);
+        formData.append('number', form.number);
+        formData.append('email', form.email);
+        formData.append('password', form.password);
+        formData.append('confirmPassword', form.confirmPassword);
+        formData.append('gender', form.gender);
+        formData.append('image', form.image);
+        formData.append('status', form.status);
+        formData.append('specialty', form.specialty);
+        formData.append('md', form.md);
+        formData.append('consultPrice', form.consultPrice);
+        formData.append('f2f', form.f2f);
+        formData.append('online', form.online);
+        formData.append('hn', form.hn);
+        formData.append('barangay', form.barangay);
+        formData.append('municipality', form.municipality);
+        formData.append('province', form.province);
+
         const response = await axios.post(
           "https://appointment-care-api.vercel.app/api/v1/auth/Signup",
-          form
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          }
         );
+
         console.log(response.data);
         setEmailExists(false);
         window.location.href = "/Login";
@@ -309,6 +350,7 @@ const DoctorSignup = () => {
                     <input type="checkbox" id="online" checked={form.online} name="online" onChange={handleChange} />
                     <label htmlFor="f2f">Online Consultation</label>
                   </div>
+
                   <div className="input-control">
                     <label className='d-block radio-button-text'>Select your Gender:</label>
                     <div className='row align-items-center'>
@@ -326,12 +368,19 @@ const DoctorSignup = () => {
                   <div className='upload mt-4'>
                     <label htmlFor="inputGroupFile01">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
                     <div>
-                      <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={handleChange} name='imageData' />
+                      <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={handleChange} name='image' />
                     </div>
                   </div>
+                  {/* <div className='upload mt-4'>
+                    <label htmlFor="inputGroupFile01">Upload a License Picture <i className="fa-solid fa-camera"></i> </label>
+                    <div>
+                      <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={handleChange} name='image' />
+                    </div>
+                  </div> */}
                   <button type="submit" className=" d-block mx-auto submit-signup">Submit</button>
                   {emailExists && <div className="alert alert-danger alert-email" role="alert">Email already exists. Please use another email.</div>}
                 </form>
+
               </div>
               <div className="col-4">
               </div>

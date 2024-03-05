@@ -43,7 +43,7 @@ const AdminLogin = ({ setAdminData }) => {
     };
 
     return (
-        <section>
+        <section className='Admin-Login'>
             <div className="container d-flex justify-content-center align-items-center min-vh-100">
                 <div className="row border rounded-5 p-3 bg-white shadow box-area">
                     <div className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box bg-black">

@@ -29,9 +29,11 @@ const Footer = () => {
                             <h3>Links <div className="underline"><span></span></div></h3>
                             <ul className='list-unstyled'>
                                 <li className="nav-item nav2"><NavLink exact="true" to="/" className="nav-link">Home</NavLink></li>
-                                <li className="nav-item nav2"><NavLink to="/Service" className="nav-link">Service</NavLink></li>
+                                <li className="nav-item nav2"><NavLink to="/TopDoctors" className="nav-link">Find Doctor</NavLink></li>
                                 <li className="nav-item nav2"><NavLink to="/Contact" className="nav-link">Contact Us</NavLink></li>
-                                <li className="nav-item nav2"><NavLink to="/Help" className="nav-link">About Us</NavLink></li>
+                                <li className="nav-item nav2"><NavLink to="/PatientAppoinment" className="nav-link">My Bookings</NavLink></li>
+                                <li className="nav-item nav2"><NavLink to="/PatientConsultation" className="nav-link">Consultation</NavLink></li>
+
                             </ul>
                         </div>
                         <div className="col-2 footer-form">

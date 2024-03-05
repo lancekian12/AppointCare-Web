@@ -36,13 +36,12 @@ const PatientList = () => {
         if (x.role === "Patient") {
             return (
                 <tr key={x._id}>
-                    <th scope="row">{x._id}</th>
-                    <td>{x.Fname} {x.Lname}</td>
-                    <td>{x.number}</td>
-                    <td>{x.gender}</td>
-                    <td>{x.age}</td>
-                    <td>{x.email}</td>
-                    <td className="td-button">
+                    <td className='border-td'>{x.Fname} {x.Lname}</td>
+                    <td className='border-td'>{x.number}</td>
+                    <td className='border-td'>{x.gender}</td>
+                    <td className='border-td'>{x.age}</td>
+                    <td className='border-td'>{x.email}</td>
+                    <td className="td-button border-td">
                         <button type="button" className="btn btn-danger admin-button" onClick={() => handleDelete(x._id)}>Delete</button>
                     </td>
                 </tr>
@@ -56,16 +55,15 @@ const PatientList = () => {
             <div className="p-4">
                 <h2 className='applicants'>Doctor AppointCare Applicants</h2>
                 <table className="p-4 text-center">
-                    <tr>
-                        <th className='th-color' scope="col">ID</th>
-                        <th className='th-color' scope="col">Doctor's Name</th>
-                        <th className='th-color' scope="col">Phone Number</th>
-                        <th className='th-color' scope="col">Gender</th>
-                        <th className='th-color' scope="col">Age</th>
-                        <th className='th-color' scope="col">Email</th>
-                        <th className='th-color' scope="col">Actions</th>
-                    </tr>
                     <tbody>
+                        <tr>
+                            <th className='th-color' scope="col">Doctor's Name</th>
+                            <th className='th-color' scope="col">Phone Number</th>
+                            <th className='th-color' scope="col">Gender</th>
+                            <th className='th-color' scope="col">Age</th>
+                            <th className='th-color' scope="col">Email</th>
+                            <th className='th-color' scope="col">Actions</th>
+                        </tr>
                         {displayPatient}
                     </tbody>
                 </table >

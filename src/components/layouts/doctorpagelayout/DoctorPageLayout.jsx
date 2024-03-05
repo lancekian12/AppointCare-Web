@@ -60,7 +60,10 @@ const DoctorPageLayout = ({ userData }) => {
                     </div>
                 </div>
             ) : (
-                <div className='denied bg-danger'>Access Denied! Please go back!</div>
+                <>
+                    <div className='denied bg-danger'>Access Denied! Please go back!</div>
+                </>
+
             )}
         </section>
     );

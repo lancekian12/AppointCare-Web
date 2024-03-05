@@ -24,9 +24,9 @@ const ProfileLayout = () => {
                             <li className='profile-li'>
                                 <NavLink to="ProfileSchedule" className="profile-nav"><i className="fa-regular fa-calendar-days"></i> Schedule</NavLink>
                             </li>
-                            <li className='profile-li'>
+                            {/* <li className='profile-li'>
                                 <NavLink to="ProfilePrescription" className="profile-nav"><i className="fa-solid fa-prescription-bottle-medical"></i> Prescription</NavLink>
-                            </li>
+                            </li> */}
                             {/* <h5><i className="fa-solid fa-user"></i> Info</h5> */}
                             <button onClick={handleLogout} className="btn btn-danger logout-button">Logout</button>
                         </ul>

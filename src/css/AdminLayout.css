@@ -29,3 +29,23 @@
     transition: all 0.35s ease-in-out;
     background-color: #eff0f3;
 }
+#sidebar2 {
+    width: 200px;
+    min-width: 70px;
+    z-index: 1000;
+    transition: all .25s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    background-color: #007E85;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+.admin-title img{
+    width: 90px;
+}
+.admin-title span{
+    font-weight: 700;
+    font-size: 20px;
+    color: #15f5ba;
+}

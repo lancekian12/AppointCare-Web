@@ -19,7 +19,7 @@ const DoctorProfileLayout = () => {
                 <NavLink exact="true" className="profile-nav" ><i className="fa-solid fa-pen-to-square"></i> General</NavLink>
               </li>
               <li className='profile-li'>
-                <NavLink to="ProfileChangePassword" className="profile-nav"><i className="fa-solid fa-key"></i> Change Password</NavLink>
+                <NavLink to="DoctorChangePassword" className="profile-nav"><i className="fa-solid fa-key"></i> Change Password</NavLink>
               </li>
               {/* <h5><i className="fa-solid fa-user"></i> Info</h5> */}
               <button onClick={handleLogout} className="btn btn-danger logout-button">Logout</button>

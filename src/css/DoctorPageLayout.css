@@ -64,7 +64,12 @@ li {
     padding: 2rem 0;
     flex: 1 1 auto;
     color: white;
+    width: 100%;
+    display: flex; /* Add flexbox display */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
 }
+
 
 a.sidebar-link {
     padding: .625rem 1.625rem;
@@ -81,7 +86,7 @@ a.sidebar-link {
     font-weight: 700;
     font-size: 1.5rem;
     background-color: rgba(34, 23, 23, 0.075);
-    border-left: 3px solid #3b7ddd;
+    border-left: 5px solid #3b7ddd;
 }
 .sidebar-link i {
     font-size: 1.5rem;
@@ -90,12 +95,14 @@ a.sidebar-link {
 
 a.sidebar-link:hover {
     background-color: rgba(34, 23, 23, 0.075);
-    border-left: 3px solid #3b7ddd;
+    border-left: 5px solid #3b7ddd;
 }
 
 .sidebar-item {
     position: relative;
     padding-bottom: 50px;
+    width: 100%; /* Ensure the item occupies full width */
+    text-align: center; /* Center the text */
 }
 .rectangle{
     background: url("https://scontent.fbag1-2.fna.fbcdn.net/v/t1.15752-9/416113496_920849769437681_3358841743192073575_n.png?_nc_cat=101&ccb=1-7&_nc_sid=8cd0a2&_nc_eui2=AeHQ9KVU45RVn_do0ZwPzFVMlnFpI67lye-WcWkjruXJ72hDG3MU5WRYY-Ff1p63NwBxOfy-nblXTpVumHo8yBg7&_nc_ohc=WURanu8qdEwAX8VILEW&_nc_ht=scontent.fbag1-2.fna&oh=03_AdRw2CVEg8lAi23n68gV3G1ALkh0pMJYJa6OY2wyBY9ySg&oe=65CF7C97");

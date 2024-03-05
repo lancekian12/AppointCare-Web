@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../../css/PatientInformation.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const PatientInformation = ({ userData }) => {
   const [storedUserData, setStoredUserData] = useState(null);
@@ -121,7 +123,7 @@ const PatientInformation = ({ userData }) => {
           <button className='save-changes' onClick={handleUpdateProfile}>Save Changes</button>
         </div>
         <div className="col-2">
-          <button className='cancel-changes'>Cancel</button>
+        <Link to="/"><button className='cancel-changes'>Cancel</button></Link>
         </div>
       </div>
     </div>

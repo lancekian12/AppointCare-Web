@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import "../../css/ProfileChangePassword.css"
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
-const ProfileChangePassword = ({ userData }) => {
+const DoctorChangePassword = ({ userData }) => {
     const [storedUserData, setStoredUserData] = useState(null)
     const [newPassword, setNewPassword] = useState({
         currentPassword: "",
@@ -68,7 +67,7 @@ const ProfileChangePassword = ({ userData }) => {
             try {
                 const response = await axios.put(`https://appointment-care-api.vercel.app/api/v1/person/password/${userData._id}`, newPassword);
                 console.log("Successfully updated");
-                window.location.href = "/"
+                window.location.href = "/DoctorPage"
             } catch (error) {
                 if (error.response.status = 400) {
                     setPasswordWrong(true)
@@ -80,7 +79,6 @@ const ProfileChangePassword = ({ userData }) => {
             setErrors(newErrors);
         }
     };
-
     return (
         <div className="col-7 mx-5 mt-3 mb-5">
             <div className="row align-items-center mb-3">
@@ -110,7 +108,7 @@ const ProfileChangePassword = ({ userData }) => {
                     <button className='save-changes' onClick={handleEditName}>Save Changes</button>
                 </div>
                 <div className="col-2">
-                    <Link to="/"><button className='cancel-changes'>Cancel</button></Link>
+                    <Link to="/DoctorPage"><button className='cancel-changes'>Cancel</button></Link>
                 </div>
                 {passwordWrong && <div className="alert alert-danger alert-email mt-3" role="alert">Current Password is Incorrect! Please double check your current password.</div>}
 
@@ -119,4 +117,4 @@ const ProfileChangePassword = ({ userData }) => {
     )
 }
 
-export default ProfileChangePassword;
+export default DoctorChangePassword

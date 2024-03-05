@@ -74,8 +74,8 @@ const Patientsignup = () => {
         if (!form.number) {
             newErrors.number = 'Phone Number is required';
             isValid = false;
-        } else if (form.number.length > 12) {
-            newErrors.number = 'Phone Number cannot exceed 12 digits';
+        } else if (form.number.length > 15) {
+            newErrors.number = 'Phone Number cannot exceed 15 digits';
             isValid = false;
         } else {
             newErrors.number = '';
@@ -117,16 +117,13 @@ const Patientsignup = () => {
         } else {
             newErrors.gender = '';
         }
-        // const formData = new FormData();
-        // formData.append('Fname', form.Fname);
-        // formData.append('Lname', form.Lname);
-        // formData.append('age', form.age);
-        // formData.append('number', form.number);
-        // formData.append('email', form.email);
-        // formData.append('password', form.password);
-        // formData.append('confirmPassword', form.confirmPassword);
-        // formData.append('gender', form.gender);
-        // formData.append('imageData', form.imageData);
+        if (!form.image) {
+            newErrors.image = 'Profile picture is required';
+            isValid = false;
+        } else {
+            newErrors.image = '';
+        }
+    
 
         setErrors(newErrors);
 
@@ -143,7 +140,7 @@ const Patientsignup = () => {
                 formData.append('gender', form.gender);
                 formData.append('image', form.image);
                 formData.append('role', form.role); // Append the role field
-        
+
                 const response = await axios.post(
                     "https://appointment-care-api.vercel.app/api/v1/auth/Signup",
                     formData,
@@ -153,8 +150,8 @@ const Patientsignup = () => {
                         }
                     }
                 );
-        
-                console.log(response.data); // Make sure to check the structure of the response
+
+                console.log(response.data);
                 setEmailExists(false);
                 window.location.href = "/Login";
             } catch (error) {

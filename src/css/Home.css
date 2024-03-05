@@ -25,6 +25,7 @@ main {
 
 .vector {
     position: absolute;
+    transform: translate(-20px, 100px)
 }
 
 .doctor {

@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const Schedule = ({ userData }) => {
   const [storedUserData, setStoredUserData] = React.useState(null);
@@ -141,7 +143,7 @@ const Schedule = ({ userData }) => {
             <button className="save-changes" type="submit">
               Save Changes
             </button>
-            <button className="cancel-changes mx-3">Cancel</button>
+            <Link to="/"><button className='cancel-changes'>Cancel</button></Link>
           </div>
         </form>
       </div>
