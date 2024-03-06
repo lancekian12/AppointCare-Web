@@ -71,35 +71,40 @@ const Contact = () => {
               </div>
             </div>
             <div className="col-6 contact-input">
-              <div className='contact-input-2'>
-                <div className="row">
-                  <div className="col-6">
-                    <label htmlFor="contact-first-name">First Name</label>
-                    <input type="text" id="contact-first-name" placeholder='First Name' />
-                  </div>
-                  <div className="col-6">
-                    <label htmlFor="contact-last-name">Last Name</label>
-                    <input type="text" id="contact-last-name" placeholder='Last Name' />
-                  </div>
-                  <div className="col-6">
-                    <label htmlFor="contact-email">Email</label>
-                    <input type="email" id="contact-email" placeholder='Email' />
-                  </div>
-                  <div className="col-6">
-                    <label htmlFor="contact-phone-number">Phone Number</label>
-                    <input type="text" id="contact-phone-number" placeholder='Phone Number' />
-                  </div>
-                  <div className="col-12">
-                    <label htmlFor="contact-message">Message</label>
-                    <input type="text" id="contact-message" placeholder='Message' />
-                  </div>
-                  <div className="col-6"></div>
-                  <div className="col-3"></div>
-                  <div className="col-2">
-                    <button>Submit</button>
+              <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="cf87ea26-4438-4867-8b6b-fbf65490e944" />
+                <div className='contact-input-2'>
+                  <div className="row">
+                    <div className="col-6">
+                      <label htmlFor="contact-first-name">First Name</label>
+                      <input type="text" name="First Name" id="contact-first-name" placeholder='First Name' required />
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="contact-last-name">Last Name</label>
+                      <input type="text" name="Last Name" id="contact-last-name" placeholder='Last Name' required />
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="contact-email">Email</label>
+                      <input type="email" name="Email" id="contact-email" placeholder='Email' required />
+                    </div>
+                    <div className="col-6">
+                      <label htmlFor="contact-phone-number">Phone Number</label>
+                      <input type="text" name="Phone Number" id="contact-phone-number" placeholder='Phone Number' required />
+                    </div>
+                    <div className="col-12">
+                      <label htmlFor="contact-message">Message</label>
+                      <input type="text" name="Message" id="contact-message" placeholder='Message' required />
+                    </div>
+                    <div className="h-captcha" data-captcha="true"></div>
+
+                    <div className="col-6"></div>
+                    <div className="col-3"></div>
+                    <div className="col-2">
+                      <button>Submit</button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>

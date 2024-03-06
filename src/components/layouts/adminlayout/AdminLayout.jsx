@@ -5,7 +5,6 @@ import logoImage from "/logo.png"
 
 
 const AdminLayout = ({ adminData }) => {
-    console.log(adminData)
     const handleLogout = () => {
         localStorage.removeItem('tokenAdmin');
         localStorage.removeItem('adminData');

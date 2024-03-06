@@ -15,7 +15,7 @@ const FAQ = () => {
             </h2>
             <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show">
               <div className="accordion-body">
-                <strong>How to navigate in Our Website.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <strong>How to navigate in Our Website.</strong> To browse through our website, begin by entering the URL into your web browser. Explore the homepage to find essential information, utilize menus and navigation bars to access various sections, click on links for specific content, scroll to discover additional details, employ the search function as necessary, engage with buttons and forms, and check the footer for extra links or contact information.
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@ const FAQ = () => {
             </h2>
             <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse">
               <div className="accordion-body">
-                <strong>How to book an Appointment.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <strong>How to book an Appointment.</strong> To book an appointment, simply navigate to the "Appointments" section on the app or website, choose your preferred date and time, and follow the prompts to confirm your booking.
               </div>
             </div>
           </div>
@@ -39,7 +39,7 @@ const FAQ = () => {
             </h2>
             <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse">
               <div className="accordion-body">
-                <strong>How does the online consultation work?</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <strong>How does the online consultation work?</strong> After establishing an appointment through a website or app, individuals engage in virtual meetings with healthcare professionals via video or chat, where they share their medical concerns, receive guidance or a diagnosis, and, if required, obtain prescriptions or receive further recommendations for in-person care.
               </div>
             </div>
           </div>
@@ -51,11 +51,11 @@ const FAQ = () => {
             </h2>
             <div id="panelsStayOpen-collapseFour" className="accordion-collapse collapse">
               <div className="accordion-body">
-                <strong>What if I need to cancel or reschedule my appointment?</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <strong>What if I need to cancel or reschedule my appointment?</strong> If you need to cancel or reschedule your appointment, you can typically do so by accessing the online platform, navigating to your scheduled appointments, and following the provided options for rescheduling or cancellation.
               </div>
             </div>
           </div>
-          <div className="accordion-item">
+          {/* <div className="accordion-item">
             <h2 className="accordion-header">
               <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
                 How does the online consultation work?
@@ -63,10 +63,10 @@ const FAQ = () => {
             </h2>
             <div id="panelsStayOpen-collapseFive" className="accordion-collapse collapse">
               <div className="accordion-body">
-                <strong> How do I obtain a prescription or medical certificate after the consultation?</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <strong> How does the online consultation work?</strong> Following the appointment scheduling process on a website or app, users connect with healthcare professionals through video or chat, engage in discussions about their medical concerns, receive advice or a diagnosis, and, if needed, acquire prescriptions or additional recommendations for in-person care.
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

@@ -75,7 +75,7 @@ const PatientAppointment = ({ userData }) => {
                                 <br />
                                 <span><i className="fa-solid fa-phone"></i> {doctorInfo ? doctorInfo.number : 'N/A'}</span>
                                 <br />
-                                <span><i class="fa-solid fa-money-bill-transfer"></i>₱ {doctorInfo ? doctorInfo.consultPrice : 'N/A'}</span>
+                                <span><i className="fa-solid fa-money-bill-transfer"></i>₱ {doctorInfo ? doctorInfo.consultPrice : 'N/A'}</span>
 
                             </div>
                         </div>
@@ -84,21 +84,21 @@ const PatientAppointment = ({ userData }) => {
                     <div className="first-half">
                         <div className="details-container">
                             <div className="personal-details">
-                                {x.online ? <span><i class="fa-solid fa-video">
+                                {x.online ? <span><i className="fa-solid fa-video">
                                 </i><span className='important-bold'>Online Consultation</span></span>
                                     : <span>
-                                        <i class="fa-solid fa-person-running"></i>
+                                        <i className="fa-solid fa-person-running"></i>
                                         <span className='important-bold'>Face to Face Consultation</span></span>}
                                 <br />
-                                <span><i class="fa-regular fa-calendar"></i><span className='important-bold'>{x.date}</span></span>
+                                <span><i className="fa-regular fa-calendar"></i><span className='important-bold'>{x.date}</span></span>
                                 <br />
-                                <span><i class="fa-solid fa-clock"></i><span className='important-bold'>{x.time} (24 Hours Format)</span></span>
+                                <span><i className="fa-solid fa-clock"></i><span className='important-bold'>{x.time} (24 Hours Format)</span></span>
                             </div>
                             <div className="other-details">
                                 {x.online ? <div></div>
-                                    : <div><span className='text-capitalize'><i class="fa-regular fa-building"></i> <span className='important-bold'> {doctorInfo ? doctorInfo.hn : 'N/A'} {doctorInfo ? doctorInfo.barangay : 'N/A'}</span></span>
+                                    : <div><span className='text-capitalize'><i className="fa-regular fa-building"></i> <span className='important-bold'> {doctorInfo ? doctorInfo.hn : 'N/A'} {doctorInfo ? doctorInfo.barangay : 'N/A'}</span></span>
                                         <br />
-                                        <span className='text-capitalize'><i class="fa-solid fa-location-dot"></i><span className='text-capitalize important-bold'>{doctorInfo ? doctorInfo.municipality : 'N/A'} {doctorInfo ? doctorInfo.province : 'N/A'}</span></span>
+                                        <span className='text-capitalize'><i className="fa-solid fa-location-dot"></i><span className='text-capitalize important-bold'>{doctorInfo ? doctorInfo.municipality : 'N/A'} {doctorInfo ? doctorInfo.province : 'N/A'}</span></span>
                                         <br /></div>}
                             </div>
                         </div>

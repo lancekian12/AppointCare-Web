@@ -1,10 +1,19 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { NavLink, Link } from 'react-router-dom'
 import '../../css/Footer.css'
 import logoImage from "/logo.png"
 
 
+
 const Footer = () => {
+    const [storedUserData, setStoredUserData] = useState(null);
+
+    useEffect(() => {
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+            setStoredUserData(JSON.parse(storedUserData));
+        }
+    }, []);
     return (
         <section>
             <footer className='align-items-center justify-content-center'>
@@ -31,8 +40,8 @@ const Footer = () => {
                                 <li className="nav-item nav2"><NavLink exact="true" to="/" className="nav-link">Home</NavLink></li>
                                 <li className="nav-item nav2"><NavLink to="/TopDoctors" className="nav-link">Find Doctor</NavLink></li>
                                 <li className="nav-item nav2"><NavLink to="/Contact" className="nav-link">Contact Us</NavLink></li>
-                                <li className="nav-item nav2"><NavLink to="/PatientAppoinment" className="nav-link">My Bookings</NavLink></li>
-                                <li className="nav-item nav2"><NavLink to="/PatientConsultation" className="nav-link">Consultation</NavLink></li>
+                                {storedUserData && <li className="nav-item nav2"><NavLink to="/PatientAppoinment" className="nav-link">My Bookings</NavLink></li>}
+                                {storedUserData && <li className="nav-item nav2"><NavLink to="/PatientConsultation" className="nav-link">Consultation</NavLink></li>}
 
                             </ul>
                         </div>
@@ -41,7 +50,7 @@ const Footer = () => {
                             <form action="">
                                 <i className="far fa-envelope"></i>
                                 <input type="email" placeholder="Enter your email here" required />
-                                <button type='submit'><i className="fas fa-arrow-right"></i></button>
+                                <Link to="/Contact"><button type='submit'><i className="fas fa-arrow-right"></i></button></Link>
                             </form>
                             <div className="icons">
                                 <a href=""><i className="fa-brands fa-facebook"></i></a>

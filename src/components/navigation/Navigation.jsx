@@ -12,6 +12,17 @@ const Navigation = ({ userData }) => {
             setStoredUserData(JSON.parse(storedUserData));
         }
     }, []);
+
+    const arrayBufferToBase64 = (buffer) => {
+        let binary = '';
+        const bytes = new Uint8Array(buffer);
+        const len = bytes.byteLength;
+        for (let i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return window.btoa(binary);
+    };
+
     return (
         <section className="navigation position-relative mb-0 mt-1">
             <nav id="mainNavbar" className="navbar navbar-dark navbar-expand-md">
@@ -37,9 +48,11 @@ const Navigation = ({ userData }) => {
                         {storedUserData ? (
                             <NavLink to="/ProfileLayout">
                                 <div className='userData-Name'>
-                                    {storedUserData.Fname} {storedUserData.Lname}
-                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                        alt="patient-image" />
+                                    <span className='text-capitalize'>{storedUserData.Fname} {storedUserData.Lname}</span>
+                                    {storedUserData ? <img src={`data:image/png;base64,${arrayBufferToBase64(storedUserData.imageData.data)}`}
+                                        alt="patient-image" /> 
+                                        : <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                        alt="patient-image" />}
                                 </div>
                             </NavLink>
                         ) : userData && userData.response.user ? (

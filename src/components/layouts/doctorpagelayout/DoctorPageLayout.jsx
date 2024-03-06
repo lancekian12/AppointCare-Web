@@ -46,6 +46,11 @@ const DoctorPageLayout = ({ userData }) => {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item">
+                                <NavLink to="DoctorConsultations" className={({ isActive }) => isActive ? "doctor-link-active" : "sidebar-link"}>
+                                    <i className="fa-solid fa-user-doctor"></i>
+                                </NavLink>
+                            </li>
+                            <li className="sidebar-item">
                                 <NavLink to="DoctorUserProfile" className={({ isActive }) => isActive ? "doctor-link-active" : "sidebar-link"}>
                                     <i className="fa-solid fa-gear"></i>
                                 </NavLink>

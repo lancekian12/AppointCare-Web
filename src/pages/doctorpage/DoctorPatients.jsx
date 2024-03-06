@@ -45,7 +45,7 @@ const DoctorPatients = ({ userData }) => {
         <div className="container">
           <div className='text-center'>
             <img src={VectorTwo} alt="patient-vector" />
-            <h2>No Bookings</h2>
+            <h2 className='mt-4'>No Bookings</h2>
             <p className='lead'>You have no Patients at the moment. Check Patient Appointment List</p>
           </div>
         </div>

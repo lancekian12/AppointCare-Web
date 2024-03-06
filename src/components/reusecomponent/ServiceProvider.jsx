@@ -7,9 +7,8 @@ const ServiceProvider = () => {
       <div className="container">
         <div className='text-center service-provide'>
           <h2>Services we Provide</h2>
-          <p>Lorem ipsum dolor sit amet consectetur ad
-            ipisicing elit. Eaque fugit et vel veniam esse
-            facere eligendi consequuntur rerum iusto necessitatibus?</p>
+          <p>
+            Our services include diagnosing fractures and injuries, X-ray checkups, specialist consultations, eye care, and various treatments.</p>
         </div>
         <div className="row justify-content-center align-items-center provide">
           <div className="col-3">
@@ -17,7 +16,7 @@ const ServiceProvider = () => {
               <img src="diagnosis.png" className='card-img-top' alt="" />
               <div className="card-body1">
                 <h5 className="card-title">Diagnosis</h5>
-                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p>We provide thorough diagnostic services to identify and manage a wide range of health concerns.</p>
                 <a href="#" className="btn btn-primary">Learn more <i className="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
@@ -28,7 +27,7 @@ const ServiceProvider = () => {
               <img src="injury.png" className='card-img-top' alt="" />
               <div className="card-body1">
                 <h5 className="card-title">Fractures and Injury</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text">Our expertise includes diagnosing and treating fractures and injuries promptly and effectively.</p>
                 <a href="#" className="btn btn-primary">Learn more <i className="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
@@ -39,7 +38,7 @@ const ServiceProvider = () => {
               <img src="teeth.png" className='card-img-top' alt="" />
               <div className="card-body1">
                 <h5 className="card-title">Xray Checkup</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text">Benefit from our detailed X-ray examinations, offering accurate insights into your health and aiding in precise medical assessments.</p>
                 <a href="#" className="btn btn-primary">Learn more <i className="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
@@ -50,7 +49,7 @@ const ServiceProvider = () => {
               <img src="special.png" className='card-img-top' alt="" />
               <div className="card-body1">
                 <h5 className="card-title">Specialist Consultations</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text">Receive specialized medical advice through our expert consultations, customized to meet your individual health needs.</p>
                 <a href="#" className="btn btn-primary">Learn more <i className="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
@@ -61,7 +60,7 @@ const ServiceProvider = () => {
               <img src="treatment.png" className='card-img-top' alt="" />
               <div className="card-body1">
                 <h5 className="card-title">Eye Care</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text">Prioritize your eye health with our dedicated eye care services, offering everything from routine check-ups to specialized treatments.</p>
                 <a href="#" className="btn btn-primary">Learn more <i className="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
@@ -72,7 +71,7 @@ const ServiceProvider = () => {
               <img src="eyecare.png" className='card-img-top' alt="" />
               <div className="card-body1">
                 <h5 className="card-title">Treatments</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text">Discover a variety of treatments designed to target specific health conditions and enhance your overall well-being.</p>
                 <a href="#" className="btn btn-primary">Learn more <i className="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
