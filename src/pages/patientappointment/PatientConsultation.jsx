@@ -102,7 +102,8 @@ const PatientConsultation = ({ userData }) => {
         if (x.status === "Done") {
             return (
                 <div key={index} className="bookings mb-5">
-                    <h3>Doctor Who Oversees Appointment</h3>
+                    <h2 className='status-4'>Status: {x.status}</h2>
+                    <h3>Doctor Who Oversees the Appointment</h3>
                     <div className="row ">
                         <div className="first-half ">
                             {doctorInfo && doctorInfo.imageData ? <img src={doctorInfo.imageData}
@@ -153,7 +154,7 @@ const PatientConsultation = ({ userData }) => {
                         </div>
                         <h3 className='mt-5'>Personal Info</h3>
                         <div className="first-half mb-4">
-                            {userData && userData.imageData ? <img src={userData.imageData}
+                            {x && x.imageData ? <img src={x.imageData}
                                 alt="Patient Profie" />
                                 :
                                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
@@ -208,7 +209,7 @@ const PatientConsultation = ({ userData }) => {
                     } */}
                 </div >
             );
-        } else {
+        } else if (patientInfo.schedules.length === 0) {
             return (
                 <section className='patient-booking'>
                     <div className="container">

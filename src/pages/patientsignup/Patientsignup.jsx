@@ -123,7 +123,7 @@ const Patientsignup = () => {
         } else {
             newErrors.image = '';
         }
-    
+
 
         setErrors(newErrors);
 
@@ -230,11 +230,10 @@ const Patientsignup = () => {
                                         </div>
                                         {errors.gender && <div className="error">{errors.gender}</div>}
                                     </div>
-                                    <div className='upload mt-4'>
-                                        <label htmlFor="inputGroupFile01">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
-                                        <div>
-                                            <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={handleChange} name='image' />
-                                        </div>
+                                    <div class="images-signup mb-3 mt-3">
+                                        <label for="image-uploaded" class="form-label">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
+                                        <input class="form-control width-100" type="file" id="image-uploaded" name="image" onChange={handleChange} />
+                                        {errors.image && <div className="error error-2">{errors.image}</div>}
                                     </div>
                                     <button type="submit" className=" d-block mx-auto submit-signup">Submit</button>
                                     {emailExists && <div className="alert alert-danger alert-email" role="alert">Email already exists. Please use another email.</div>}

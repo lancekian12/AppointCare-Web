@@ -99,3 +99,17 @@
     margin-bottom: 0; 
     margin-right: 10px;
 }
+.images-signup{
+    text-align: left;
+}
+.images-signup input{
+    width: 500px;
+}
+.images-signup label{
+    font-weight: 500;
+    text-align: left;
+    padding: 10px 0;
+}
+.error-2{
+    color: red;
+}

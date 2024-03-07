@@ -40,6 +40,16 @@
     color: #f7f6f6;
     margin-bottom: 20px;
 }
+.status-4{
+    background-color: #007E85;
+    width: fit-content;
+    padding: 5px 20px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #f7f6f6;
+    margin-bottom: 20px;
+}
 .speciality-2{
     color: rgb(132, 85, 85);
     font-size: 17px;

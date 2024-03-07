@@ -7,7 +7,6 @@ const PatientAppointment = ({ userData }) => {
     const [loading, setLoading] = useState(true);
     const [patientInfo, setPatientInfo] = useState(null);
     const [doctorInfo, setDoctorInfo] = useState(null);
-    console.log("Patient", patientInfo)
     useEffect(() => {
         const fetchPatient = async () => {
             try {
@@ -122,7 +121,7 @@ const PatientAppointment = ({ userData }) => {
                         </div>
                         <h3 className='mt-5'>Personal Info</h3>
                         <div className="first-half">
-                            {userData && userData.imageData ? <img src={userData.imageData}
+                            {x && x.imageData ? <img src={x.imageData}
                                 alt="Patient Profie" />
                                 :
                                 <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"

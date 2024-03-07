@@ -24,6 +24,7 @@ const DoctorSignup = () => {
     barangay: "",
     municipality: "",
     province: "",
+    licensePicture: null,
   });
 
   const [errors, setErrors] = useState({
@@ -42,6 +43,7 @@ const DoctorSignup = () => {
     barangay: "",
     municipality: "",
     province: "",
+    licensePicture: "",
   });
 
   const [emailExists, setEmailExists] = useState(false);
@@ -61,6 +63,7 @@ const DoctorSignup = () => {
       [name]: newValue
     });
   };
+
   console.log(form)
 
   const handleValidation = async (event) => {
@@ -195,7 +198,12 @@ const DoctorSignup = () => {
     } else {
       newErrors.image = '';
     }
-
+    if (!form.licensePicture) {
+      newErrors.licensePicture = 'License picture is required';
+      isValid = false;
+    } else {
+      newErrors.licensePicture = '';
+    }
 
     setErrors(newErrors);
 
@@ -344,13 +352,13 @@ const DoctorSignup = () => {
                       id="exampleInputConfirmPassword" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} />
                     {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
                   </div>
+
                   <div className="checkboxes">
                     <input type="checkbox" id="f2f" checked={form.f2f} onChange={handleChange} />
                     <label htmlFor="f2f">Face to Face Consultation</label>
                     <input type="checkbox" id="online" checked={form.online} name="online" onChange={handleChange} />
                     <label htmlFor="f2f">Online Consultation</label>
                   </div>
-
                   <div className="input-control">
                     <label className='d-block radio-button-text'>Select your Gender:</label>
                     <div className='row align-items-center'>
@@ -365,18 +373,18 @@ const DoctorSignup = () => {
                     </div>
                     {errors.gender && <div className="error">{errors.gender}</div>}
                   </div>
-                  <div className='upload mt-4'>
-                    <label htmlFor="inputGroupFile01">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
-                    <div>
-                      <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={handleChange} name='image' />
-                    </div>
+
+                  <div class="images-signup mb-3 mt-3">
+                    <label for="image-uploaded" class="form-label">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
+                    <input class="form-control width-100" type="file" id="image-uploaded" name="image" onChange={handleChange} />
+                    {errors.image && <div className="error error-2">{errors.image}</div>}
                   </div>
-                  {/* <div className='upload mt-4'>
-                    <label htmlFor="inputGroupFile01">Upload a License Picture <i className="fa-solid fa-camera"></i> </label>
-                    <div>
-                      <input type="file" className="custom-file-input" id="inputGroupFile01" onChange={handleChange} name='image' />
-                    </div>
-                  </div> */}
+                  <div class="images-signup mb-3">
+                    <label for="formFile" class="form-label">Upload a License Picture <i class="fa-solid fa-id-card"></i></label>
+                    <input class="form-control width-100" type="file" id="formFile" name="licensePicture" onChange={handleChange} />
+                    {errors.licensePicture && <div className="error error-2">{errors.licensePicture}</div>}
+                  </div>
+
                   <button type="submit" className=" d-block mx-auto submit-signup">Submit</button>
                   {emailExists && <div className="alert alert-danger alert-email" role="alert">Email already exists. Please use another email.</div>}
                 </form>
