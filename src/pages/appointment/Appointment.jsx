@@ -15,6 +15,7 @@ const Appointment = ({ userData }) => {
         f2f: true,
         date: '',
         time: '',
+        imageData: userData ? userData.imageData : ''
     })
     console.log(appointmentInfo)
     const [errors, setErrors] = React.useState({
@@ -110,8 +111,6 @@ const Appointment = ({ userData }) => {
         }
     };
     const [emailExists, setEmailExists] = React.useState(false);
-    console.log(doctorInfo)
-
     return (
         <section className='section-appointment'>
             <div className='text-center mb-5'>

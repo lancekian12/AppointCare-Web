@@ -79,9 +79,12 @@ const DoctorRejectedPatients = ({ userData }) => {
             <div className="row">
               <div className="first-half">
                 <div className="avatar-container">
-                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                  {schedule && schedule.imageData ? <img src={schedule.imageData}
                     alt="avatar"
                   />
+                    : <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                      alt="avatar"
+                    />}
                 </div>
                 <div className="details-container">
                   <div className="personal-details">

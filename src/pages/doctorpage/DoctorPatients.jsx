@@ -75,8 +75,12 @@ const DoctorPatients = ({ userData }) => {
           <h3>Doctor Information</h3>
           <div className="row ">
             <div className="first-half ">
-              <img src="https://d1c0x5rkl7k63i.cloudfront.net/upload/doctor/avatar/kRtqlvEO4x94ddXJCeeGpoAvIJszZz07YTP1ffhoLVQPR9Uzac.png"
-                alt="" />
+              {userData && userData.imageData ? <img src={userData.imageData}
+                alt="Patient Profie" />
+                :
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                  alt="Patient Profie" id="img-all" />
+              }
               <div className="details-container">
                 <div className="personal-details mx-4">
                   <span className='doctor-name text-capitalize'>{doctorInfo ? `${doctorInfo.Fname} ${doctorInfo.Lname}` : 'N/A'}</span>
@@ -120,8 +124,12 @@ const DoctorPatients = ({ userData }) => {
             </div>
             <h3 className='mt-5'>PATIENT Info</h3>
             <div className="first-half">
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                alt="" />
+              {x && x.imageData ? <img src={x.imageData}
+                alt="avatar"
+              />
+                : <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                  alt="avatar"
+                />}
               <div className="details-container mx-4">
                 <div className="personal-details">
                   <span className='doctor-name'>{x.fullName} </span>

@@ -36,7 +36,7 @@ const AdminViewinfo = () => {
 
   return (
     <div>
-      <h2 className='refresh'>Doctor Accepted Admin | <button onClick={refreshPage}>Refresh</button></h2>
+      <h2 className='refresh'>Admin View Information Admin | <button onClick={refreshPage}>Refresh</button></h2>
       <div className="container mt-3">
         <div className="row image-view align-items-center">
           <div className="col-3">

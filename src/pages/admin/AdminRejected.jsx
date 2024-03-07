@@ -59,7 +59,7 @@ const AdminRejected = () => {
     });
     return (
         <div>
-            <h2 className='refresh'>Doctor Accepted Admin | <button onClick={refreshPage}>Refresh</button></h2>
+            <h2 className='refresh'>Doctor Rejected Admin | <button onClick={refreshPage}>Refresh</button></h2>
             <div className="p-4">
                 <h2 className='applicants'>Doctor AppointCare Rejected</h2>
                 <table className="p-4 text-center">

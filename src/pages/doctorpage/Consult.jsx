@@ -12,8 +12,7 @@ const Consult = ({ userData }) => {
         observation: "",
         prescription: "",
     });
-    console.log(userData._id)
-    console.log(updateInfo)
+    console.log(params.id)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -26,12 +25,35 @@ const Consult = ({ userData }) => {
         fetchData();
     }, [params.id]);
 
+    const doctorAcceptReject = async (patientId, status) => {
+        try {
+            await axios.put(
+                `https://appointment-care-api.vercel.app/api/v1/appoint/verify/${userData._id}`,
+                { patientId, status }
+            );
+            const response = await axios.get(
+                `https://appointment-care-api.vercel.app/api/v1/appoint/schedule/${userData._id}`
+            );
+            setPatientInfo(response.data);
+        } catch (error) {
+            console.error('Error updating user:', error);
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`https://appointment-care-api.vercel.app/api/v1/appoint/consult/${patientInfo.schedules[0].doctorId}`, updateInfo);
-            console.log("Update response:", response.data);
-            window.location.href = "doctorpage/DoctorPatient/"
+            console.log("Submitting consultation:", updateInfo);
+            if (patientInfo && patientInfo.schedules && patientInfo.schedules.length > 0) {
+                await doctorAcceptReject(params.id, "Done");
+                const doctorId = patientInfo.schedules[0].doctorId;
+                console.log("Doctor ID:", doctorId);
+                const response = await axios.put(`https://appointment-care-api.vercel.app/api/v1/appoint/consult/${doctorId}`, updateInfo);
+                console.log("Update response:", response.data);
+                // window.location.href = "/doctorpage/DoctorPatient/";
+            } else {
+                console.error("No patient information found.");
+            }
         } catch (error) {
             console.error('Error updating consultation:', error);
         }
@@ -66,7 +88,7 @@ const Consult = ({ userData }) => {
                 <div className="col-3 appointment-doctor-info">
                     {patientInfo ? (
                         <>
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="doctor-picture" />
+                            <img src={patientInfo.schedules[0].imageData} alt="doctor-picture" />
                             <br />
                             <h2 className='doctor-name-2 text-capitalize'>{patientInfo.schedules[0].fullName}</h2>
                             <span><i className="fa-regular fa-envelope"></i> {patientInfo.schedules[0].email}</span>
@@ -187,6 +209,8 @@ const Consult = ({ userData }) => {
                                     <button type="button" className='btn-viewprofile px-3'>Go back</button>
                                 </NavLink>
                                 <button type="submit" className='btn-appointment'>Post Consultation</button>
+                                {/* <NavLink ><button className='btn-viewprofile-2 px-5' onClick={() => doctorAcceptReject(params.id, "Done")}>Done</button></NavLink> */}
+
                             </div>
                         </div>
                     </form>

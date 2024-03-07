@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'; // Import axios
+import { NavLink, Outlet, Link } from 'react-router-dom'
 
 const DoctorList = () => {
   const [doctorData, setDoctorData] = React.useState([]);
@@ -39,7 +40,12 @@ const DoctorList = () => {
           <td className='border-td'>{x.age}</td>
           <td className='border-td'>{x.email}</td>
           <td className=' border-td'>{x.status}</td>
-          <td className="td-button border-td"><button type="button" className="btn btn-danger admin-button" onClick={() => handleDelete(x._id)}>Delete</button></td>
+          <td className="td-button border-td">
+            <Link to={`/Admin/ViewInfo/${x._id}`}><button type="button" className="btn btn-info admin-button">View Info</button></Link>
+
+            <button type="button" className="btn btn-danger admin-button" onClick={() => handleDelete(x._id)}>Delete
+            </button>
+          </td>
         </tr>
       );
     }

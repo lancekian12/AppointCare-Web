@@ -18,12 +18,13 @@ import unexplainedRash from "../../../public/rashInfection.png"
 import shortnessOfbreath from "../../../public/shortnessofbreath.png"
 import drenchingNightSweats from "../../../public/drenching-sweats.png"
 import lumpsOfSwelling from "../../../public/lumps-swelling.png"
+import { Link } from "react-router-dom"
+
 
 
 const DoctorHomePage = ({ userData }) => {
     const [loading, setLoading] = useState(true);
     const [patientInfo, setPatientInfo] = useState(null);
-    console.log(userData.imageData);
     const getSymptomImage = (symptom) => {
         switch (symptom) {
             case 'tiredness':
@@ -68,15 +69,15 @@ const DoctorHomePage = ({ userData }) => {
         };
         fetchPatient();
     }, [userData]);
-    console.log(patientInfo)
-
+    const acceptedAppointments = patientInfo && patientInfo.schedules ? patientInfo.schedules.filter(x => x.status === "Accepted") : [];
+    const rejectedAppointments = patientInfo && patientInfo.schedules ? patientInfo.schedules.filter(x => x.status === "Rejected") : [];
 
     const allPatientList = patientInfo && patientInfo.schedules ? patientInfo.schedules.map((x, index) => {
         if (x.status === "Accepted") {
             return (
                 <div key={index}>
-                    <div className="first-half">
-                        <img src={x.imageData} alt="profile-picture" />
+                    <div className="first-half mb-4">
+                        <img src={x.imageData} alt="profile-picture" id="patient-list-img" />
                         <div className="details-container">
                             <div className="personal-details mx-2">
                                 <span className='doctor-name text-capitalize'>{x.fullName}</span>
@@ -85,17 +86,17 @@ const DoctorHomePage = ({ userData }) => {
                                 <br />
                                 <span>{x.number}</span>
                             </div>
-                        </div>
-                        <div className="other-details i-details">
-                            {x.online ? <span><i className="fa-solid fa-video">
-                            </i><span className='important-bold'>Online Consultation</span></span>
-                                : <span>
-                                    <i className="fa-solid fa-person-running"></i>
-                                    <span className='important-bold'>Face to Face Consultation</span></span>}
-                            <br />
-                            <span><i className="fa-regular fa-calendar"></i><span className='important-bold'>{x.date}</span></span>
-                            <br />
-                            <span><i className="fa-solid fa-clock"></i><span className='important-bold'>{x.time} (24 Hours Format)</span></span>
+                            <div className="other-details i-details">
+                                {x.online ? <span><i className="fa-solid fa-video">
+                                </i><span className='important-bold'>Online Consultation</span></span>
+                                    : <span>
+                                        <i className="fa-solid fa-person-running"></i>
+                                        <span className='important-bold'>Face to Face Consultation</span></span>}
+                                <br />
+                                <span><i className="fa-regular fa-calendar"></i><span className='important-bold'>{x.date}</span></span>
+                                <br />
+                                <span><i className="fa-solid fa-clock"></i><span className='important-bold'>{x.time} (24 Hours Format)</span></span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,7 +113,7 @@ const DoctorHomePage = ({ userData }) => {
         (
             <div key={0}>
                 <div className="first-half">
-                    <img src="me.png"
+                    <img src={patientInfo.schedules[0].imageData}
                         alt="profile-picture" />
                     <div className="details-container">
                         <div className="personal-details mx-2">
@@ -176,45 +177,49 @@ const DoctorHomePage = ({ userData }) => {
                         <h2 className="Goodmorning">Good Morning <span id="name-of-doctor">Dr. {userData.Fname}!</span></h2>
                     </div>
                     <div className="col-2">
-                        <div className='doctor-picture-box'>
-                            {userData.imageData ? (
-                                <img
-                                    id="profile-picture"
-                                    className="change-profile"
-                                    src={userData.imageData}
-                                    alt="profile picture"
-                                />
-                            ) : (
-                                <img
-                                    id="profile-picture"
-                                    className="change-profile"
-                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                    alt="profile picture"
-                                />
-                            )}
-                            <span className='text-capitalize'>{userData.Fname} {userData.Lname}</span>
-                        </div>
+                        <Link to="/doctorpage/DoctorUserProfile" className='text-decoration-none'>
+                            <div className='doctor-picture-box'>
+                                {userData.imageData ? (
+                                    <img
+                                        id="profile-picture"
+                                        className="change-profile"
+                                        src={userData.imageData}
+                                        alt="profile picture"
+                                    />
+                                ) : (
+                                    <img
+                                        id="profile-picture"
+                                        className="change-profile"
+                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                        alt="profile picture"
+                                    />
+                                )}
+                                <span className='text-capitalize'>{userData.Fname} {userData.Lname}</span>
+                            </div>
+                        </Link>
+
                     </div>
                 </div>
                 <div className='row mt-3'>
                     <div className="col-6 rectangle-2">
-                        <div className="row">
-                            <div className="col-4 mx-3">
-                                <h3>Visits for Today</h3>
-                                <h3 className='number-of-new-patients'>104</h3>
-                                <div className='row my-3'>
-                                    <div className='new-patients-2'>
-                                        <h3>New Patients</h3>
-                                        <p className='patients-all'>40</p>
+                        <div className="row px-3">
+                            <div className="col-6">
+                                <h2>Number of Appointments</h2>
+                                <h2 id='number-of-new-patients'>{patientInfo ? patientInfo.schedules.length : 0}</h2>
+                                <div className="row mt-5">
+                                    <div className="col-6 new-patients">
+                                        <h3>Accepted Patients</h3>
+                                        <h3>{acceptedAppointments.length}</h3>
+                                    </div>
+                                    <div className="col-1"></div>
+                                    <div className="col-5 old-patients">
+                                        <h3>Rejected Patients</h3>
+                                        <h3>{rejectedAppointments.length}</h3>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-1">
-                            </div>
-                            <div className='col-5'>
-                                <div className='doctor-image align-items-center justify-content-center'>
-                                    <img src="doctor2.png" alt="doctor-image" />
-                                </div>
+                            <div className="col-6">
+                                <img src="doctor-homepage-vector.png" alt="doctor2" id="doctorpage-doctor" />
                             </div>
                         </div>
                     </div>
@@ -230,7 +235,7 @@ const DoctorHomePage = ({ userData }) => {
                             <div className="col-6 mt-2">
                                 <h2>Patient List</h2>
                                 <div className="img-first-half">
-                                    {!allPatientList || allPatientList.length === 0 ? (
+                                    {acceptedAppointments.length === 0 ? (
                                         <section className='patient-booking'>
                                             <div className='text-center doctor-homepage-else'>
                                                 <img src={VectorThree} alt="patient-vector" />
@@ -239,7 +244,7 @@ const DoctorHomePage = ({ userData }) => {
                                             </div>
                                         </section>
                                     ) : (
-                                        <>{allPatientList}</>
+                                        allPatientList
                                     )}
                                 </div>
                             </div>

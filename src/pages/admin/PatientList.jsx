@@ -1,6 +1,8 @@
 
 import React from 'react'
-import axios from 'axios'; // Import axios
+import axios from 'axios'; 
+import { NavLink, Outlet, Link } from 'react-router-dom'
+
 
 
 const PatientList = () => {
@@ -42,6 +44,10 @@ const PatientList = () => {
                     <td className='border-td'>{x.age}</td>
                     <td className='border-td'>{x.email}</td>
                     <td className="td-button border-td">
+                        <Link to={`/Admin/AdminPatientViewInfo/${x._id}`}>
+                            <button type="button" className="btn btn-info admin-button">View Info
+                            </button>
+                        </Link>
                         <button type="button" className="btn btn-danger admin-button" onClick={() => handleDelete(x._id)}>Delete</button>
                     </td>
                 </tr>
@@ -53,7 +59,7 @@ const PatientList = () => {
         <div>
             <h2 className='refresh'>Patient List Admin | <button onClick={refreshPage}>Refresh</button></h2>
             <div className="p-4">
-                <h2 className='applicants'>Doctor AppointCare Applicants</h2>
+                <h2 className='applicants'>Patient List</h2>
                 <table className="p-4 text-center">
                     <tbody>
                         <tr>

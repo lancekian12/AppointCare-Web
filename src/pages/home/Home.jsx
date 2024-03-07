@@ -18,7 +18,7 @@ const Home = () => {
                   <span style={{ color: "#6EAB36" }}> Brighter</span> and
                   <span style={{ color: "#6EAB36" }}> Healthy</span> Future
                 </h2>
-                <p className='lead'>At our hospital, we are dedicated to providing exceptional medical care to our patients and their families.
+                <p className='lead'>At our AppointCare, we are dedicated to providing exceptional medical care to our patients and their families.
                   Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare i
                   ndustry</p>
                 <div className='container mt-5 align-items-center'>

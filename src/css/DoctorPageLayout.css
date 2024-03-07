@@ -112,10 +112,6 @@ a.sidebar-link:hover {
     padding-left: 30px;
     padding-top: 30px;
 }
-#doctorpage-doctor{
-    position: relative;
-    transform: translate(-40px,-90px);
-}
 .new-patients{
     background: linear-gradient(#FFFFFF, transparent);
     border-radius: 20px;

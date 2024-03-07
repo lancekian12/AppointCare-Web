@@ -51,100 +51,115 @@ const PatientAppointment = ({ userData }) => {
             </section>
         );
     }
-
-    const patients = patientInfo.schedules.map((x, index) => {
+    const pendingAppointments = patientInfo.schedules.filter(x => x.status !== "Done");
+    if (pendingAppointments.length === 0) {
         return (
-            <div key={index} className="bookings mb-5">
-                <h2 className='status'>Status: {x.status}</h2>
-                <h3>Doctor Information</h3>
-                <div className="row ">
-                    <div className="first-half ">
-                        {doctorInfo && doctorInfo.imageData ? <img src={doctorInfo.imageData}
-                            alt="Doctor Profile Picture" />
-                            : <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                alt="Doctor Profile Picture" id="img-all" />
-                        }
-                        <div className="details-container">
-                            <div className="personal-details mx-4">
-                                <span className='doctor-name text-capitalize'>{doctorInfo ? `${doctorInfo.Fname} ${doctorInfo.Lname}` : 'N/A'}</span>
-                                <br />
-                                <span className='speciality text-capitalize'>{doctorInfo ? `${doctorInfo.specialty}` : 'N/A'}</span>
-                                <br />
-                                <span className='md-doctor' >MD Since {doctorInfo ? `${doctorInfo.md}` : 'N/A'}</span>
-                                <br />
-                            </div>
-                            <div className="other-details">
-                                <span><i className="fa-regular fa-envelope"></i> {doctorInfo ? doctorInfo.email : 'N/A'}</span>
-                                <br />
-                                <span><i className="fa-solid fa-phone"></i> {doctorInfo ? doctorInfo.number : 'N/A'}</span>
-                                <br />
-                                <span><i className="fa-solid fa-money-bill-transfer"></i>₱ {doctorInfo ? doctorInfo.consultPrice : 'N/A'}</span>
-
-                            </div>
-                        </div>
-                    </div>
-                    <h3 className='mt-5'>Appointment Request Details</h3>
-                    <div className="first-half">
-                        <div className="details-container">
-                            <div className="personal-details">
-                                {x.online ? <span><i className="fa-solid fa-video">
-                                </i><span className='important-bold'>Online Consultation</span></span>
-                                    : <span>
-                                        <i className="fa-solid fa-person-running"></i>
-                                        <span className='important-bold'>Face to Face Consultation</span></span>}
-                                <br />
-                                <span><i className="fa-regular fa-calendar"></i><span className='important-bold'>{x.date}</span></span>
-                                <br />
-                                <span><i className="fa-solid fa-clock"></i><span className='important-bold'>{x.time} (24 Hours Format)</span></span>
-                            </div>
-                            <div className="other-details">
-                                {x.online ? <div></div>
-                                    : <div><span className='text-capitalize'><i className="fa-regular fa-building"></i> <span className='important-bold'> {doctorInfo ? doctorInfo.hn : 'N/A'} {doctorInfo ? doctorInfo.barangay : 'N/A'}</span></span>
-                                        <br />
-                                        <span className='text-capitalize'><i className="fa-solid fa-location-dot"></i><span className='text-capitalize important-bold'>{doctorInfo ? doctorInfo.municipality : 'N/A'} {doctorInfo ? doctorInfo.province : 'N/A'}</span></span>
-                                        <br /></div>}
-                            </div>
-                        </div>
-                    </div>
-                    <h3 className='mt-5'>Personal Info</h3>
-                    <div className="first-half">
-                        {userData && userData.imageData ? <img src={userData.imageData}
-                            alt="Patient Profie" />
-                            :
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                alt="Patient Profie" id="img-all" />
-                        }
-                        <div className="details-container mx-4">
-                            <div className="personal-details">
-                                <span className='doctor-name'> {x.fullName} </span>
-                                <br />
-                                <span><i className="fa-regular fa-envelope"></i> {x.email}</span>
-                                <br />
-                                <span><i className="fa-solid fa-phone"></i> {x.number}</span>
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="first-half note-patient mt-4">
-                        <div className="details-container-2">
-                            <div className="personal-details">
-                                <h3 className='mt-2 important-bold'>Notes to Patient</h3>
-                                <span className=''>1. The information above will be sent to this Doctor</span>
-                                <br />
-                                <span>2. You will recieve a call to your Doctor and check your email containing about the appoinment. Please check your Spam mailbox as well</span>
-                                <br />
-                                <span>3. The Doctor will give your consultation after the Appoinment. You can check in your consultation Page</span>
-
-                            </div>
-                        </div>
+            <section className='patient-booking'>
+                <div className="container">
+                    <div className='text-center'>
+                        <img src={VectorThree} alt="patient-vector" />
+                        <h2>No Pending Appointments</h2>
+                        <p className='lead'>You have no pending appointments at the moment.</p>
                     </div>
                 </div>
-                <button className='btn-appointment mt-4'>Cancel Booking</button>
-                {/* {x.online ? <button className='btn-viewprofile mt-1'>Consult</button>
-                    : <div></div>
-                } */}
-            </div >
+            </section>
         );
+    }
+    const patients = pendingAppointments.map((x, index) => {
+        if (x.status !== "Done") {
+            return (
+                <div key={index} className="bookings mb-5">
+                    <h2 className='status'>Status: {x.status}</h2>
+                    <h3>Doctor Information</h3>
+                    <div className="row ">
+                        <div className="first-half ">
+                            {doctorInfo && doctorInfo.imageData ? <img src={doctorInfo.imageData}
+                                alt="Doctor Profile Picture" />
+                                : <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    alt="Doctor Profile Picture" id="img-all" />
+                            }
+                            <div className="details-container">
+                                <div className="personal-details mx-4">
+                                    <span className='doctor-name text-capitalize'>{doctorInfo ? `${doctorInfo.Fname} ${doctorInfo.Lname}` : 'N/A'}</span>
+                                    <br />
+                                    <span className='speciality text-capitalize'>{doctorInfo ? `${doctorInfo.specialty}` : 'N/A'}</span>
+                                    <br />
+                                    <span className='md-doctor' >MD Since {doctorInfo ? `${doctorInfo.md}` : 'N/A'}</span>
+                                    <br />
+                                </div>
+                                <div className="other-details">
+                                    <span><i className="fa-regular fa-envelope"></i> {doctorInfo ? doctorInfo.email : 'N/A'}</span>
+                                    <br />
+                                    <span><i className="fa-solid fa-phone"></i> {doctorInfo ? doctorInfo.number : 'N/A'}</span>
+                                    <br />
+                                    <span><i className="fa-solid fa-money-bill-transfer"></i>₱ {doctorInfo ? doctorInfo.consultPrice : 'N/A'}</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <h3 className='mt-5'>Appointment Request Details</h3>
+                        <div className="first-half">
+                            <div className="details-container">
+                                <div className="personal-details">
+                                    {x.online ? <span><i className="fa-solid fa-video">
+                                    </i><span className='important-bold'>Online Consultation</span></span>
+                                        : <span>
+                                            <i className="fa-solid fa-person-running"></i>
+                                            <span className='important-bold'>Face to Face Consultation</span></span>}
+                                    <br />
+                                    <span><i className="fa-regular fa-calendar"></i><span className='important-bold'>{x.date}</span></span>
+                                    <br />
+                                    <span><i className="fa-solid fa-clock"></i><span className='important-bold'>{x.time} (24 Hours Format)</span></span>
+                                </div>
+                                <div className="other-details">
+                                    {x.online ? <div></div>
+                                        : <div><span className='text-capitalize'><i className="fa-regular fa-building"></i> <span className='important-bold'> {doctorInfo ? doctorInfo.hn : 'N/A'} {doctorInfo ? doctorInfo.barangay : 'N/A'}</span></span>
+                                            <br />
+                                            <span className='text-capitalize'><i className="fa-solid fa-location-dot"></i><span className='text-capitalize important-bold'>{doctorInfo ? doctorInfo.municipality : 'N/A'} {doctorInfo ? doctorInfo.province : 'N/A'}</span></span>
+                                            <br /></div>}
+                                </div>
+                            </div>
+                        </div>
+                        <h3 className='mt-5'>Personal Info</h3>
+                        <div className="first-half">
+                            {userData && userData.imageData ? <img src={userData.imageData}
+                                alt="Patient Profie" />
+                                :
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    alt="Patient Profie" id="img-all" />
+                            }
+                            <div className="details-container mx-4">
+                                <div className="personal-details">
+                                    <span className='doctor-name'> {x.fullName} </span>
+                                    <br />
+                                    <span><i className="fa-regular fa-envelope"></i> {x.email}</span>
+                                    <br />
+                                    <span><i className="fa-solid fa-phone"></i> {x.number}</span>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="first-half note-patient mt-4">
+                            <div className="details-container-2">
+                                <div className="personal-details">
+                                    <h3 className='mt-2 important-bold'>Notes to Patient</h3>
+                                    <span className=''>1. The information above will be sent to this Doctor</span>
+                                    <br />
+                                    <span>2. You will recieve a call to your Doctor and check your email containing about the appoinment. Please check your Spam mailbox as well</span>
+                                    <br />
+                                    <span>3. The Doctor will give your consultation after the Appoinment. You can check in your consultation Page</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button className='btn-appointment mt-4'>Cancel Booking</button>
+                    {/* {x.online ? <button className='btn-viewprofile mt-1'>Consult</button>
+                        : <div></div>
+                    } */}
+                </div >
+            );
+        }
     });
 
     return (
