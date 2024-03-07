@@ -13,16 +13,6 @@ const Navigation = ({ userData }) => {
         }
     }, []);
 
-    const arrayBufferToBase64 = (buffer) => {
-        let binary = '';
-        const bytes = new Uint8Array(buffer);
-        const len = bytes.byteLength;
-        for (let i = 0; i < len; i++) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        return window.btoa(binary);
-    };
-
     return (
         <section className="navigation position-relative mb-0 mt-1">
             <nav id="mainNavbar" className="navbar navbar-dark navbar-expand-md">
@@ -35,12 +25,10 @@ const Navigation = ({ userData }) => {
                     <div className="collapse navbar-collapse justify-content-end" id="navLinks">
                         <ul className="navbar-nav">
                             <li className="nav-item"><NavLink exact="true" to="/" className={({ isActive }) => isActive ? "nav-active" : "nav-new"}>Home</NavLink></li>
-                            {/* <li className="nav-item"><NavLink to="/Service" className={({ isActive }) => isActive ? "nav-active" : "nav-new"}>Service</NavLink></li> */}
                             <li className="nav-item"><NavLink to="/TopDoctors" className={({ isActive }) => isActive ? "nav-active" : "nav-new"}>Find Doctor</NavLink></li>
                             {storedUserData && <li className="nav-item"><NavLink to="PatienAppointment" className={({ isActive }) => isActive ? "nav-active" : "nav-new"}>My Bookings</NavLink></li>}
                             {storedUserData && <li className="nav-item"><NavLink to="PatientConsultation" className={({ isActive }) => isActive ? "nav-active" : "nav-new"}>Consultation</NavLink></li>}
                             <li className="nav-item"><NavLink to="/Contact" className={({ isActive }) => isActive ? "nav-active" : "nav-new"}>Contact Us</NavLink></li>
-
                         </ul>
                     </div>
 
@@ -49,23 +37,13 @@ const Navigation = ({ userData }) => {
                             <NavLink to="/ProfileLayout">
                                 <div className='userData-Name'>
                                     <span className='text-capitalize'>{storedUserData.Fname} {storedUserData.Lname}</span>
-                                    {storedUserData ? <img src={`data:image/png;base64,${arrayBufferToBase64(storedUserData.imageData.data)}`}
-                                        alt="patient-image" /> 
-                                        : <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                        alt="patient-image" />}
+                                    {storedUserData.imageData ? (
+                                        <img src={storedUserData.imageData} alt="patient-image" />
+                                    ) : (
+                                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="patient-image" />
+                                    )}
                                 </div>
                             </NavLink>
-                        ) : userData && userData.response.user ? (
-                            <NavLink to="/ProfileLayout">
-
-                                <div className='userData-Name'>
-
-                                    {userData.Fname} {userData.Lname}
-                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                        alt="patient-image" />
-                                </div>
-                            </NavLink>
-
                         ) : (
                             <div id="login">
                                 <NavLink to="Signup" className={({ isActive }) => isActive ? "nav-active2" : "linker"}>Sign Up</NavLink>

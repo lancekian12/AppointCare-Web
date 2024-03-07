@@ -25,13 +25,15 @@ const DoctorProfile = () => {
             <div className="container">
                 <div className="header-card-section">
                     <div className="header-avatar">
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                            alt="avatar"
-                        />
+                        {doctorInfo && doctorInfo.imageData ? (
+                            <img src={doctorInfo.imageData} alt="patient-image" />
+                        ) : (
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="patient-image" />
+                        )}
                     </div>
                     <div className="personal-details-2">
                         <h2>{doctorInfo.Fname} {doctorInfo.Lname}, MD</h2>
-                        <span className='speciality-2'>{doctorInfo.specialty}</span>
+                        <span className='speciality'>{doctorInfo.specialty}</span>
                         <br />
                         <span className='md-since'>MD since {doctorInfo.md}</span>
                         <div className="svg-component">

@@ -30,19 +30,6 @@ const DoctorCard = () => {
         }
     };
 
-    const arrayBufferToBase64 = (buffer) => {
-        let binary = '';
-        const bytes = new Uint8Array(buffer);
-        const len = bytes.byteLength;
-        for (let i = 0; i < len; i++) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        return window.btoa(binary);
-    };
-
-    // const base64Image = info.imageData.data ? `data:image/png;base64,${arrayBufferToBase64(info.imageData.data)}` : '';
-
-
     const doctorCard = info.filter((item) => {
         return search.toLowerCase() === ''
             ? item
@@ -55,7 +42,7 @@ const DoctorCard = () => {
                     <div className='doctor-container'>
                         <div className="first-half">
                             <div className="avatar-container">
-                                <img src={`data:image/png;base64,${arrayBufferToBase64(x.imageData.data)}`}
+                                <img src={x.imageData}
                                     alt="avatar"
                                 />
                             </div>

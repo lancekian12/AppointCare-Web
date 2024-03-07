@@ -23,8 +23,7 @@ import lumpsOfSwelling from "../../../public/lumps-swelling.png"
 const DoctorHomePage = ({ userData }) => {
     const [loading, setLoading] = useState(true);
     const [patientInfo, setPatientInfo] = useState(null);
-
-    console.log(userData);
+    console.log(userData.imageData);
     const getSymptomImage = (symptom) => {
         switch (symptom) {
             case 'tiredness':
@@ -77,7 +76,7 @@ const DoctorHomePage = ({ userData }) => {
             return (
                 <div key={index}>
                     <div className="first-half">
-                        <img src="me.png" alt="profile-picture" />
+                        <img src={x.imageData} alt="profile-picture" />
                         <div className="details-container">
                             <div className="personal-details mx-2">
                                 <span className='doctor-name text-capitalize'>{x.fullName}</span>
@@ -136,7 +135,6 @@ const DoctorHomePage = ({ userData }) => {
                                     <div key={index} className="image-symtomps">
                                         {getSymptomImage(symptom)}
                                         <span>{symptom}</span>
-
                                     </div>
                                 ))}
                             </div>
@@ -179,8 +177,21 @@ const DoctorHomePage = ({ userData }) => {
                     </div>
                     <div className="col-2">
                         <div className='doctor-picture-box'>
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                alt="patient-image" />
+                            {userData.imageData ? (
+                                <img
+                                    id="profile-picture"
+                                    className="change-profile"
+                                    src={userData.imageData}
+                                    alt="profile picture"
+                                />
+                            ) : (
+                                <img
+                                    id="profile-picture"
+                                    className="change-profile"
+                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    alt="profile picture"
+                                />
+                            )}
                             <span className='text-capitalize'>{userData.Fname} {userData.Lname}</span>
                         </div>
                     </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import { NavLink, Link } from 'react-router-dom';
 
 
 const AdminRejected = () => {
@@ -37,17 +38,21 @@ const AdminRejected = () => {
         if (x.role === "Doctor" && x.status === "Rejected") {
             return (
                 <tr key={x._id}>
-                <td className='border-td'>{x.Fname} {x.Lname}</td>
-                <td className='border-td'>{x.number}</td>
-                <td className='border-td'>{x.gender}</td>
-                <td className='border-td'>{x.age}</td>
-                <td className='border-td'>{x.email}</td>
-                <td className='border-td'>{x.status}</td>
-                <td className="td-button border-td">
-                  <button type="button" className="btn btn-primary admin-button" onClick={() => updateStatus(x._id, "Accepted")}>Accept</button>
-                  <button type="button" className="btn btn-danger admin-button" onClick={() => updateStatus(x._id, "Rejected")}>Reject</button>
-                </td>
-              </tr>
+                    <td className='border-td'>{x.Fname} {x.Lname}</td>
+                    <td className='border-td'>{x.number}</td>
+                    <td className='border-td'>{x.gender}</td>
+                    <td className='border-td'>{x.age}</td>
+                    <td className='border-td'>{x.email}</td>
+                    <td className='border-td'>{x.status}</td>
+                    <td className="td-button border-td">
+                        <Link to={`/Admin/ViewInfo/${x._id}`}>
+                            <button type="button" className="btn btn-info admin-button">View Info
+                            </button>
+                        </Link>
+                        <button type="button" className="btn btn-primary admin-button" onClick={() => updateStatus(x._id, "Accepted")}>Accept</button>
+                        <button type="button" className="btn btn-danger admin-button" onClick={() => updateStatus(x._id, "Rejected")}>Reject</button>
+                    </td>
+                </tr>
             );
         }
         return null;

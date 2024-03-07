@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import '../../css/Admin.css';
 
 const Admin = () => {
@@ -44,7 +44,7 @@ const Admin = () => {
           <td className='border-td'>{x.email}</td>
           <td className='border-td'>{x.status}</td>
           <td className="td-button border-td">
-            <button type="button" className="btn btn-info admin-button" onClick={() => updateStatus(x._id, "Accepted")}>View Info</button>
+            <Link to={`/Admin/ViewInfo/${x._id}`}><button type="button" className="btn btn-info admin-button">View Info</button></Link>
             <button type="button" className="btn btn-primary admin-button" onClick={() => updateStatus(x._id, "Accepted")}>Accept</button>
             <button type="button" className="btn btn-danger admin-button" onClick={() => updateStatus(x._id, "Rejected")}>Reject</button>
           </td>

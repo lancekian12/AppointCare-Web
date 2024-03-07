@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import { Link } from "react-router-dom"
 
 const AdminAccepted = () => {
     const [doctorData, setDoctorData] = React.useState([]);
@@ -43,7 +44,7 @@ const AdminAccepted = () => {
                     <td className='border-td'>{x.email}</td>
                     <td className='border-td'>{x.status}</td>
                     <td className="td-button border-td">
-                        <button type="button" className="btn btn-info admin-button" onClick={() => updateStatus(x._id, "Accepted")}>View Info</button>
+                        <Link to={`/Admin/ViewInfo/${x._id}`}><button type="button" className="btn btn-info admin-button">View Info</button></Link>
                         <button type="button" className="btn btn-danger admin-button" onClick={() => updateStatus(x._id, "Rejected")}>Reject</button>
                     </td>
                 </tr>

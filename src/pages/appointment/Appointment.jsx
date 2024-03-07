@@ -111,6 +111,7 @@ const Appointment = ({ userData }) => {
     };
     const [emailExists, setEmailExists] = React.useState(false);
     console.log(doctorInfo)
+
     return (
         <section className='section-appointment'>
             <div className='text-center mb-5'>
@@ -119,9 +120,12 @@ const Appointment = ({ userData }) => {
             </div>
             <div className="container">
                 <div className='row'>
-                    {/* <div className="col-"></div> */}
                     <div className="col-3 appointment-doctor-info">
-                        <img src="https://d1c0x5rkl7k63i.cloudfront.net/upload/doctor/avatar/kRtqlvEO4x94ddXJCeeGpoAvIJszZz07YTP1ffhoLVQPR9Uzac.png" alt="doctor-picture" />
+                        {doctorInfo && doctorInfo.imageData ? (
+                            <img src={doctorInfo.imageData} alt="patient-image" />
+                        ) : (
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="patient-image" />
+                        )}
                         <br />
                         <h2 className='doctor-name-2 text-capitalize'>{doctorInfo.Fname} {doctorInfo.Lname}</h2>
                         <span className='speciality text-capitalize'>{doctorInfo.specialty}</span>

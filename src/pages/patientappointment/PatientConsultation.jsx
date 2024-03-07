@@ -99,14 +99,17 @@ const PatientConsultation = ({ userData }) => {
     }
 
     const patients = patientInfo.schedules.map((x, index) => {
-        if (scheduleInfo.observation !== "" || scheduleInfo.prescription !== "") {
+        if (x.status === "Done") {
             return (
                 <div key={index} className="bookings mb-5">
                     <h3>Doctor Who Oversees Appointment</h3>
                     <div className="row ">
                         <div className="first-half ">
-                            <img src="https://d1c0x5rkl7k63i.cloudfront.net/upload/doctor/avatar/kRtqlvEO4x94ddXJCeeGpoAvIJszZz07YTP1ffhoLVQPR9Uzac.png"
-                                alt="" />
+                            {doctorInfo && doctorInfo.imageData ? <img src={doctorInfo.imageData}
+                                alt="Doctor Profile Picture" />
+                                : <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    alt="Doctor Profile Picture" />
+                            }
                             <div className="details-container">
                                 <div className="personal-details mx-4">
                                     <span className='doctor-name text-capitalize'>{doctorInfo ? `${doctorInfo.Fname} ${doctorInfo.Lname}` : 'N/A'}</span>
@@ -150,8 +153,12 @@ const PatientConsultation = ({ userData }) => {
                         </div>
                         <h3 className='mt-5'>Personal Info</h3>
                         <div className="first-half mb-4">
-                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                                alt="" />
+                            {userData && userData.imageData ? <img src={userData.imageData}
+                                alt="Patient Profie" />
+                                :
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    alt="Patient Profie" id="img-all" />
+                            }
                             <div className="details-container mx-4">
                                 <div className="personal-details">
                                     <span className='doctor-name'> {x.fullName} </span>
