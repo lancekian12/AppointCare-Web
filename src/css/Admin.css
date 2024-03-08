@@ -34,6 +34,7 @@ td{
     background-color:white;
     padding: 20px 20px;
     color: rgb(204, 204, 211);
+    box-shadow: 0px 5px 2px rgb(212, 212, 212);
 }
 .refresh button{
     background-color:transparent;
@@ -43,4 +44,67 @@ td{
 }
 .applicants-2{
     margin-top: 150px;
+}
+.admin-container{
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px; 
+}
+.user-total {
+    background-color: rgb(45, 121, 213);
+    margin-right: 20px;
+    border-radius: 20px;
+    text-align: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    flex-wrap: wrap;
+  }
+.user-total h2 {
+    display: block;
+    margin-bottom: 10px;
+  }
+.pending-total {
+    background-color: rgb(132, 133, 135);
+    margin-right: 20px;
+    border-radius: 20px;
+    text-align: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.accepted-total{
+    background-color: rgb(76, 206, 115);
+    margin-right: 20px;
+    border-radius: 20px;
+    text-align: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.rejected-total{
+    background-color: rgb(203, 31, 31);
+    margin-right: 20px;
+    border-radius: 20px;
+    text-align: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }

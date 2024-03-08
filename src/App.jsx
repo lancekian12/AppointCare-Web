@@ -19,7 +19,6 @@ import DoctorList from './pages/admin/DoctorList'
 import ProfileLayout from './components/layouts/profilelayout/ProfileLayout';
 import PatientInformation from "./pages/profile/PatientInformation";
 import ProfileChangePassword from './pages/profile/ProfileChangePassword';
-import ProfilePrescription from './pages/profile/ProfilePrescription';
 import ProfileSchedule from './pages/profile/ProfileSchedule';
 import Overview from './pages/doctorprofile/Overview';
 import DoctorPageLayout from './components/layouts/doctorpagelayout/DoctorPageLayout';
@@ -42,6 +41,7 @@ import DoctorChangePassword from './pages/doctorpage/doctorprofilepage/DoctorCha
 import DoctorConsultations from './pages/doctorpage/DoctorConsultations';
 import AdminViewinfo from './pages/admin/AdminViewinfo';
 import AdminPatientViewInfo from './pages/admin/AdminPatientViewInfo';
+import AdminPending from './pages/admin/AdminPending';
 function App() {
   const [userData, setUserData] = useState(null);
   const [adminData, setAdminData] = useState(null);
@@ -85,8 +85,7 @@ function App() {
             <Route path="ProfileLayout" element={<ProfileLayout />}>
               <Route index element={<PatientInformation userData={userData} />} />
               <Route path='ProfileChangePassword' element={<ProfileChangePassword userData={userData} />} />
-              <Route path='ProfilePrescription' element={<ProfilePrescription userData={userData} />} />
-              <Route path='ProfileSchedule' element={<ProfileSchedule userData={userData} />} >
+              <Route path='ProfileSchedule/:id' element={<ProfileSchedule userData={userData} />} >
               </Route>
             </Route>
           </Route>
@@ -104,6 +103,7 @@ function App() {
           </Route>
           <Route path="/Admin" element={<AdminLayout adminData={adminData} />}>
             <Route index element={<Admin />}></Route>
+            <Route path='AdminPending' element={<AdminPending />}></Route>
             <Route path='AdminAccepted' element={<AdminAccepted />}></Route>
             <Route path='AdminRejected' element={<AdminRejected />}></Route>
             <Route path='PatientList' element={<PatientList />}></Route>

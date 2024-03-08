@@ -7,6 +7,7 @@ import VectorTwo from '../../../public/consultation-vector-2.png'
 
 const DoctorAcceptReject = ({ userData }) => {
     const [patientList, setPatientList] = useState([]);
+    console.log(patientList)
     useEffect(() => {
         const fetchPatient = async () => {
             try {
@@ -51,18 +52,10 @@ const DoctorAcceptReject = ({ userData }) => {
         );
     }
 
-    // useEffect(() => {
-    //     if (patientList && patientList.schedules) {
-    //         const ids = patientList.schedules.map(schedule => schedule.patientId);
-    //         setPatientIds(ids);
-    //     }
-    // }, [patientList]);
-
-    // console.log(patientIds)
     const doctorAcceptReject = async (patientId, status) => {
         try {
             await axios.put(
-                `https://appointment-care-api.vercel.app/api/v1/appoint/verify/${userData._id}`,
+                `https://appointment-care-api.vercel.app/api/v1/appoint/verify/${patientId}`,
                 { patientId, status }
             );
             const response = await axios.get(
@@ -85,7 +78,7 @@ const DoctorAcceptReject = ({ userData }) => {
                             <h3 className='header-h3 mt-3'>Patient INFO Details</h3>
                             <div className="first-half">
                                 <div className="avatar-container">
-                                    {schedule && schedule.imageData ? <img src={schedule.imageData}
+                                    {schedule.imageData ? <img src={schedule.imageData}
                                         alt="avatar"
                                     />
                                         : <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
@@ -154,11 +147,11 @@ const DoctorAcceptReject = ({ userData }) => {
                                         </div>
                                     </div>
                                     <div className='button-request'>
-                                        <NavLink ><button className='btn-viewprofile-2 px-5' onClick={() => doctorAcceptReject(schedule.patientId, "Accepted")}>Accept</button></NavLink>
+                                        <NavLink ><button className='btn-viewprofile-2 px-5' onClick={() => doctorAcceptReject(schedule._id, "Accepted")}>Accept</button></NavLink>
                                         {schedule.status === "Request" ?
-                                            <NavLink ><button className='btn-appointment-2 mx-2 px-5' onClick={() => doctorAcceptReject(schedule.patientId, "Dismiss")}>Dismiss</button></NavLink>
+                                            <NavLink ><button className='btn-appointment-2 mx-2 px-5' onClick={() => doctorAcceptReject(schedule._id, "Dismiss")}>Dismiss</button></NavLink>
                                             :
-                                            <NavLink ><button className='btn-appointment-2 mx-2 px-5' onClick={() => doctorAcceptReject(schedule.patientId, "Rejected")}>Reject</button></NavLink>}
+                                            <NavLink ><button className='btn-appointment-2 mx-2 px-5' onClick={() => doctorAcceptReject(schedule._id, "Rejected")}>Reject</button></NavLink>}
                                     </div>
                                 </div>
                             </div>

@@ -24,7 +24,7 @@ const DoctorSignup = () => {
     barangay: "",
     municipality: "",
     province: "",
-    licensePicture: null,
+    // licensePicture: null,
   });
 
   const [errors, setErrors] = useState({
@@ -43,7 +43,7 @@ const DoctorSignup = () => {
     barangay: "",
     municipality: "",
     province: "",
-    licensePicture: "",
+    // licensePicture: "",
   });
 
   const [emailExists, setEmailExists] = useState(false);
@@ -198,12 +198,12 @@ const DoctorSignup = () => {
     } else {
       newErrors.image = '';
     }
-    if (!form.licensePicture) {
-      newErrors.licensePicture = 'License picture is required';
-      isValid = false;
-    } else {
-      newErrors.licensePicture = '';
-    }
+    // if (!form.licensePicture) {
+    //   newErrors.licensePicture = 'License picture is required';
+    //   isValid = false;
+    // } else {
+    //   newErrors.licensePicture = '';
+    // }
 
     setErrors(newErrors);
 
@@ -379,11 +379,11 @@ const DoctorSignup = () => {
                     <input class="form-control width-100" type="file" id="image-uploaded" name="image" onChange={handleChange} />
                     {errors.image && <div className="error error-2">{errors.image}</div>}
                   </div>
-                  <div class="images-signup mb-3">
+                  {/* <div class="images-signup mb-3">
                     <label for="formFile" class="form-label">Upload a License Picture <i class="fa-solid fa-id-card"></i></label>
                     <input class="form-control width-100" type="file" id="formFile" name="licensePicture" onChange={handleChange} />
                     {errors.licensePicture && <div className="error error-2">{errors.licensePicture}</div>}
-                  </div>
+                  </div> */}
 
                   <button type="submit" className=" d-block mx-auto submit-signup">Submit</button>
                   {emailExists && <div className="alert alert-danger alert-email" role="alert">Email already exists. Please use another email.</div>}

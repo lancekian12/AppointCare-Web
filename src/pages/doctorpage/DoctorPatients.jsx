@@ -142,7 +142,7 @@ const DoctorPatients = ({ userData }) => {
               </div>
             </div>
           </div>
-          <NavLink to={`Consult/${x.patientId}`}><button className='btn-appointment-3 mt-5 mb-3'>Consult a Prescription</button></NavLink>
+          <NavLink to={`Consult/${x._id}`}><button className='btn-appointment-3 mt-5 mb-3'>Consult a Prescription</button></NavLink>
         </div >
       );
     }

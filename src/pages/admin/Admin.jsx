@@ -22,60 +22,50 @@ const Admin = () => {
     fetchData();
   }, []);
 
+  const patientNumber = doctorData.filter(x => x.role === "Patient");
+  const doctorNumber = doctorData.filter(x => x.role === "Doctor");
+  const doctorPendingNumber = doctorData.filter(x => x.role === "Doctor" && x.status === "Pending");
+  const doctorAcceptedNumber = doctorData.filter(x => x.role === "Doctor" && x.status === "Accepted");
+  const doctorRejectedNumber = doctorData.filter(x => x.role === "Doctor" && x.status === "Rejected");
 
-  const updateStatus = async (id, status) => {
-    try {
-      await axios.put(`https://appointment-care-api.vercel.app/api/v1/person/users/${id}`, { status });
-      const response = await axios.get('https://appointment-care-api.vercel.app/api/v1/person/users');
-      setDoctorData(response.data);
-    } catch (error) {
-      console.error('Error updating user:', error);
-    }
-  };
 
-  const displayDoctorPending = doctorData.map(x => {
-    if (x.role === "Doctor" && x.status === "Pending") {
-      return (
-        <tr key={x._id}>
-          <td className='border-td'>{x.Fname} {x.Lname}</td>
-          <td className='border-td'>{x.number}</td>
-          <td className='border-td'>{x.gender}</td>
-          <td className='border-td'>{x.age}</td>
-          <td className='border-td'>{x.email}</td>
-          <td className='border-td'>{x.status}</td>
-          <td className="td-button border-td">
-            <Link to={`/Admin/ViewInfo/${x._id}`}><button type="button" className="btn btn-info admin-button">View Info</button></Link>
-            <button type="button" className="btn btn-primary admin-button" onClick={() => updateStatus(x._id, "Accepted")}>Accept</button>
-            <button type="button" className="btn btn-danger admin-button" onClick={() => updateStatus(x._id, "Rejected")}>Reject</button>
-          </td>
-        </tr>
-      );
-    }
-    return null;
-  });
 
 
   return (
     <div>
       <h2 className='refresh'>Doctor Admin | <button onClick={refreshPage}>Refresh</button></h2>
       <div className="p-4">
-        <h2 className='applicants'>Doctor AppointCare Pending</h2>
-        <table className="p-4 text-center">
-          <tbody>
-            <tr>
-              <th className="th-color" scope="col">Doctor's Name</th>
-              <th className="th-color" scope="col">Phone Number</th>
-              <th className="th-color" scope="col">Gender</th>
-              <th className="th-color" scope="col">Age</th>
-              <th className="th-color" scope="col">Email</th>
-              <th className="th-color" scope="col">Status</th>
-              <th className="th-color" scope="col">Actions</th>
-            </tr>
-            {displayDoctorPending}
-          </tbody>
-        </table >
+        <div className="container">
+          <h2 className='applicants'>Dashboard</h2>
+          <div className="admin-container">
+            <div className="col-3 user-total">
+              <h2>Total Users:</h2>
+              <h2>{patientNumber.length + doctorNumber.length}</h2>
+            </div>
+            <div className="col-3 user-total">
+              <h2>Patients Users: </h2>
+              <h2>{patientNumber.length}</h2>
+            </div>
+            <div className="col-3 user-total">
+              <h2>Doctor Users:</h2>
+              <h2>{doctorNumber.length}</h2>
+            </div>
+            <div className="col-3 pending-total mt-3">
+              <h2>Pending Doctors:</h2>
+              <h2>{doctorPendingNumber.length}</h2>
+            </div>
+            <div className="col-3 accepted-total mt-3">
+              <h2>Accepted Doctors:</h2>
+              <h2>{doctorAcceptedNumber.length}</h2>
+            </div>
+            <div className="col-3 rejected-total mt-3">
+              <h2>Rejected Doctors:</h2>
+              <h2>{doctorRejectedNumber.length}</h2>
+            </div>
+          </div>
+        </div>
       </div >
-    </div>
+    </div >
   );
 };
 

@@ -59,7 +59,7 @@ const DoctorRejectedPatients = ({ userData }) => {
   const doctorAcceptReject = async (patientId, status) => {
     try {
       await axios.put(
-        `https://appointment-care-api.vercel.app/api/v1/appoint/verify/${userData._id}`,
+        `https://appointment-care-api.vercel.app/api/v1/appoint/verify/${patientId}`,
         { patientId, status }
       );
       const response = await axios.get(
@@ -142,8 +142,8 @@ const DoctorRejectedPatients = ({ userData }) => {
                     </div>
                   </div>
                   <div className='button-request'>
-                    <NavLink ><button className='btn-viewprofile-3' onClick={() => doctorAcceptReject(schedule.patientId, "Pending")}>Recover</button></NavLink>
-                    <NavLink ><button className='wew mx-2' onClick={() => doctorAcceptReject(schedule.patientId, "Rejected")}>Delete</button></NavLink>
+                    <NavLink ><button className='btn-viewprofile-3' onClick={() => doctorAcceptReject(schedule._id, "Pending")}>Recover</button></NavLink>
+                    <NavLink ><button className='wew mx-2' onClick={() => doctorAcceptReject(schedule._id, "Rejected")}>Delete</button></NavLink>
                   </div>
                 </div>
               </div>

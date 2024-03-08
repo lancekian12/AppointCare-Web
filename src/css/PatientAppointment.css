@@ -76,3 +76,9 @@
     border-radius: 0px;
     margin-right: 0px;
 }
+.link-buttons{
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 15px;
+}

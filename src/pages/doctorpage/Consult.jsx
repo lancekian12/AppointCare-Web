@@ -12,7 +12,7 @@ const Consult = ({ userData }) => {
         observation: "",
         prescription: "",
     });
-    console.log(params.id)
+    console.log(patientInfo)
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -28,13 +28,13 @@ const Consult = ({ userData }) => {
     const doctorAcceptReject = async (patientId, status) => {
         try {
             await axios.put(
-                `https://appointment-care-api.vercel.app/api/v1/appoint/verify/${userData._id}`,
+                `https://appointment-care-api.vercel.app/api/v1/appoint/verify/${patientId}`,
                 { patientId, status }
             );
-            const response = await axios.get(
-                `https://appointment-care-api.vercel.app/api/v1/appoint/schedule/${userData._id}`
-            );
-            setPatientInfo(response.data);
+            // const response = await axios.get(
+            //     `https://appointment-care-api.vercel.app/api/v1/appoint/schedule/${patientId}`
+            // );
+            // setPatientInfo(response.data);
         } catch (error) {
             console.error('Error updating user:', error);
         }
@@ -48,9 +48,9 @@ const Consult = ({ userData }) => {
                 await doctorAcceptReject(params.id, "Done");
                 const doctorId = patientInfo.schedules[0].doctorId;
                 console.log("Doctor ID:", doctorId);
-                const response = await axios.put(`https://appointment-care-api.vercel.app/api/v1/appoint/consult/${doctorId}`, updateInfo);
+                const response = await axios.put(`https://appointment-care-api.vercel.app/api/v1/appoint/consult/${params.id}`, updateInfo);
                 console.log("Update response:", response.data);
-                // window.location.href = "/doctorpage/DoctorPatient/";
+                window.location.href = "/doctorpage/DoctorPatient/";
             } else {
                 console.error("No patient information found.");
             }

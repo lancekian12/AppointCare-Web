@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
 
 const Schedule = ({ userData }) => {
   const [storedUserData, setStoredUserData] = React.useState(null);
-  const [editAppointment, setEditAppointment] = React.useState({
+  const [patientInfo, setPatientInfo] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
+  const [editAppointment, setEditAppointment] = React.useState({ // Add editAppointment state
     patientId: '',
     f2f: true,
     online: false,
@@ -13,6 +14,38 @@ const Schedule = ({ userData }) => {
     time: '',
     status: 'Request',
   });
+  const params = useParams(); // Access URL parameters
+  console.log(params.id);
+
+  // Fetch patient information based on the ID parameter from the URL
+  React.useEffect(() => {
+    const fetchPatient = async () => {
+      try {
+        if (userData && userData._id) {
+          const response = await axios.get(`https://appointment-care-api.vercel.app/api/v1/appoint/schedule/${params.id}`);
+          setPatientInfo(response.data);
+          setLoading(false);
+        }
+      } catch (e) {
+        console.error('Error fetching data:', e);
+        setLoading(false);
+      }
+    };
+
+    fetchPatient();
+  }, [userData, params.id]);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`https://appointment-care-api.vercel.app/api/v1/appoint/delete/${id}`);
+      window.location.reload();
+
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  }
+
+  console.log(patientInfo)
 
   React.useEffect(() => {
     const storedUserData = localStorage.getItem('userData');
@@ -53,15 +86,25 @@ const Schedule = ({ userData }) => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://appointment-care-api.vercel.app/api/v1/appoint/edit/${storedUserData._id}`,
+        `https://appointment-care-api.vercel.app/api/v1/appoint/edit/${params.id}`,
         editAppointment
       );
-      window.location.href = "/PatientConsultation"
+      window.location.href = "/"
       console.log(response.data);
     } catch (error) {
       console.error('Error editing appointment:', error);
     }
   };
+  const pendingAppointments = patientInfo && patientInfo.schedules ? patientInfo.schedules.filter(x => x.status !== "Done" && x.status !== "Delete") : [];
+  const schedule = pendingAppointments.map((x, index) => {
+    if (x.status !== "Done" && x.status !== "Delete") {
+      return (
+        <div key={index} className="bookings mb-5">
+          <option value="1">{x._id}</option>
+        </div>
+      )
+    }
+  });
 
   return (
     <div className="col-7 mx-5 mt-3 mb-5">
@@ -73,6 +116,11 @@ const Schedule = ({ userData }) => {
       <div className="row info-input">
         <form onSubmit={handleSubmit}>
           <div className="col-12 px-0">
+            {/* <label htmlFor="">Select Appoinment to Edit</label>
+            <select class="form-select my-3" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="1">{schedule}</option>
+            </select> */}
             <label htmlFor="schedule-date">Date</label>
             <br />
             <input
@@ -139,8 +187,8 @@ const Schedule = ({ userData }) => {
               </div>
             </div>
           </div>
-          <div className="flex-row">
-            <button className="save-changes" type="submit">
+          <div className='d-flex flex-row justify-content-end'>
+            <button className="save-changes mx-3" type="submit">
               Save Changes
             </button>
             <Link to="/"><button className='cancel-changes'>Cancel</button></Link>

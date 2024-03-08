@@ -29,6 +29,11 @@ const AdminLayout = ({ adminData }) => {
                                 </NavLink>
                             </li>
                             <li className="sidebar-item">
+                                <NavLink to="AdminPending" className={({ isActive }) => isActive ? "doctor-link-active" : "sidebar-link"}>
+                                    <i className="fa-solid fa-list-check"></i>
+                                </NavLink>
+                            </li>
+                            <li className="sidebar-item">
                                 <NavLink to="AdminAccepted" className={({ isActive }) => isActive ? "doctor-link-active" : "sidebar-link"}>
                                     <i className="fa-solid fa-circle-check"></i>
                                 </NavLink>

@@ -71,6 +71,8 @@ const DoctorHomePage = ({ userData }) => {
     }, [userData]);
     const acceptedAppointments = patientInfo && patientInfo.schedules ? patientInfo.schedules.filter(x => x.status === "Accepted") : [];
     const rejectedAppointments = patientInfo && patientInfo.schedules ? patientInfo.schedules.filter(x => x.status === "Rejected") : [];
+    const doneBooking = patientInfo && patientInfo.schedules ? patientInfo.schedules.filter(x => x.status === "Done") : [];
+
 
     const allPatientList = patientInfo && patientInfo.schedules ? patientInfo.schedules.map((x, index) => {
         if (x.status === "Accepted") {
@@ -105,9 +107,19 @@ const DoctorHomePage = ({ userData }) => {
         return null;
     }) : null;
 
-
-
-
+    // if (doneBooking.length === 0) {
+    //     return (
+    //         <section className='patient-booking'>
+    //             <div className="container">
+    //                 <div className='text-center'>
+    //                     <img src={VectorThree} alt="patient-vector" />
+    //                     <h2 className='mt-4'>No Consultation History</h2>
+    //                     <p className='lead'>You have no consultation history at the moment. Check Patient Appointment List</p>
+    //                 </div>
+    //             </div>
+    //         </section>
+    //     );
+    // }
 
     const firstPatientConsultation = patientInfo && patientInfo.schedules && patientInfo.schedules.length > 0 ?
         (
@@ -177,7 +189,7 @@ const DoctorHomePage = ({ userData }) => {
                         <h2 className="Goodmorning">Good Morning <span id="name-of-doctor">Dr. {userData.Fname}!</span></h2>
                     </div>
                     <div className="col-2">
-                        <Link to="/doctorpage/DoctorUserProfile" className='text-decoration-none'>
+                        <Link to="/doctorpage/DoctorUserProfile" className='doctorpage-avatar'>
                             <div className='doctor-picture-box'>
                                 {userData.imageData ? (
                                     <img
@@ -251,7 +263,17 @@ const DoctorHomePage = ({ userData }) => {
                             <div className="col-6 mt-2">
                                 <h2>Recent Consultation</h2>
                                 <div className="img-first-half">
-                                    {firstPatientConsultation}
+                                    {doneBooking.length === 0 ? (
+                                        <section className='patient-booking'>
+                                            <div className='text-center doctor-homepage-else'>
+                                                <img src={VectorThree} alt="patient-vector" />
+                                                <h2 className='mt-5'>You Have No Recent Consultation</h2>
+                                                <p className='lead'>No Consultation List Right now. Check some Appointments</p>
+                                            </div>
+                                        </section>
+                                    ) : (
+                                        firstPatientConsultation
+                                    )}
                                 </div>
                             </div>
                         </div>

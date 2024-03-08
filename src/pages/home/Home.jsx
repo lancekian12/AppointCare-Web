@@ -3,6 +3,7 @@ import FindDoctor from '../../components/reusecomponent/FindDoctor'
 import ServiceProvider from '../../components/reusecomponent/ServiceProvider'
 import '../../css/Home.css'
 import FAQ from '../../components/reusecomponent/FAQ'
+import { Link } from "react-router-dom"
 
 const Home = () => {
   return (
@@ -24,11 +25,16 @@ const Home = () => {
                 <div className='container mt-5 align-items-center'>
                   <div className='row align-items-center justify-content-center'>
                     <div className='col-6'>
-                      <button id="Appointment">Appointments</button>
+                      <Link to="/TopDoctors">
+                        <button id="Appointment">Appointments</button>
+
+                      </Link>
                     </div>
                     <div className='col-6'>
-                      <button id="play"><i className="fa-solid fa-play"></i></button>
-                      <h3 className='text-center d-inline-block watch'>Watch Video</h3>
+                      <Link to="/TopDoctors" className='link-buttons'>
+                        <button id="play"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <h3 className='text-center d-inline-block watch'>Find a Doctor</h3>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -41,7 +47,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <FindDoctor />
+      {/* <FindDoctor /> */}
       <ServiceProvider />
       <FAQ />
     </main >

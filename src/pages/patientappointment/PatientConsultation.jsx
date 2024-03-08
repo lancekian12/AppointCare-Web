@@ -97,12 +97,24 @@ const PatientConsultation = ({ userData }) => {
             </section>
         );
     }
+    const doneBooking = patientInfo.schedules.filter(x => x.status === "Done" || x.status === "Delete");
+    if (doneBooking.length === 0) {
+        <section className='patient-booking'>
+            <div className="container">
+                <div className='text-center'>
+                    <img src={VectorTwo} alt="patient-vector" />
+                    <h2 className='mt-5'>No Prescription</h2>
+                    <p className='lead'>You have no prescription at the moment. Book an Appointment</p>
+                </div>
+            </div>
+        </section>
+    }
 
     const patients = patientInfo.schedules.map((x, index) => {
-        if (x.status === "Done") {
+        if (x.status === "Done" || x.status === "Delete") {
             return (
                 <div key={index} className="bookings mb-5">
-                    <h2 className='status-4'>Status: {x.status}</h2>
+                    <h2 className='status-4'>Status: DONE</h2>
                     <h3>Doctor Who Oversees the Appointment</h3>
                     <div className="row ">
                         <div className="first-half ">
@@ -228,7 +240,19 @@ const PatientConsultation = ({ userData }) => {
     return (
         <div className='container'>
             <h2 className='text-center mb-5 mt-5'>Consultation History</h2>
-            {patients}
+            {doneBooking.length === 0 ? (
+                <section className='patient-booking'>
+                    <div className="container">
+                        <div className='text-center'>
+                            <img src={VectorTwo} alt="patient-vector" />
+                            <h2 className='mt-5'>No Prescription</h2>
+                            <p className='lead'>You have no prescription at the moment. Book an Appointment</p>
+                        </div>
+                    </div>
+                </section>
+            ) : (
+                patients
+            )}
         </div>
     )
 }

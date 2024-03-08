@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../../css/Navigation.css';
 import logoImage from "/logo.png"
+import AppointCarelogo from "../../../public/AppointCareLogo.png"
 
 const Navigation = ({ userData }) => {
     const [storedUserData, setStoredUserData] = useState(null);
@@ -17,7 +18,7 @@ const Navigation = ({ userData }) => {
         <section className="navigation position-relative mb-0 mt-1">
             <nav id="mainNavbar" className="navbar navbar-dark navbar-expand-md">
                 <div className="container-fluid mx-5">
-                    <a href="/" className='navbar-brand'><img src={logoImage} alt="logo" className='mx-2' /></a>
+                    <a href="/" className='navbar-brand'><img src={logoImage} id="appointcare-logo" alt="logo" className='mx-2' /></a>
                     <a href="/" className='navbar-brand'><h1 id="LogoTitle" className='d-md-block'>Appoint<span id="LogoSubTitle">Care</span></h1></a>
                     <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navLinks">
                         <span className="navbar-toggler-icon"></span>

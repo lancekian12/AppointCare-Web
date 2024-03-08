@@ -116,3 +116,11 @@
     position: relative;
     transform: translate(-40px,-40px);
 }
+.doctorpage-avatar{
+    text-decoration: none;
+    color: #007E85;
+    font-weight: 600;
+}
+.custom-modal .modal-content {
+    background-color: #ffffff; /* Adjust background color here */
+  }

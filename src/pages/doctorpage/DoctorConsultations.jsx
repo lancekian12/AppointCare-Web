@@ -15,12 +15,17 @@ import unexplainedRash from "../../../public/rashInfection.png"
 import shortnessOfbreath from "../../../public/shortnessofbreath.png"
 import drenchingNightSweats from "../../../public/drenching-sweats.png"
 import lumpsOfSwelling from "../../../public/lumps-swelling.png"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 
 const DoctorConsultations = ({ userData }) => {
   const [loading, setLoading] = useState(true);
   const [patientInfo, setPatientInfo] = useState(null);
   const [doctorInfo, setDoctorInfo] = useState(null);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     const fetchPatient = async () => {
@@ -44,6 +49,28 @@ const DoctorConsultations = ({ userData }) => {
     fetchPatient();
   }, [userData]);
 
+  const doctorAcceptReject = async (patientId, status) => {
+    try {
+      await axios.put(
+        `https://appointment-care-api.vercel.app/api/v1/appoint/verify/${patientId}`,
+        { patientId, status }
+      );
+      window.location.reload();
+      // if (userData && userData._id) {
+      //   const response = await axios.get(`https://appointment-care-api.vercel.app/api/v1/appoint/schedule/${userData._id}`);
+      //   setPatientInfo(response.data);
+      //   setLoading(false);
+      //   if (response.data && response.data.schedules && response.data.schedules.length > 0) {
+      //     const doctorId = response.data.schedules[0].doctorId;
+      //     const response3 = await axios.get(`https://appointment-care-api.vercel.app/api/v1/person/users/${doctorId}`);
+      //     setDoctorInfo(response3.data);
+      //   }
+      // }
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  }
+
   if (!userData || !userData._id) {
     return <div>No user data available.</div>;
   }
@@ -56,9 +83,9 @@ const DoctorConsultations = ({ userData }) => {
       <section className='patient-booking'>
         <div className="container">
           <div className='text-center'>
-            <img src={VectorTwo} alt="patient-vector" />
-            <h2 className='mt-4'>No Bookings</h2>
-            <p className='lead'>You have no Patients at the moment. Check Patient Appointment List</p>
+            <img src={VectorThree} alt="patient-vector" />
+            <h2 className='mt-4'>No Consultation History</h2>
+            <p className='lead'>You have no consultation history at the moment. Check Patient Appointment List</p>
           </div>
         </div>
       </section>
@@ -95,7 +122,20 @@ const DoctorConsultations = ({ userData }) => {
     }
   };
 
-  const acceptedBookings = patientInfo.schedules.filter(x => x.status === "Done");
+  const doneBooking = patientInfo.schedules.filter(x => x.status === "Done");
+  if (doneBooking.length === 0) {
+    return (
+      <section className='patient-booking'>
+        <div className="container">
+          <div className='text-center'>
+            <img src={VectorThree} alt="patient-vector" />
+            <h2 className='mt-4'>No Consultation History</h2>
+            <p className='lead'>You have no consultation history at the moment. Check Patient Appointment List</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
   const patients = patientInfo.schedules.map((x, index) => {
     if (x.status === "Done") {
       return (
@@ -201,8 +241,48 @@ const DoctorConsultations = ({ userData }) => {
                 </div>
               </div>
             </div>
-            <button className='btn-appointment mt-4'>Delete</button>
+            <Button variant="primary" className="btn btn-danger mt-4" onClick={handleShow}>
+              Delete
+            </Button>
 
+            <Modal show={show} onHide={handleClose}
+              aria-labelledby="contained-modal-title-vcenter"
+              centered
+              className="custom-modal" >
+              <Modal.Header closeButton>
+                <Modal.Title>Are you sure you want to delete this?</Modal.Title>
+              </Modal.Header>
+              <Modal.Footer>
+                <Button className="btn btn-info px-4" variant="secondary" onClick={handleClose}>
+                  No
+                </Button>
+                <Button className="btn btn-danger px-4" variant="primary" onClick={() => doctorAcceptReject(x._id, "Delete")}>
+                  Yes
+                </Button>
+              </Modal.Footer>
+            </Modal>
+            {/* <button type="button" className="btn btn-danger mt-4" data-toggle="modal" data-target="#exampleModal">
+              Delete
+            </button>
+
+            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div className="modal-body">
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary">Yes</button>
+                  </div>
+                </div>
+              </div>
+            </div> */}
           </div>
         </div >
       );
@@ -215,6 +295,7 @@ const DoctorConsultations = ({ userData }) => {
       <div className="container">
         <h2 className='text-center mt-3 mb-5'>Doctor Consultation History</h2>
         {patients}
+
       </div>
     </section>
   )
