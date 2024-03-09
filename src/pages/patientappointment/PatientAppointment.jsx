@@ -183,7 +183,7 @@ const PatientAppointment = ({ userData }) => {
                                 </div>
                             </div>
                         </div>
-                        {x.status === "Accepted" || x.status === "Request" && <Link className='btn-appointment link-buttons' to={`/ProfileLayout/ProfileSchedule/${x._id}`}>Re-schedule</Link>}
+                        {(x.status === "Accepted" || x.status === "Request") && <Link className='btn-appointment link-buttons' to={`/ProfileLayout/ProfileSchedule/${x._id}`}>Re-schedule</Link>}
                         <Button variant="primary" className="btn btn-danger mt-2" onClick={handleShow}>
                             Cancel Booking
                         </Button>
@@ -208,7 +208,7 @@ const PatientAppointment = ({ userData }) => {
             } else {
                 return (
                     <div key={index} className="bookings mb-5">
-                        <p>Doctor information not available</p>
+                        <p>Loading....</p>
                     </div>
                 );
             }

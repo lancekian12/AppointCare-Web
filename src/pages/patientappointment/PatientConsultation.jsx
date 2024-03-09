@@ -14,6 +14,9 @@ import unexplainedRash from "../../../public/rashInfection.png"
 import shortnessOfbreath from "../../../public/shortnessofbreath.png"
 import drenchingNightSweats from "../../../public/drenching-sweats.png"
 import lumpsOfSwelling from "../../../public/lumps-swelling.png"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { Link } from "react-router-dom"
 
 
 const PatientConsultation = ({ userData }) => {
@@ -21,6 +24,9 @@ const PatientConsultation = ({ userData }) => {
     const [patientInfo, setPatientInfo] = useState(null);
     const [scheduleInfo, setScheduleInfo] = useState(null);
     const [doctorInfo, setDoctorInfo] = useState(null);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     console.log(patientInfo)
 
     const getSymptomImage = (symptom) => {
@@ -108,6 +114,16 @@ const PatientConsultation = ({ userData }) => {
                 </div>
             </div>
         </section>
+    }
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`https://appointment-care-api.vercel.app/api/v1/appoint/delete/${id}`);
+            window.location.reload();
+
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
     }
 
     const patients = patientInfo.schedules.map((x, index) => {
@@ -215,7 +231,25 @@ const PatientConsultation = ({ userData }) => {
                             </div>
                         </div>
                     </div>
-                    <button className='btn-appointment mt-4'>Delete</button>
+                    <Button variant="primary" className="btn btn-danger mt-4" onClick={handleShow}>
+                        Delete Consultation History
+                    </Button>
+                    <Modal show={show} onHide={handleClose}
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered
+                        className="custom-modal" >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Are you sure you want to delete this?</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Footer>
+                            <Button className="btn btn-info px-4" variant="secondary" onClick={handleClose}>
+                                No
+                            </Button>
+                            <Button className="btn btn-danger px-4" variant="primary" onClick={() => handleDelete(x._id)}>
+                                Yes
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                     {/* {x.online ? <button className='btn-viewprofile mt-1'>Consult</button>
                         : <div></div>
                     } */}

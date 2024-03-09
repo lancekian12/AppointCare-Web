@@ -21,9 +21,9 @@ const ProfileLayout = () => {
                             <li className='profile-li'>
                                 <NavLink to="ProfileChangePassword" className="profile-nav"><i className="fa-solid fa-key"></i> Change Password</NavLink>
                             </li>
-                            <li className='profile-li'>
-                                <NavLink to="ProfileSchedule" className="profile-nav"><i className="fa-regular fa-calendar-days"></i> Schedule</NavLink>
-                            </li>
+                            {/* <li className='profile-li'>
+                                <NavLink className="profile-nav"><i className="fa-regular fa-calendar-days"></i> Schedule</NavLink>
+                            </li> */}
                             {/* <li className='profile-li'>
                                 <NavLink to="ProfilePrescription" className="profile-nav"><i className="fa-solid fa-prescription-bottle-medical"></i> Prescription</NavLink>
                             </li> */}
