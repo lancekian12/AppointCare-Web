@@ -3,6 +3,9 @@ import WelcomeDesign from '../../components/reusecomponent/WelcomeDesign';
 import axios from 'axios';
 
 const DoctorSignup = () => {
+  const [doctorId, setDoctorId] = useState(null)
+  console.log(doctorId)
+  // console.log(doctorId.user.id)
   const [form, setForm] = useState({
     role: "Doctor",
     Fname: "",
@@ -24,9 +27,11 @@ const DoctorSignup = () => {
     barangay: "",
     municipality: "",
     province: "",
-    // licensePicture: null,
   });
-
+  const [passLicense, setPassLicense] = useState({
+    licensePicture: null,
+  })
+  console.log(passLicense)
   const [errors, setErrors] = useState({
     Fname: '',
     Lname: '',
@@ -43,7 +48,7 @@ const DoctorSignup = () => {
     barangay: "",
     municipality: "",
     province: "",
-    // licensePicture: "",
+    licensePicture: "",
   });
 
   const [emailExists, setEmailExists] = useState(false);
@@ -60,6 +65,22 @@ const DoctorSignup = () => {
 
     setForm({
       ...form,
+      [name]: newValue
+    });
+  };
+
+  const handleChange2 = (event) => {
+    const { name, value, type, checked, files } = event.target;
+
+    let newValue;
+    if (type === 'file') {
+      newValue = files[0];
+    } else {
+      newValue = type === 'checkbox' ? checked : value;
+    }
+
+    setPassLicense({
+      ...passLicense,
       [name]: newValue
     });
   };
@@ -198,12 +219,12 @@ const DoctorSignup = () => {
     } else {
       newErrors.image = '';
     }
-    // if (!form.licensePicture) {
-    //   newErrors.licensePicture = 'License picture is required';
-    //   isValid = false;
-    // } else {
-    //   newErrors.licensePicture = '';
-    // }
+    if (!passLicense.licensePicture) {
+      newErrors.licensePicture = 'License picture is required';
+      isValid = false;
+    } else {
+      newErrors.licensePicture = '';
+    }
 
     setErrors(newErrors);
 
@@ -241,9 +262,26 @@ const DoctorSignup = () => {
           }
         );
 
-        console.log(response.data);
-        setEmailExists(false);
-        window.location.href = "/Login";
+        if (response && response.data && response.data.user) {
+          setDoctorId(response.data);
+          setEmailExists(false);
+          const response2 = await axios.post(
+            `https://appointment-care-api.vercel.app/api/v1/auth/signuplicense/${response.data.user.id}`,
+            passLicense,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            }
+          );
+
+          // Redirect to login if successful
+          console.log(response2.data);
+          window.location.href = "/Login";
+        } else {
+          // Handle the case where response or response.data is undefined
+          console.error("Response data is not in the expected format");
+        }
       } catch (error) {
         if (error.response && error.response.status === 500) {
           setEmailExists(true);
@@ -374,16 +412,16 @@ const DoctorSignup = () => {
                     {errors.gender && <div className="error">{errors.gender}</div>}
                   </div>
 
-                  <div class="images-signup mb-3 mt-3">
-                    <label for="image-uploaded" class="form-label">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
-                    <input class="form-control width-100" type="file" id="image-uploaded" name="image" onChange={handleChange} />
+                  <div className="images-signup mb-3 mt-3">
+                    <label htmlFor="image-uploaded" className="form-label">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
+                    <input className="form-control width-100" type="file" id="image-uploaded" name="image" onChange={handleChange} />
                     {errors.image && <div className="error error-2">{errors.image}</div>}
                   </div>
-                  {/* <div class="images-signup mb-3">
-                    <label for="formFile" class="form-label">Upload a License Picture <i class="fa-solid fa-id-card"></i></label>
-                    <input class="form-control width-100" type="file" id="formFile" name="licensePicture" onChange={handleChange} />
+                  <div className="images-signup mb-3">
+                    <label htmlFor="formFile" className="form-label">Upload a License Picture <i className="fa-solid fa-id-card"></i></label>
+                    <input className="form-control width-100" type="file" id="formFile" name="licensePicture" onChange={handleChange2} />
                     {errors.licensePicture && <div className="error error-2">{errors.licensePicture}</div>}
-                  </div> */}
+                  </div>
 
                   <button type="submit" className=" d-block mx-auto submit-signup">Submit</button>
                   {emailExists && <div className="alert alert-danger alert-email" role="alert">Email already exists. Please use another email.</div>}

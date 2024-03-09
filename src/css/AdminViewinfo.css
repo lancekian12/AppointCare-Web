@@ -28,6 +28,10 @@
 .license-picture{
     border-radius: 0px;
 }
+.license-picture img{
+    width: 350px;
+    height: 300px;
+}
 .viewinfo-button button{
     width: 100%;
 }

@@ -4,9 +4,9 @@ import { NavLink, Outlet, Link } from 'react-router-dom'
 import axios from 'axios';
 import '../../css/AdminViewinfo.css'
 
-
 const AdminViewinfo = () => {
-  const [doctorInfo, setDoctorInfo] = React.useState([])
+  const [doctorInfo, setDoctorInfo] = React.useState([]);
+  const [getLicensePicture, setGetLicensePicture] = React.useState([]);
   const params = useParams();
 
   React.useEffect(() => {
@@ -14,6 +14,10 @@ const AdminViewinfo = () => {
       try {
         const response = await axios.get(`https://appointment-care-api.vercel.app/api/v1/person/users/${params.id}`);
         setDoctorInfo(response.data);
+
+        const response2 = await axios.get(`https://appointment-care-api.vercel.app/api/v1/Person/license/${params.id}`);
+        console.log('License picture response:', response2.data); // Log the response data
+        setGetLicensePicture(response2.data); // Update state with response data
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -30,6 +34,7 @@ const AdminViewinfo = () => {
       console.error('Error updating user:', error);
     }
   };
+
   const refreshPage = () => {
     window.location.reload();
   };
@@ -100,7 +105,11 @@ const AdminViewinfo = () => {
           </div>
           <div className="col-12 license-picture">
             <h3>License Picture:</h3>
-            <img src="https://scontent.fbag1-2.fna.fbcdn.net/v/t1.15752-9/431024564_365942866273667_8372084059085554563_n.png?_nc_cat=103&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGUTUaBwl8NQryimQyxjaK2YTI-OOPLs8BhMj4448uzwDp3MO0hU5A6Vv242PN6ZCkw5ehsMtNoXj3U158ddoZp&_nc_ohc=B3DZBOHoi-oAX-b02ar&_nc_ht=scontent.fbag1-2.fna&oh=03_AdRepcwWhakVqW7_fNWJgTlAF0BQclc9MwV6-GjDirYxTQ&oe=66100A02" alt="license-picture" />
+            {getLicensePicture ? (
+              <img src={getLicensePicture.imageURL} alt="license-picture" />
+            ) : (
+              <p>No license picture available</p>
+            )}
           </div>
           <div className="col-12 mt-5">
             <div className='viewinfo-button'>

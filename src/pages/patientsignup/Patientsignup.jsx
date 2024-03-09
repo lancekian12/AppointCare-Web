@@ -230,9 +230,9 @@ const Patientsignup = () => {
                                         </div>
                                         {errors.gender && <div className="error">{errors.gender}</div>}
                                     </div>
-                                    <div class="images-signup mb-3 mt-3">
-                                        <label for="image-uploaded" class="form-label">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
-                                        <input class="form-control width-100" type="file" id="image-uploaded" name="image" onChange={handleChange} />
+                                    <div className="images-signup mb-3 mt-3">
+                                        <label htmlFor="image-uploaded" className="form-label">Upload a Profile Picture <i className="fa-solid fa-camera"></i> </label>
+                                        <input className="form-control width-100" type="file" id="image-uploaded" name="image" onChange={handleChange} />
                                         {errors.image && <div className="error error-2">{errors.image}</div>}
                                     </div>
                                     <button type="submit" className=" d-block mx-auto submit-signup">Submit</button>
