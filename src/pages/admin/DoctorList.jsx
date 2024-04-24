@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'; // Import axios
-import { NavLink, Outlet, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const DoctorList = () => {
   const [doctorData, setDoctorData] = React.useState([]);

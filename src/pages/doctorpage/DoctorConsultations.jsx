@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import VectorThree from "../../../public/consultation-vector-3.png"
-import { NavLink } from 'react-router-dom'
 import "../../css/PatientConsultation.css"
 import tiredness from "../../../public/tiredeness.png"
 import cough from "../../../public/cough-vector.png"
@@ -11,7 +10,7 @@ import unexplainedFever from "../../../public/fever.png"
 import paleness from "../../../public/paleness.png"
 import bruising from "../../../public/bruising-vector.png"
 import freqeuentInfection from "../../../public/frequent-infection.png"
-import unexplainedRash from "../../../public/rashInfection.png"
+// import unexplainedRash from "../../../public/rashInfection.png"
 import shortnessOfbreath from "../../../public/shortnessofbreath.png"
 import drenchingNightSweats from "../../../public/drenching-sweats.png"
 import lumpsOfSwelling from "../../../public/lumps-swelling.png"
