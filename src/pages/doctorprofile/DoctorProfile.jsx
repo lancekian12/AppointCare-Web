@@ -3,7 +3,6 @@ import '../../css/DoctorProfile.css'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useParams } from "react-router-dom"
 import axios from 'axios';
-import Overview from './Overview';
 
 
 const DoctorProfile = () => {

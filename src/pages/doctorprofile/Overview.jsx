@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
 import { useParams } from "react-router-dom"
 import axios from 'axios';
 
