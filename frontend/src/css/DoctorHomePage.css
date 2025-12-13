@@ -1,0 +1,126 @@
+
+#name-of-doctor{
+    font-weight: 700;
+    color: #007E85;
+    font-weight: 700;
+}
+.Good-morning{
+    text-align: left;
+}
+.rectangle-2 {
+    background: url('/public/reactangle.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    height: 370px;
+}
+.doctor-picture-box {
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #D9D9D9;
+    border-radius: 16px;
+    width: 100%;
+    padding: 10px;
+}
+.doctor-picture-box img {
+    object-position: top;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    overflow: hidden;
+    background: transparent;
+}
+
+.doctor-image {    
+    position: absolute;
+}
+
+.doctor-image img {
+    height: auto; 
+}
+.patient-data{
+    background-color: transparent;
+    border: 1px solid #D9D9D9;
+    border-radius: 20px;
+    height: 100%;
+}
+.new-patients-2{
+    background: linear-gradient(#FFFFFF, transparent);
+    border-radius: 20px;
+    height: 100%;
+    padding: 10px 20px;
+    border: 1px solid black;
+}
+.old-patients-2{
+    background: linear-gradient(white, transparent);
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+.number-of-new-patients{
+    font-size: 50px;
+}
+.patients-all{
+    font-size: 40px;
+}
+.img-first-half {
+    border: 1px solid #007E85;
+    border-radius: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    width: 100%;
+    height: max-content;
+}
+.img-first-half img{
+    width: 85px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#patient-list-img{
+    width: 85px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.consultation-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.symptoms-2{
+    display: flex;
+    flex-direction: row;
+}
+.doctor-homepage-else{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.doctor-homepage-else img{
+    width: 300px;
+    height: 150px;
+    border-radius: 0;
+}
+.i-details i{
+    margin-right: 10px;
+}
+#doctorpage-doctor{
+    position: relative;
+    transform: translate(-40px,-40px);
+}
+.doctorpage-avatar{
+    text-decoration: none;
+    color: #007E85;
+    font-weight: 600;
+}
+.custom-modal .modal-content {
+    background-color: #ffffff; /* Adjust background color here */
+  }

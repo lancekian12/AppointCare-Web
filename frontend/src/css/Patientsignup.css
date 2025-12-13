@@ -1,0 +1,115 @@
+.patient-signup {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.signup-section {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.signup-form h2 {
+    font-weight: 700;
+    margin-left: 30px;
+}
+
+.signup-form h4 {
+    margin-left: 30px;
+}
+
+.input-control input:focus{
+    background-color: #ffffff;
+}
+.input-control label{
+    font-weight: 500;
+    text-align: left;
+    padding: 10px 0;
+}
+.input-control input{
+    border: 2px solid #E6E6E6;
+    border-radius: 8px;
+    width: 500px;
+    height: 50px;
+    padding-left: 20px;
+}
+.input-control .error{
+    font-size: 14px;
+    text-align: left;
+    color: red;
+}
+.submit-signup {
+    margin-top: 30px;
+    width: 500px;
+    border-radius: 5px;
+    padding: 10px 10px;
+    background-color: #007E85;
+    color: white;
+    border: 0;
+}
+.submit-signup:active{
+    background-color: #6EAB36;
+}
+#Patient,#Doctor, #female,#male, #online, #f2f{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    padding: 0;
+}
+#MaleLabel,#FemaleLabel,#PatientLabel,#DoctorLabel, #online, #f2f{
+    font-size: 20px;
+}
+/* .custom-file{
+    border: 2px solid yellow;
+    width: 100%;
+
+} */
+.upload label{
+    text-align: left;
+    width: 500px;
+    font-weight: 500;
+    font-size: 20px;
+
+}
+.upload input{
+    margin-top: 5px;
+    border: 2px solid #E6E6E6 ;
+    width: 500px;
+    text-align: left;
+    font-size: 18px;
+
+}
+.alert-email{
+    margin-top: 20px;
+    width: 500px;
+}
+.checkboxes{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.checkboxes input{
+    width: 55px;
+    height: 25px;
+}
+.checkboxes label{
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0; 
+    margin-right: 10px;
+}
+.images-signup{
+    text-align: left;
+}
+.images-signup input{
+    width: 500px;
+}
+.images-signup label{
+    font-weight: 500;
+    text-align: left;
+    padding: 10px 0;
+}
+.error-2{
+    color: red;
+}
