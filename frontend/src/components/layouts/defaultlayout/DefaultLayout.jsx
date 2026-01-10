@@ -1,11 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-// import Navigation from '../../navigation/Navigation';
+import Navigation from '@/components/header/Navigation';
 import Footer from '../../footer/Footer';
 const DefaultLayout = ({ userData }) => {
   return (
     <div>
-      {/* <Navigation userData={userData} /> */}
+      <Navigation userData={userData} />
       <Outlet />
       <Footer />
     </div>
