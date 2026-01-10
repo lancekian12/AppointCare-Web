@@ -3,13 +3,12 @@ import ServiceProvider from "../../components/reusecomponent/ServiceProvider";
 import FAQ from "../../components/reusecomponent/FAQ";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <main className="mt-5 mb-20 md:mb-40">
       <section>
         <div className="container mx-auto px-4">
           <div className="flex flex-col-reverse md:flex-row items-center gap-8">
-            {/* Left / text */}
             <div className="w-full md:w-1/2">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 leading-tight text-left">
                 Providing Quality{" "}
@@ -26,12 +25,11 @@ const Home = () => {
                 industry.
               </p>
 
-              {/* Buttons: side-by-side even on mobile; will wrap if needed */}
               <div className="mt-6 flex flex-row items-center gap-4 flex-wrap">
                 <Link to="/TopDoctors" className="block">
                   <button
                     type="button"
-                    className="min-w-[140px] px-6 h-12 rounded-md bg-[#007E85] text-white text-lg font-medium"
+                    className="min-w-35 px-6 h-12 rounded-md bg-[#007E85] text-white text-lg font-medium"
                   >
                     Appointments
                   </button>
@@ -55,21 +53,20 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right / images */}
             <div className="w-full md:w-1/2 relative flex justify-center items-start mt-8 md:mt-0">
-  <img
-    src="/images/Vector.png"
-    alt="decorative vector"
-    className="
-      absolute
-      top-12
-      left-1/2
-      -translate-x-1/2
-      w-64
-      md:right-20 md:left-auto md:translate-x-0 md:w-auto
-      z-0
-    "
-  />
+              <img
+                src="/images/Vector.png"
+                alt="decorative vector"
+                className="
+                  absolute
+                  top-12
+                  left-1/2
+                  -translate-x-1/2
+                  w-64
+                  md:right-20 md:left-auto md:translate-x-0 md:w-auto
+                  z-0
+                "
+              />
               <img
                 src="/images/doctor3.png"
                 alt="doctor"
