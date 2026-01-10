@@ -1,48 +1,72 @@
-import React from 'react'
-import FindDoctor from '../../components/reusecomponent/FindDoctor'
-import ServiceProvider from '../../components/reusecomponent/ServiceProvider'
-import '../../css/Home.css'
-import FAQ from '../../components/reusecomponent/FAQ'
-import { Link } from "react-router-dom"
+import React from "react";
+import ServiceProvider from "../../components/reusecomponent/ServiceProvider";
+import FAQ from "../../components/reusecomponent/FAQ";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <main>
-      <section className='home'>
-        <div className='home text-center mt-3 mx-5'>
-          <div className="container align-items-center justify-content-center">
-            <div className="row align-items-center justify-content-center">
-              <div className="col-6 description">
-                <h2>
-                  Providing Quality
-                  <span style={{ color: "#007E85" }}> HealthCare</span> for A
-                  <span style={{ color: "#6EAB36" }}> Brighter</span> and
-                  <span style={{ color: "#6EAB36" }}> Healthy</span> Future
-                </h2>
-                <p className='lead'>At our AppointCare, we are dedicated to providing exceptional medical care to our patients and their families.
-                  Our experienced team of medical professionals, cutting-edge technology, and compassionate approach make us a leader in the healthcare i
-                  ndustry</p>
-                <div className='container mt-5 align-items-center'>
-                  <div className='row align-items-center justify-content-center'>
-                    <div className='col-6'>
-                      <Link to="/TopDoctors">
-                        <button id="Appointment">Appointments</button>
+    <main className="mt-12 mb-40">
+      <section>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col-reverse md:flex-row items-center gap-8">
+            {/* Left / text */}
+            <div className="md:w-1/2">
+              <h2 className="text-3xl md:text-5xl font-semibold mb-6 leading-tight text-left">
+                Providing Quality{" "}
+                <span className="text-[#007E85]">HealthCare</span> for A{" "}
+                <span className="text-[#6EAB36]">Brighter</span> and{" "}
+                <span className="text-[#6EAB36]">Healthy</span> Future
+              </h2>
 
-                      </Link>
-                    </div>
-                    <div className='col-6'>
-                      <Link to="/TopDoctors" className='link-buttons'>
-                        <button id="play"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <h3 className='text-center d-inline-block watch'>Find a Doctor</h3>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+              <p className="text-lg md:text-xl text-left text-gray-700">
+                At our AppointCare, we are dedicated to providing exceptional
+                medical care to our patients and their families. Our experienced
+                team of medical professionals, cutting-edge technology, and
+                compassionate approach make us a leader in the healthcare
+                industry.
+              </p>
+
+              <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+                <Link to="/TopDoctors" className="block">
+                  <button
+                    type="button"
+                    className="w-[250px] h-[50px] rounded-md bg-[#007E85] text-white text-lg font-medium"
+                  >
+                    Appointments
+                  </button>
+                </Link>
+
+                <Link
+                  to="/TopDoctors"
+                  className="flex items-center gap-3 no-underline text-black"
+                >
+                  <button
+                    type="button"
+                    className="w-[50px] h-[50px] rounded-full bg-[#007E85] text-white flex items-center justify-center text-xl"
+                    aria-label="Find a doctor"
+                  >
+                    <i className="fa-solid fa-magnifying-glass" />
+                  </button>
+                  <h3 className="text-lg font-semibold">Find a Doctor</h3>
+                </Link>
               </div>
-              <div className="col-6">
-                <img src="Vector.png" alt="Vector" className='vector' />
-                <img src="doctor3.png" alt="doctor" className='doctor' />
-              </div>
+            </div>
+
+            {/* Right / images */}
+            <div className="md:w-1/2 relative flex justify-center items-start">
+              {/* Vector - absolute behind */}
+              <img
+                src="/images/Vector.png"
+                alt="decorative vector"
+                className="absolute -left-6 translate-y-24 w-64 md:w-auto opacity-95"
+              />
+
+              {/* Doctor image in front */}
+              <img
+                src="/images/doctor3.png"
+                alt="doctor"
+                className="relative w-72 md:w-[420px] z-10"
+              />
             </div>
           </div>
         </div>
@@ -50,8 +74,8 @@ const Home = () => {
       {/* <FindDoctor /> */}
       <ServiceProvider />
       <FAQ />
-    </main >
-  )
-}
+    </main>
+  );
+};
 
-export default Home
+export default Home;
