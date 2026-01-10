@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   return (
-    <main className="mt-5 mb-20 md:mb-40">
-      <section>
+    <main className="mt-5 md:mt-20 mb-20">
+      <section className="mb-10 md:mb-25">
         <div className="container mx-auto px-4">
           <div className="flex flex-col-reverse md:flex-row items-center gap-8">
             <div className="w-full md:w-1/2">
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
                 <Link to="/TopDoctors" className="block">
                   <button
                     type="button"
-                    className="min-w-35 px-6 h-12 rounded-md bg-[#007E85] text-white text-lg font-medium"
+                    className="min-w-35 md:min-w-100 px-6 h-12 rounded-md bg-[#007E85] text-white text-lg font-medium"
                   >
                     Appointments
                   </button>
@@ -53,6 +53,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
+            {/* Right / images */}
             <div className="w-full md:w-1/2 relative flex justify-center items-start mt-8 md:mt-0">
               <img
                 src="/images/Vector.png"

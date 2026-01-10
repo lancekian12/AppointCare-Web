@@ -1,10 +1,10 @@
 //App JSx
-import React, { useState } from 'react'; // Import useState from React
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/home/Home';
+import React, { useState } from "react"; // Import useState from React
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/home/Home";
 // import Contact from './pages/contact/Contact';
 // import Service from "./pages/service/Service";
-// import Login from './pages/login/Login';
+import Login from "./pages/login/Login";
 // import Signup from './pages/signup/Signup';
 // import Patientsignup from "./pages/patientsignup/Patientsignup";
 // import DoctorInformation from "./components/reusecomponent/DoctorInformation";
@@ -46,14 +46,14 @@ function App() {
   const [userData, setUserData] = useState(null);
   const [adminData, setAdminData] = useState(null);
   React.useEffect(() => {
-    const storedUserData = localStorage.getItem('userData');
+    const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
       setUserData(JSON.parse(storedUserData));
     }
   }, []);
 
   React.useEffect(() => {
-    const storedUserData = localStorage.getItem('adminData');
+    const storedUserData = localStorage.getItem("adminData");
     if (storedUserData) {
       setAdminData(JSON.parse(storedUserData));
     }
@@ -63,14 +63,15 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<DefaultLayout userData={userData} />} >
+          <Route path="/" element={<DefaultLayout userData={userData} />}>
             <Route index element={<Home />} />
+            <Route path="Login" element={<Login setUserData={setUserData} />} />
+
             {/* <Route path='Service' element={<Service />} />
             <Route path='TopDoctors' element={<TopDoctors />} />
             <Route path='Signup' element={<Signup />} />
             <Route path='PatienAppointment' element={<PatientAppointment userData={userData} />} />
             <Route path='PatientConsultation' element={<PatientConsultation userData={userData} />} />
-            <Route path='Login' element={<Login setUserData={setUserData} />} />
             <Route path='/Appointment/:id' element={<Appointment userData={userData} />} />
             <Route path='Signup' element={<DoctorSignup />} />
             <Route path='PatientSignup' element={<Patientsignup />} />
@@ -112,7 +113,7 @@ function App() {
           <Route path='AdminLogin' element={<AdminLogin setAdminData={setAdminData} />} />
           <Route path='AdminRegister' element={<AdminRegister />} /> */}
         </Routes>
-      </BrowserRouter >
+      </BrowserRouter>
     </>
   );
 }
