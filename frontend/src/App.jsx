@@ -5,7 +5,7 @@ import Home from "./pages/home/Home";
 // import Contact from './pages/contact/Contact';
 // import Service from "./pages/service/Service";
 import Login from "./pages/login/Login";
-// import Signup from './pages/signup/Signup';
+import Signup from "./pages/signup/Signup";
 // import Patientsignup from "./pages/patientsignup/Patientsignup";
 // import DoctorInformation from "./components/reusecomponent/DoctorInformation";
 // import TopDoctors from './pages/topdoctors/TopDoctors';
@@ -66,10 +66,10 @@ function App() {
           <Route path="/" element={<DefaultLayout userData={userData} />}>
             <Route index element={<Home />} />
             <Route path="Login" element={<Login setUserData={setUserData} />} />
+            <Route path="Signup" element={<Signup />} />
 
             {/* <Route path='Service' element={<Service />} />
             <Route path='TopDoctors' element={<TopDoctors />} />
-            <Route path='Signup' element={<Signup />} />
             <Route path='PatienAppointment' element={<PatientAppointment userData={userData} />} />
             <Route path='PatientConsultation' element={<PatientConsultation userData={userData} />} />
             <Route path='/Appointment/:id' element={<Appointment userData={userData} />} />

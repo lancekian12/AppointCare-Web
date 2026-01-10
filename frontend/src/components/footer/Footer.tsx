@@ -149,11 +149,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <hr className="border-white/30 my-6" />
-
-        <p className="text-center text-sm md:text-base opacity-95">
-          Lance Kian Flores © {new Date().getFullYear()} - All Rights Reserved
-        </p>
       </div>
     </footer>
   );

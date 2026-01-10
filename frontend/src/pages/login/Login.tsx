@@ -97,7 +97,7 @@ const Login: React.FC<LoginProps> = ({ setUserData }) => {
     <section className="mt-12 mb-24 px-4">
       <div className="max-w-6xl mx-auto">
         <WelcomeDesign />
-        <hr className="my-6 w-full" />
+        <hr className="my-6 w-full border-t-2 border-gray-300" />
 
         <div className="flex justify-center text-center">
           <form
