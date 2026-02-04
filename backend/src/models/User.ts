@@ -2,7 +2,7 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { IUserBase } from "../types/UserTypes.types";
+import { IUserBase } from "../types/userTypes.types";
 
 export interface IUserDocument extends IUserBase, Document {
   createJWT(): string;

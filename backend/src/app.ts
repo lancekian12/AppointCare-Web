@@ -2,7 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import mongoConnect from "./db/database";
-import { securityMiddlewares } from "./middleware/security";
+import { securityMiddlewares } from "./middlewares/security/security";
 
 // ===== Load env =====
 dotenv.config();
