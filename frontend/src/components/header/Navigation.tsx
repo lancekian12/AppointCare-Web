@@ -1,228 +1,211 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import type { NavigationProps } from "../../types/navigation.types";
 
-const Navigation: React.FC<NavigationProps> = ({ userData }) => {
-  const storedUserData = userData;
+export interface NavigationProps {
+  userData?: {
+    name?: string;
+    avatarUrl?: string | null;
+  } | null;
+}
 
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+const Navigation: React.FC<NavigationProps> = ({ userData = null }) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+const activeClass = "text-[#008081] font-bold";
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+    const onResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
   return (
     <header
-      className={`w-full sticky top-0 z-50 transition-all duration-300 bg-white ${
-        scrolled ? "shadow-md border-b border-gray-200" : "shadow-none border-none"
-      }`}
+      className={`w-full border-b border-slate-100 dark:border-slate-800 sticky top-0 z-50 backdrop-blur-md transition-colors duration-300 ${
+        scrolled ? "bg-white/90 shadow-sm" : "bg-white/80"
+      } dark:${scrolled ? "bg-slate-900/90" : "bg-slate-900/80"}`}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-around items-center h-20">
           {/* Brand */}
-          <a href="/" className="flex items-center gap-3">
-            <img
-              src="/images/logo.png"
-              alt="AppointCare"
-              className="w-14 h-12 object-contain"
-            />
-            <h1 className="text-2xl font-semibold text-[#007E85] leading-tight">
-              Appoint
-              <span className="text-[#6EAB36]">Care</span>
-            </h1>
+          <a href="/" className="flex items-center justify-center">
+            <span
+              className="material-icons text-[#008081]"
+              style={{ fontSize: "35px" }}
+            >
+              eco
+            </span>
+            <span className="text-2xl font-bold text-slate-800 dark:text-white">
+              Appoint<span className="text-[#81B641]">Care</span>
+            </span>
           </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Desktop navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
             <NavLink
               to="/"
               end
               className={({ isActive }) =>
-                isActive
-                  ? "bg-[#007E85] text-white px-4 py-2 rounded-full text-lg"
-                  : "text-[#6EAB36] text-lg px-3 py-2 rounded-full hover:bg-[#007E85] hover:text-white transition"
+                `text-slate-600  hover:text-primary transition-colors ${
+                  isActive ? "text-[#008081] font-bold" : ""
+                }`
               }
             >
               Home
             </NavLink>
+
             <NavLink
               to="/TopDoctors"
+              end
               className={({ isActive }) =>
-                isActive
-                  ? "bg-[#007E85] text-white px-4 py-2 rounded-full text-lg"
-                  : "text-[#6EAB36] text-lg px-3 py-2 rounded-full hover:bg-[#007E85] hover:text-white transition"
+                `text-slate-600 dark:text-slate-300 hover:text-primary transition-colors ${
+                  isActive ? activeClass : ""
+                }`
               }
             >
               Find Doctor
             </NavLink>
+
             <NavLink
               to="/Contact"
+              end
               className={({ isActive }) =>
-                isActive
-                  ? "bg-[#007E85] text-white px-4 py-2 rounded-full text-lg"
-                  : "text-[#6EAB36] text-lg px-3 py-2 rounded-full hover:bg-[#007E85] hover:text-white transition"
+                `text-slate-600 dark:text-slate-300 hover:text-primary transition-colors ${
+                  isActive ? activeClass : ""
+                }`
               }
             >
               Contact Us
             </NavLink>
           </nav>
 
-          {/* Mobile menu toggle */}
+          {/* Right actions (desktop) */}
+          <div className="hidden md:flex items-center space-x-4">
+            <NavLink
+              to="/Signup"
+              className="text-[#81B641] font-semibold hover:opacity-80 transition-opacity"
+            >
+              Sign Up
+            </NavLink>
+            <NavLink
+              to="/Login"
+              className="bg-[#81B641] text-white px-6 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-all shadow-md"
+            >
+              Login
+            </NavLink>
+          </div>
+
+          {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-3">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="text-[#6EAB36] focus:outline-none"
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#008081]"
             >
               <svg
-                className="w-7 h-7"
+                className="w-7 h-7 text-slate-700 dark:text-slate-200"
+                viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 {menuOpen ? (
                   <path
+                    strokeWidth={2}
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
                     d="M6 18L18 6M6 6l12 12"
                   />
                 ) : (
                   <path
+                    strokeWidth={2}
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 )}
               </svg>
             </button>
           </div>
-
-          {/* Desktop auth / user */}
-          {storedUserData ? (
-            <NavLink
-              to="/ProfileLayout"
-              className="hidden md:flex items-center gap-3 text-[#6EAB36] text-lg"
-            >
-              <span className="capitalize">{storedUserData.name}</span>
-              <img
-                src={
-                  storedUserData.avatarUrl ||
-                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                }
-                alt="patient-image"
-                className="w-12 h-12 rounded-full object-cover border border-[#6EAB36]"
-              />
-            </NavLink>
-          ) : (
-            <div className="hidden md:flex items-center gap-3">
-              <NavLink
-                to="/Signup"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#007E85] text-white px-6 py-2 rounded-full text-lg"
-                    : "text-[#6EAB36] text-lg px-4 py-2 rounded-full hover:bg-[#007E85] hover:text-white transition"
-                }
-              >
-                Sign Up
-              </NavLink>
-              <NavLink
-                to="/Login"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#005e61] text-white px-5 py-2 rounded-full text-lg"
-                    : "bg-[#6EAB36] text-white px-5 py-2 rounded-full text-lg hover:bg-[#007E85] transition"
-                }
-              >
-                Login
-              </NavLink>
-            </div>
-          )}
         </div>
 
-        {/* Mobile menu dropdown */}
-        {menuOpen && (
-          <div className="md:hidden mt-2 pb-4 border-t border-gray-200 flex flex-col gap-2">
+        {/* Mobile menu */}
+        <div
+          className={`md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+            menuOpen ? "max-h-[420px] mt-2 pb-4" : "max-h-0"
+          }`}
+        >
+          <div className="flex flex-col gap-3 mt-2 pb-2 border-t border-slate-100 dark:border-slate-800 px-2">
             <NavLink
               to="/"
               end
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-[#007E85] text-white px-4 py-2 rounded-full text-lg"
-                  : "text-[#6EAB36] text-lg px-3 py-2 rounded-full hover:bg-[#007E85] hover:text-white transition"
-              }
               onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `block w-full text-left px-4 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-white/50 hover:dark:bg-slate-800 transition ${
+                  isActive ? `bg-white/60 dark:bg-slate-800 ${activeClass}` : ""
+                }`
+              }
             >
               Home
             </NavLink>
+
             <NavLink
               to="/TopDoctors"
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-[#007E85] text-white px-4 py-2 rounded-full text-lg"
-                  : "text-[#6EAB36] text-lg px-3 py-2 rounded-full hover:bg-[#007E85] hover:text-white transition"
-              }
+              end
               onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `block w-full text-left px-4 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-white/50 hover:dark:bg-slate-800 transition ${
+                  isActive ? `bg-white/60 dark:bg-slate-800 ${activeClass}` : ""
+                }`
+              }
             >
               Find Doctor
             </NavLink>
+
             <NavLink
               to="/Contact"
-              className={({ isActive }) =>
-                isActive
-                  ? "bg-[#007E85] text-white px-4 py-2 rounded-full text-lg"
-                  : "text-[#6EAB36] text-lg px-3 py-2 rounded-full hover:bg-[#007E85] hover:text-white transition"
-              }
+              end
               onClick={() => setMenuOpen(false)}
+              className={({ isActive }) =>
+                `block w-full text-left px-4 py-2 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-white/50 hover:dark:bg-slate-800 transition ${
+                  isActive ? `bg-white/60 dark:bg-slate-800 ${activeClass}` : ""
+                }`
+              }
             >
               Contact Us
             </NavLink>
 
-            {/* Auth buttons in mobile */}
-            {storedUserData ? (
+            <div className="pt-2 border-t border-slate-100 dark:border-slate-800 mt-2">
               <NavLink
-                to="/ProfileLayout"
-                className="flex items-center gap-3 text-[#6EAB36] text-lg mt-2"
+                to="/Signup"
                 onClick={() => setMenuOpen(false)}
+                className="block w-full text-left px-4 py-2 rounded-lg text-[#81B641] font-semibold hover:opacity-90"
               >
-                <span className="capitalize">{storedUserData.name}</span>
-                <img
-                  src={
-                    storedUserData.avatarUrl ||
-                    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                  }
-                  alt="patient-image"
-                  className="w-12 h-12 rounded-full object-cover border border-[#6EAB36]"
-                />
+                Sign Up
               </NavLink>
-            ) : (
-              <div className="flex flex-col gap-2 mt-2">
-                <NavLink
-                  to="/Signup"
-                  className="text-[#6EAB36] text-lg px-4 py-2 rounded-full hover:bg-[#007E85] hover:text-white transition"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Sign Up
-                </NavLink>
-                <NavLink
-                  to="/Login"
-                  className="bg-[#6EAB36] text-white px-4 py-2 rounded-full text-lg hover:bg-[#007E85] transition"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Login
-                </NavLink>
-              </div>
-            )}
+
+              <NavLink
+                to="/Login"
+                onClick={() => setMenuOpen(false)}
+                className="mt-2 block w-full text-left px-4 py-2 rounded-lg bg-[#81B641] text-white font-semibold"
+              >
+                Login
+              </NavLink>
+            </div>
           </div>
-        )}
+        </div>
       </div>
+
+      <style>{`/* purely tailwind-based; no extra CSS needed */`}</style>
     </header>
   );
 };
