@@ -26,6 +26,9 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^25.2.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",

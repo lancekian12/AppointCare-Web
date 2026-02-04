@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #008081;
+  --color-secondary: #81B641;
+  --color-background-light: #FFFFFF;
+  --color-background-dark: #0f172a;
+}
+
 @layer base {
   /* Custom scrollbar */
   ::-webkit-scrollbar {
