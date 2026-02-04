@@ -1,0 +1,305 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"mongoose.ObjectIdToString_Omit_mongoose.Require_id_DocType-and-TVirtuals_.__v__": {
+				"$ref": "#/components/schemas/mongoose.ObjectIdToString_Omit_mongoose.Require_id_DocType-and-TVirtuals_.__v__",
+				"description": "Converts any ObjectId properties into strings for JSON serialization"
+			},
+			"IUserDocument": {
+				"$ref": "#/components/schemas/mongoose.ObjectIdToString_Omit_mongoose.Require_id_DocType-and-TVirtuals_.__v__"
+			},
+			"AuthResponse": {
+				"properties": {
+					"user": {
+						"$ref": "#/components/schemas/IUserDocument"
+					},
+					"token": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"user",
+					"token"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SignupInput": {
+				"properties": {
+					"role": {
+						"type": "string",
+						"enum": [
+							"Doctor",
+							"Patient"
+						]
+					},
+					"Fname": {
+						"type": "string"
+					},
+					"Lname": {
+						"type": "string"
+					},
+					"number": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string",
+						"enum": [
+							"Male",
+							"Female"
+						]
+					},
+					"age": {
+						"type": "number",
+						"format": "double"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"hn": {
+						"type": "number",
+						"format": "double"
+					},
+					"barangay": {
+						"type": "string"
+					},
+					"municipality": {
+						"type": "string"
+					},
+					"province": {
+						"type": "string"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"Accept",
+							"Reject",
+							"Pending"
+						]
+					},
+					"specialty": {
+						"type": "string"
+					},
+					"md": {
+						"type": "number",
+						"format": "double"
+					},
+					"consultPrice": {
+						"type": "number",
+						"format": "double"
+					},
+					"f2f": {
+						"type": "boolean"
+					},
+					"online": {
+						"type": "boolean"
+					},
+					"imageLicense": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"role",
+					"Fname",
+					"Lname",
+					"number",
+					"gender",
+					"age",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"LoginInput": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "",
+		"contact": {}
+	},
+	"paths": {
+		"/auth/signup": {
+			"post": {
+				"operationId": "Signup",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AuthResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"enum": [
+										400
+									],
+									"nullable": false
+								}
+							}
+						},
+						"headers": {
+							"message": {
+								"schema": {
+									"type": "string"
+								},
+								"required": true
+							}
+						}
+					},
+					"500": {
+						"description": "Server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"enum": [
+										500
+									],
+									"nullable": false
+								}
+							}
+						},
+						"headers": {
+							"message": {
+								"schema": {
+									"type": "string"
+								},
+								"required": true
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SignupInput"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/login": {
+			"post": {
+				"operationId": "Login",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AuthResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Bad request",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"enum": [
+										400
+									],
+									"nullable": false
+								}
+							}
+						},
+						"headers": {
+							"message": {
+								"schema": {
+									"type": "string"
+								},
+								"required": true
+							}
+						}
+					},
+					"500": {
+						"description": "Server error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"enum": [
+										500
+									],
+									"nullable": false
+								}
+							}
+						},
+						"headers": {
+							"message": {
+								"schema": {
+									"type": "string"
+								},
+								"required": true
+							}
+						}
+					}
+				},
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/LoginInput"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

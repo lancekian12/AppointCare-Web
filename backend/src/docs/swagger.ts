@@ -1,12 +1,22 @@
-// swagger.ts
+import { Application } from "express";
 import swaggerUi from "swagger-ui-express";
-import YAML from "yamljs";
-import { Express } from "express";
+import fs from "fs";
 import path from "path";
 
-// Load YAML file
-const swaggerDocument = YAML.load(path.join(__dirname, "openapi", "auth.yaml"));
+export const setupSwagger = (app: Application) => {
+  // Path to TSOA-generated swagger.json
+  const swaggerFilePath = path.resolve(__dirname, "./openapi/swagger.json");
 
-export const setupSwagger = (app: Express) => {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  if (!fs.existsSync(swaggerFilePath)) {
+    console.warn(
+      "[Swagger] swagger.json not found. Please run `npx tsoa spec` first."
+    );
+    return;
+  }
+
+  const swaggerDocument = require(swaggerFilePath);
+
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+  console.log("[Swagger] API documentation available at /docs");
 };

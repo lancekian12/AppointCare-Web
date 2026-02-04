@@ -7,6 +7,7 @@ import { securityMiddlewares } from "./middlewares/security/security";
 import { errorMiddleware } from "./middlewares/error/errorMiddleware";
 import { notFoundMiddleware } from "./middlewares/error/notFoundMiddleware";
 import authRoutes from "./routes/authRoute";
+import "./controllers/authController";
 
 // ===== Load env =====
 dotenv.config();
@@ -47,8 +48,5 @@ app.use(notFoundMiddleware);
 // ===== Error middleware =====
 app.use(errorMiddleware);
 
-// ===== Start server =====
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// ✅ Export the app (do NOT call app.listen here)
+export default app;

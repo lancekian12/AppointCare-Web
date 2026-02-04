@@ -22,9 +22,11 @@
     "yamljs": "^0.3.0"
   },
   "scripts": {
-    "dev": "nodemon --watch src --ext ts --exec ts-node src/app.ts",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
+    "start": "ts-node src/server.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "tsoa:routes": "tsoa routes",
+    "tsoa:spec": "tsoa spec"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

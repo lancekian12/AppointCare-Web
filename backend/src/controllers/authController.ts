@@ -1,31 +1,43 @@
-import { Request, Response } from "express";
+import { Controller, Post, Route, Body, Tags, Response } from "tsoa";
 import * as authService from "../services/authServices";
-import { SignupInput, LoginInput } from "../types/auth.types";
+import { SignupInput, LoginInput, AuthResponse } from "../types/auth.types";
 
-// ===== Signup Controller =====
-export const signupController = async (req: Request, res: Response) => {
-  try {
-    const data: SignupInput = req.body;
-    const result = await authService.signup(data);
-    return res.status(201).json(result);
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      return res.status(400).json({ message: err.message });
-    }
-    return res.status(500).json({ message: "Server error" });
-  }
-};
+@Route("auth")
+@Tags("Auth")
+export class AuthController extends Controller {
 
-// ===== Login Controller =====
-export const loginController = async (req: Request, res: Response) => {
-  try {
-    const data: LoginInput = req.body;
-    const result = await authService.login(data);
-    return res.status(200).json(result);
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      return res.status(400).json({ message: err.message });
+  @Post("signup")
+  @Response<400, { message: string }>(400, "Bad request")
+  @Response<500, { message: string }>(500, "Server error")
+  public async signup(@Body() body: SignupInput): Promise<AuthResponse> {
+    try {
+      const result = await authService.signup(body);
+      return result; // result is proper AuthResponse
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        // Set status code and throw
+        this.setStatus(400);
+        throw new Error(err.message);
+      }
+      this.setStatus(500);
+      throw new Error("Server error");
     }
-    return res.status(500).json({ message: "Server error" });
   }
-};
+
+  @Post("login")
+  @Response<400, { message: string }>(400, "Bad request")
+  @Response<500, { message: string }>(500, "Server error")
+  public async login(@Body() body: LoginInput): Promise<AuthResponse> {
+    try {
+      const result = await authService.login(body);
+      return result;
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        this.setStatus(400);
+        throw new Error(err.message);
+      }
+      this.setStatus(500);
+      throw new Error("Server error");
+    }
+  }
+}
