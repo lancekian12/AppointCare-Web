@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
           {/* Center links (wrap on small screens) */}
           <div className="flex gap-8 text-sm font-medium text-slate-500 dark:text-slate-400 md:order-none order-3">
             <NavLink
-              to="/privacy"
+              to="/PrivacyPolicy"
               className="hover:text-primary transition-colors"
             >
               Privacy Policy
