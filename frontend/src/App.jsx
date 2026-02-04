@@ -15,6 +15,7 @@ import NoNavLayout from "./components/layouts/NoNavLayout/NoNavLayout";
 // import Admin from './pages/admin/Admin';
 import DoctorSignup from './pages/doctorsignup/DoctorSignup';
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import CookiesPolicy from "./pages/legal/CookiesPolicy";
 // import AdminLayout from './components/layouts/adminlayout/AdminLayout';
 // import PatientList from './pages/admin/PatientList';
 // import DoctorList from './pages/admin/DoctorList'
@@ -75,6 +76,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="Contact" element={<Contact />} />
             <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
+            <Route path="cookies" element={<CookiesPolicy />} />
 
 
             {/* <Route path='Service' element={<Service />} />

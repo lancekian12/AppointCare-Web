@@ -16,7 +16,7 @@ const PrivacyPolicy: React.FC = () => {
           </h1>
           <div className="flex items-center gap-2 text-slate-500 font-medium">
             <History className="w-5 h-5" />
-            <p>Last Updated: October 24, 2024</p>
+            <p>Last Updated: January 4, 2026</p>
           </div>
         </div>
 
