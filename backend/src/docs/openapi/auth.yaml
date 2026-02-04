@@ -1,0 +1,86 @@
+openapi: 3.0.0 # ✅ Must be exactly like this
+info:
+  title: AppointCare API
+  version: 1.0.0
+  description: Backend API documentation
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /api/auth/signup:
+    post:
+      summary: Signup a new user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignupInput"
+      responses:
+        201:
+          description: User created successfully
+        400:
+          description: Bad request
+
+  /api/auth/login:
+    post:
+      summary: Login user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+      responses:
+        200:
+          description: Login successful
+        401:
+          description: Unauthorized
+
+components:
+  schemas:
+    SignupInput:
+      type: object
+      required:
+        - role
+        - Fname
+        - Lname
+        - number
+        - gender
+        - age
+        - email
+        - password
+      properties:
+        role:
+          type: string
+          enum: [Doctor, Patient]
+        Fname:
+          type: string
+        Lname:
+          type: string
+        number:
+          type: string
+        gender:
+          type: string
+          enum: [Male, Female]
+        age:
+          type: number
+        email:
+          type: string
+        password:
+          type: string
+
+    LoginInput:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string

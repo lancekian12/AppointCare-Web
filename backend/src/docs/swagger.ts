@@ -1,29 +1,12 @@
 // swagger.ts
 import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
 import { Express } from "express";
-import swaggerJsdoc from "swagger-jsdoc";
+import path from "path";
 
-// const {swaggerJsdoc} = require('swagger-jsdoc')
-
-const options: swaggerJsdoc.Options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "AppointCare API",
-      version: "1.0.0",
-      description: "Backend API documentation",
-    },
-    servers: [
-      {
-        url: "http://localhost:3000",
-      },
-    ],
-  },
-  apis: ["./routes/*.ts"], // <-- your route files
-};
-
-const swaggerSpec = swaggerJsdoc(options);
+// Load YAML file
+const swaggerDocument = YAML.load(path.join(__dirname, "openapi", "auth.yaml"));
 
 export const setupSwagger = (app: Express) => {
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 };
