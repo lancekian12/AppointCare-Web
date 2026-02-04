@@ -22,8 +22,8 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="py-12 border-t border-slate-100 dark:border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-around items-center gap-6 md:gap-0">
           {/* Brand */}
           <div className="flex items-center gap-2">
             <a href="/" className="flex items-center justify-center">
