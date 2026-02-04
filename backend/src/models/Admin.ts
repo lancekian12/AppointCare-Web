@@ -2,7 +2,7 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { IAdminBase } from '../types/Admin.types';
+import { IAdminBase } from '../types/admin.types';
 
 export interface IAdminDocument extends IAdminBase, Document {
   createJWT(): string;
