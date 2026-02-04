@@ -1,19 +1,19 @@
 //App JSx
 import React, { useState } from "react"; // Import useState from React
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home";
+import Home from "@/pages/home/Home";
 import Contact from "./pages/contact/Contact";
 // import Service from "./pages/service/Service";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
-// import Patientsignup from "./pages/patientsignup/Patientsignup";
+import Patientsignup from "./pages/patientsignup/Patientsignup";
 // import DoctorInformation from "./components/reusecomponent/DoctorInformation";
 // import TopDoctors from './pages/topdoctors/TopDoctors';
 // import DoctorProfile from "./pages/doctorprofile/DoctorProfile";
 import DefaultLayout from "./components/layouts/defaultlayout/DefaultLayout";
 import NoNavLayout from "./components/layouts/NoNavLayout/NoNavLayout";
 // import Admin from './pages/admin/Admin';
-// import DoctorSignup from './pages/doctorsignup/DoctorSignup';
+import DoctorSignup from './pages/doctorsignup/DoctorSignup';
 // import AdminLayout from './components/layouts/adminlayout/AdminLayout';
 // import PatientList from './pages/admin/PatientList';
 // import DoctorList from './pages/admin/DoctorList'
@@ -67,6 +67,8 @@ function App() {
           <Route element={<NoNavLayout />}>
             <Route path="Signup" element={<Signup />} />
             <Route path="Login" element={<Login setUserData={setUserData} />} />
+            <Route path="PatientSignup" element={<Patientsignup />} />
+            <Route path='DoctorSignup' element={<DoctorSignup />} />
           </Route>
           <Route path="/" element={<DefaultLayout userData={userData} />}>
             <Route index element={<Home />} />
@@ -78,8 +80,6 @@ function App() {
             <Route path='PatientConsultation' element={<PatientConsultation userData={userData} />} />
             <Route path='/Appointment/:id' element={<Appointment userData={userData} />} />
             <Route path='Signup' element={<DoctorSignup />} />
-            <Route path='PatientSignup' element={<Patientsignup />} />
-            <Route path='DoctorSignup' element={<DoctorSignup />} />
             <Route path='DoctorProfile/:id' element={<DoctorProfile />} >
               <Route index element={<Overview />} />
             </Route>
