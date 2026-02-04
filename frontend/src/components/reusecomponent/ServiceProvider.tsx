@@ -1,5 +1,5 @@
 import React from "react";
-import type { Service } from "../../types/service";
+import type { Service } from "../../types/service.types";
 import { SERVICES } from "@/data/service";
 
 const ServiceProvider: React.FC = () => {
@@ -12,7 +12,8 @@ const ServiceProvider: React.FC = () => {
           </h2>
           <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
             Our services include diagnosing fractures and injuries, X-ray
-            checkups, specialist consultations, eye care, and various treatments.
+            checkups, specialist consultations, eye care, and various
+            treatments.
           </p>
         </div>
 

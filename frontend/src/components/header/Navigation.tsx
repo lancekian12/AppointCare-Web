@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import type { NavigationProps } from "../../types/navigation";
+import type { NavigationProps } from "../../types/navigation.types";
 
 const Navigation: React.FC<NavigationProps> = ({ userData }) => {
   const storedUserData = userData;

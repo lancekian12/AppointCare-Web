@@ -7,7 +7,7 @@ import {
   AuthResponse,
   HomeResponseData,
   SetUserData,
-} from "@/types/auth";
+} from "@/types/auth.types";
 
 interface LoginProps {
   setUserData: SetUserData;

@@ -1,4 +1,4 @@
-import type { FooterLink } from "../types/footer";
+import type { FooterLink } from "../types/footer.types";
 
 export const FOOTER_LINKS: FooterLink[] = [
   { to: "/", label: "Home" },
@@ -6,4 +6,4 @@ export const FOOTER_LINKS: FooterLink[] = [
   { to: "/Contact", label: "Contact Us" },
   { to: "/PatientAppoinment", label: "My Bookings", authOnly: true },
   { to: "/PatientConsultation", label: "Consultation", authOnly: true },
-]
+];

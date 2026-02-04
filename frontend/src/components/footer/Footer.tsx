@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import type { User } from "@/types/footer";
+import type { User } from "@/types/footer.types";
 import { FOOTER_LINKS } from "@/data/footerLinks";
 import { MdMail, MdSend } from "react-icons/md";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
@@ -36,7 +36,8 @@ const Footer: React.FC = () => {
               </h2>
             </div>
             <p className="text-sm md:text-base opacity-95">
-              Copyright © {new Date().getFullYear()}. Design by: Lance Kian Flores
+              Copyright © {new Date().getFullYear()}. Design by: Lance Kian
+              Flores
             </p>
             {storedUserData && (
               <p className="text-sm md:text-base">
@@ -90,7 +91,7 @@ const Footer: React.FC = () => {
             <h3 className="text-xl md:text-2xl font-semibold mb-3">Email Us</h3>
             <div className="h-1 w-16 bg-white/30 mb-3 mx-auto sm:mx-0" />
 
-                       <form
+            <form
               onSubmit={handleSubscribe}
               className="flex gap-2 items-center border-b border-white/30 pb-2 max-w-md"
             >
@@ -148,7 +149,6 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
-
       </div>
     </footer>
   );

@@ -2,7 +2,7 @@
 import React, { useState } from "react"; // Import useState from React
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-// import Contact from './pages/contact/Contact';
+import Contact from './pages/contact/Contact';
 // import Service from "./pages/service/Service";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
@@ -67,6 +67,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="Login" element={<Login setUserData={setUserData} />} />
             <Route path="Signup" element={<Signup />} />
+            <Route path='Contact' element={<Contact />} />
 
             {/* <Route path='Service' element={<Service />} />
             <Route path='TopDoctors' element={<TopDoctors />} />
@@ -76,7 +77,6 @@ function App() {
             <Route path='Signup' element={<DoctorSignup />} />
             <Route path='PatientSignup' element={<Patientsignup />} />
             <Route path='DoctorSignup' element={<DoctorSignup />} />
-            <Route path='Contact' element={<Contact />} />
             <Route path='DoctorProfile/:id' element={<DoctorProfile />} >
               <Route index element={<Overview />} />
             </Route>

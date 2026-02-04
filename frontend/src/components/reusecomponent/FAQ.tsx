@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { FAQItem } from "../../types/faq";
+import type { FAQItem } from "../../types/faq.types";
 import { FAQS } from "../../data/faqs";
 
 const FAQ: React.FC = () => {
