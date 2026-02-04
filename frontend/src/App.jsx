@@ -2,7 +2,7 @@
 import React, { useState } from "react"; // Import useState from React
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
-import Contact from './pages/contact/Contact';
+import Contact from "./pages/contact/Contact";
 // import Service from "./pages/service/Service";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
@@ -11,6 +11,7 @@ import Signup from "./pages/signup/Signup";
 // import TopDoctors from './pages/topdoctors/TopDoctors';
 // import DoctorProfile from "./pages/doctorprofile/DoctorProfile";
 import DefaultLayout from "./components/layouts/defaultlayout/DefaultLayout";
+import NoNavLayout from "./components/layouts/NoNavLayout/NoNavLayout";
 // import Admin from './pages/admin/Admin';
 // import DoctorSignup from './pages/doctorsignup/DoctorSignup';
 // import AdminLayout from './components/layouts/adminlayout/AdminLayout';
@@ -63,11 +64,13 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route element={<NoNavLayout />}>
+            <Route path="Signup" element={<Signup />} />
+            <Route path="Login" element={<Login setUserData={setUserData} />} />
+          </Route>
           <Route path="/" element={<DefaultLayout userData={userData} />}>
             <Route index element={<Home />} />
-            <Route path="Login" element={<Login setUserData={setUserData} />} />
-            <Route path="Signup" element={<Signup />} />
-            <Route path='Contact' element={<Contact />} />
+            <Route path="Contact" element={<Contact />} />
 
             {/* <Route path='Service' element={<Service />} />
             <Route path='TopDoctors' element={<TopDoctors />} />
