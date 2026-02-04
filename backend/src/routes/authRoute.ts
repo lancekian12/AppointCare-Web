@@ -1,5 +1,5 @@
 import { Router } from "express";
-// import { signup, login } from "../controllers/authController";
+import { signupController, loginController } from "../controllers/authController";
 import {
   signupValidator,
   loginValidator,
@@ -8,7 +8,7 @@ import { validateRequest } from "../middlewares/validators/validateRequest";
 
 const router = Router();
 
-router.post("/signup", signupValidator, validateRequest, signup);
-router.post("/login", loginValidator, validateRequest, login);
+router.post("/signup", signupValidator, validateRequest, signupController);
+router.post("/login", loginValidator, validateRequest, loginController);
 
 export default router;

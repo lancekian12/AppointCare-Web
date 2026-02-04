@@ -1,6 +1,6 @@
 // models/Schedule.ts
 import mongoose, { Document, Model, Schema, Types } from 'mongoose';
-import { IScheduleBase, ScheduleStatus } from '../types/admin.types';
+import { IScheduleBase, ScheduleStatus } from '../types/schedule.types';
 
 export interface IScheduleDocument extends IScheduleBase, Document {
   createdAt: Date;
