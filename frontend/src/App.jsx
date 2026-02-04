@@ -16,6 +16,8 @@ import NoNavLayout from "./components/layouts/NoNavLayout/NoNavLayout";
 import DoctorSignup from './pages/doctorsignup/DoctorSignup';
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import CookiesPolicy from "./pages/legal/CookiesPolicy";
+import TermsOfService from "./pages/legal/TermsOfService";
+import ScrollToTop from "./components/reusecomponent/ScrollToTop";
 // import AdminLayout from './components/layouts/adminlayout/AdminLayout';
 // import PatientList from './pages/admin/PatientList';
 // import DoctorList from './pages/admin/DoctorList'
@@ -65,6 +67,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route element={<NoNavLayout />}>
             <Route path="Signup" element={<Signup />} />
@@ -77,6 +80,7 @@ function App() {
             <Route path="Contact" element={<Contact />} />
             <Route path="PrivacyPolicy" element={<PrivacyPolicy />} />
             <Route path="cookies" element={<CookiesPolicy />} />
+            <Route path="terms" element={<TermsOfService />} />
 
 
             {/* <Route path='Service' element={<Service />} />
